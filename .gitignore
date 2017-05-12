@@ -1,0 +1,6 @@
+npm-debug.log
+node_modules/
+package.json
+public/app.css
+public/app.js
+public/images/
