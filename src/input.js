@@ -5,4 +5,4 @@ import ReactDOM from 'react-dom';
 import { render } from 'react-dom'
 import App from './app/App.jsx';
 
-ReactDOM.render(<App />, document.getElementById('react_root'));
+ReactDOM.render(<App />, document.getElementById('root'));

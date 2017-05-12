@@ -87,7 +87,7 @@ module.exports = config;
 // push various additional processes to the config object when in production mode
 if (process.env.NODE_ENV === 'production') {
   module.exports.plugins.push(
-    new webpack.optimize.minify_js(), // call the uglifyjs plugin to concat/min/purify js
+    new minify_js(), // call the uglifyjs plugin to concat/min/purify js
     new minify_css() // call the optimizecss plugin and push it to the config object
   );
 }
