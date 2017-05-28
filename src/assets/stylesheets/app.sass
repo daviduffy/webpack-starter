@@ -1,12 +1,400 @@
-$color-bg   : #fefefe 
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700)
 
-body
-  background-color: $color-bg
+html:root 
+  --home-card-color            : rgba(255,255,255,1)
+  --first-card-color           : #1da1f2
+  --second-card-color-start    : #008dc7
+  --second-card-color-end      : #009da7
+  --third-card-color           : #e91e63
+  
+  --drop-in-easing-bezier      : .73, .14, 1, .99
+  
+  --light-box-shadow           : 0 1px 1px rgba(0, 0, 0, 0.25)
+  --normal-box-shadow          : 0 2px 2px rgba(0, 0, 0, 0.3)
+  
+  --standard-easing-duration   : 0.4s
+  --standard-easing-bezier     : 0.56, 0.26, 0.37, 0.98
+  --drop-in-animation-delay    : 0.77s
+  
+  --mosaic-grid-gap            : 0.33rem
 
-.container
-  border: 1px solid
+
+
+* 
+  box-sizing: border-box
+  font-family: 'Open Sans', tahoma, helvetica, sans-serif
+
+
+body 
+  background-color: #f6f6f6
+
+
+h2 
+  margin-top: 0
+  margin-bottom: calc(-1.2rem + 1.5vw)
+  font-size: calc(1rem + 2vw)
+
+p 
+  font-size: calc(0.7rem + 0.5vw)
+
+i.fa 
+  font-size: calc(1rem + 0.66vw)
+
+img 
+  max-width: 100%
+
+
+h2 strong 
+  display: block
+  font-weight: 300
+  text-transform: uppercase
+  letter-spacing: 0.025rem
+
+
+.card,
+.card-container 
+  position: relative
+  width: 80vw
+  min-width: 500px
+  max-width: 1000px
+  height: 45vw
+  min-height: 300px
+  max-height: none
+  margin: auto
+  display: grid
   border-radius: 2px
+  overflow: hidden
+  grid-template-columns: 40px repeat(8, 1fr) 40px
+  grid-template-rows: 40px repeat(4, 2fr) 60px
 
-  img
-    max-width: 33vw
-    padding: 1vw
+
+.card-container 
+  box-shadow: var(--normal-box-shadow)
+  transition: box-shadow 0.26s ease-in-out
+
+
+.controls 
+  color: black
+
+
+.controls--top 
+  grid-row: 1
+  grid-column: 1 / 11
+  padding: 0 1rem
+  display: flex
+  align-items: flex-end
+
+
+.controls--bottom 
+  grid-row: 6
+  grid-column: 2 / 9
+
+.controls__link 
+  text-decoration: none
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  color: white
+  position: relative
+  z-index: 11
+
+.controls__link svg 
+  width: 100%
+  height: auto
+
+.controls__link--top 
+  width: 2.5vw
+  min-width: 20px
+  max-width: 30px
+  &:last-child 
+    max-height: 100%
+    margin-left: auto
+
+.controls__link--bottom 
+  width: 30px
+  height: 30px
+  margin-right: 15px
+  border-radius: 50%
+
+.controls__link--active 
+  background-color: white
+  i 
+    color: inherit
+
+.card 
+  position: absolute
+  &:not(.card--active) .card__bg 
+    will-change: clip-path // this might be bad
+
+.card--active 
+  z-index: 10
+  .card__fly-in 
+    will-change: transform
+
+.card--previous 
+  z-index: 9
+
+.card__content-left 
+  color: white
+  z-index: 1
+  grid-row: 2 / 6
+  grid-column: 2 / span 4  
+  & > * 
+    color: inherit
+
+.card__content-right 
+  grid-row: 1 / 7
+  grid-column: 6 / 11
+  z-index: 12
+  display: flex
+  justify-content: center
+  align-items: center
+  perspective: 1000px
+  transform-style: preserve-3d
+  transform: translateX(101%)
+  padding: 1rem
+  transition: ease
+  img 
+    max-width: 100%
+
+.curtain 
+  position: absolute
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+  transition: opacity var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier) )
+  box-shadow: inset 0 0 30em 0 rgba(0,0,0,.9)
+  background-color: rgba(0,0,0,.6)
+  z-index: 11
+  opacity: 0
+
+.card__bg 
+  grid-row: 1 / span 9
+  grid-column: 1 / span 10
+  width: 100%
+  height: 100%
+  transition: 0.4s ease-out
+
+
+// Home card unique styles
+// =======================
+.card__home-card
+  .card__bg 
+    background-color: var(--home-card-color)
+  .card__content-left 
+    color: black
+  .card__content-right 
+    position: relative
+
+.card__home-card.card--active
+  .card__bg 
+    clip-path:  circle(20px at 35px 25px )
+  .card__content-right 
+    animation: drop-in 0.7s cubic-bezier( var(--drop-in-easing-bezier) )
+    animation-delay: 0.4s
+    animation-fill-mode: forwards
+  & ~ .controls
+    color: black
+    .controls__link--active 
+      display: none
+
+
+// First card unique styles
+// ========================
+.card__first-card
+  .card__bg 
+    background-color: var(--first-card-color)
+
+.card__first-card.card--active
+  .card__bg 
+    clip-path:  circle(20px at 55px calc(-45px + 100%))
+  .card__content-right:hover .mosaic-container  
+    position: relative
+    z-index: 99
+    transform: rotateY(0deg) scale(1)
+  .card__content-right:hover ~ .curtain  
+    opacity: 1
+  & ~ .controls--bottom .controls__link--active i
+    color: var(--first-card-color)
+
+
+
+// Second card unique styles
+// =========================
+.card__second-card
+  .card__bg 
+    background-color: var(--second-card-color-end)
+    background: linear-gradient(105deg, var(--second-card-color-start), var(--second-card-color-end) )
+.card__second-card.card--active
+  .card__bg 
+    clip-path:  circle(20px at 105px calc(-45px + 100%))
+  & ~ .controls--bottom .controls__link--active i 
+    color: var(--second-card-color-start)
+
+
+
+// Third card unique styles
+// ========================
+.card__third-card
+  .card__bg 
+    background-color: var(--third-card-color)
+
+.card__third-card.card--active
+  .card__bg 
+    clip-path:  circle(20px at 155px calc(-45px + 100%))
+  & ~ .controls--bottom .controls__link--active i 
+    color: var(--third-card-color)
+
+
+
+// general styles for active cards
+// ===============================*/
+
+.card--active
+  .card__bg 
+    animation: circle-expand calc(var(--standard-easing-duration)) ease-in-out
+    animation-fill-mode: forwards
+
+  .card__content-left 
+    opacity: 0
+    animation: fade-in var(--standard-easing-duration) ease-in-out
+    animation-delay: 0.33s
+    animation-fill-mode: forwards
+
+  .card__content-right 
+    animation: bump-in var(--standard-easing-duration) ease
+    animation-delay: 0.33s
+    animation-fill-mode: forwards
+
+
+// slide one photos */
+.photo 
+  position: absolute
+  padding: 0.33rem
+  max-width: 50%
+  box-shadow: var(--light-box-shadow)
+  background-color: white
+
+.card--active .photo--fish 
+  transform: translate(26%, 81%) rotate(-6deg)
+  animation: photo--fish .17s cubic-bezier( var(--standard-easing-bezier) )
+  animation-delay: var(--drop-in-animation-delay)
+  animation-fill-mode: forwards
+
+.card--active .photo--snow 
+  transform: translate(-33%, 47%) rotate(-10.5deg)
+  animation: photo--snow .13s cubic-bezier( var(--standard-easing-bezier) )
+  animation-delay: var(--drop-in-animation-delay)
+  animation-fill-mode: forwards
+
+.card--active .photo--wedding 
+  transform: translate(29%, -13%) rotate(1deg)
+  animation: photo--wedding .22s cubic-bezier( var(--standard-easing-bezier) )
+  animation-delay: var(--drop-in-animation-delay)
+  animation-fill-mode: forwards
+
+.card--active .photo--mc 
+  transform: translate(-24%, -6%) rotate(-15deg)
+  animation: photo--mc .22s cubic-bezier( var(--standard-easing-bezier) )
+  animation-delay: var(--drop-in-animation-delay)
+  animation-fill-mode: forwards
+
+
+// card two mosaic */
+.mosaic-container 
+  transform: rotateY(-20deg) scale(.95)
+  transition: transform var(--standard-easing-duration) cubic-bezier(var(--standard-easing-bezier))
+  width: 100%
+  height: 100%
+  column-count: 3
+  column-gap: var(--mosaic-grid-gap)
+
+
+.mosaic-card 
+  -webkit-column-break-inside: avoid
+  page-break-inside: avoid
+  break-inside: avoid
+  width: 100%
+  max-width: 
+  margin-bottom: var(--mosaic-grid-gap)
+
+
+// Animations
+// ============================
+@keyframes photo--fish 
+  0% 
+    transform: translate(26%, 81%) rotate(-6deg)
+  100% 
+    transform: translate(26%, 67%) rotate(-4deg)
+  
+
+@keyframes photo--snow 
+  0% 
+    transform: translate(-33%, 47%) rotate(-10.5deg)
+  100% 
+    transform: translate(-37%, 44%) rotate(-12deg)
+  
+
+@keyframes photo--wedding 
+  0% 
+    transform: translate(29%, -13%) rotate(1deg)
+  100% 
+    transform: translate(25%, -17%) rotate(5deg)
+  
+
+@keyframes photo--mc 
+  0% 
+    transform: translate(-24%, -6%) rotate(-15deg)
+  100% 
+    transform: translate(-26%, -10%) rotate(-15deg)
+
+
+
+@keyframes circle-expand 
+  0% 
+
+  100%
+    clip-path:  circle(75%)
+
+@keyframes fade-in 
+  0% 
+    opacity: 0
+  
+  100% 
+    opacity: 1
+  
+
+@keyframes drop-in 
+  0% 
+    transform: translate(40%, 52%) scale(1.96) rotate(-20deg)
+    opacity: 0
+  
+  25% 
+    transform: translate(15%, 26%) scale(1.5) rotate(-8deg)
+    opacity: 1
+  
+  50% 
+    transform: translate(0%, 9%) scale(1.01) rotate(-2deg)
+    opacity: 1
+  
+  70% 
+    transform: translate(0%, 1%) scale(1) rotate(1deg)
+    opacity: 1
+  
+  100% 
+    transform: translate(0%, 0%) scale(1) rotate(2deg)
+    opacity: 1
+  
+
+
+@keyframes bump-in 
+  0% 
+    transform: translateX(101%)
+  
+  99% 
+    transform: translateX(-1%)
+  
+  100% 
+    transform: translateX(0)
+  
