@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700)
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css)
 
 html:root 
   --home-card-color            : rgba(255,255,255,1)
@@ -33,6 +34,12 @@ h2
   margin-top: 0
   margin-bottom: calc(-1.2rem + 1.5vw)
   font-size: calc(1rem + 2vw)
+  text-transform: capitalize
+  strong 
+    display: block
+    font-weight: 300
+    text-transform: uppercase
+    letter-spacing: 0.025rem
 
 p 
   font-size: calc(0.7rem + 0.5vw)
@@ -42,14 +49,6 @@ i.fa
 
 img 
   max-width: 100%
-
-
-h2 strong 
-  display: block
-  font-weight: 300
-  text-transform: uppercase
-  letter-spacing: 0.025rem
-
 
 .card,
 .card-container 
@@ -157,17 +156,29 @@ h2 strong
   img 
     max-width: 100%
 
+.card__content-right-wrapper
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  margin: auto
+  display: flex
+  align-items: center
+  justify-content: center
+
 .curtain 
   position: absolute
   top: 0
   bottom: 0
   right: 0
   left: 0
+  z-index: 11
+  opacity: 0
   transition: opacity var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier) )
   box-shadow: inset 0 0 30em 0 rgba(0,0,0,.9)
   background-color: rgba(0,0,0,.6)
-  z-index: 11
-  opacity: 0
+  pointer-events: none
 
 .card__bg 
   grid-row: 1 / span 9
@@ -194,7 +205,7 @@ h2 strong
     animation: drop-in 0.7s cubic-bezier( var(--drop-in-easing-bezier) )
     animation-delay: 0.4s
     animation-fill-mode: forwards
-  & ~ .controls
+  & ~ .controls i
     color: black
     .controls__link--active 
       display: none
@@ -209,8 +220,7 @@ h2 strong
 .card__first-card.card--active
   .card__bg 
     clip-path:  circle(20px at 55px calc(-45px + 100%))
-  .card__content-right:hover .mosaic-container  
-    position: relative
+  .card__content-right:hover .card__content-right-wrapper  
     z-index: 99
     transform: rotateY(0deg) scale(1)
   .card__content-right:hover ~ .curtain  
@@ -302,7 +312,7 @@ h2 strong
 
 
 // card two mosaic */
-.mosaic-container 
+.card--mosaic .card__content-right-wrapper
   transform: rotateY(-20deg) scale(.95)
   transition: transform var(--standard-easing-duration) cubic-bezier(var(--standard-easing-bezier))
   width: 100%
