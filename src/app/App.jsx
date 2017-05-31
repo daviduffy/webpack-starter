@@ -5,142 +5,139 @@ import cat_2 from 'images/cat_2.jpg';
 
 const app = [
   {
-    type: 'home',
-    title: ['hello', 'world'],
-    subtitle: 'I am David Duffy. Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time ideation.',
-    containerClasses: 'card card--photos card__home-card card--active',
-    leftContentClasses: '',
-    rightContentClasses: 'mosaic-container',
+    key: 0,
     id: 'card_h',
-    fa_icon: 'fa-home',
-    curtain: false,
-    contentMeta: [
-      {
-        type: 'image',
-        src: 'http://i.imgur.com/O6dzQQA.jpg',
-        alt: "David Duffy's bespoke Master Chief costume from Halo 3",
-        classes: 'photo photo--mc'
-      },
-      {
-        type: 'image',
-        src: 'http://i.imgur.com/FPdvZUE.jpg',
-        alt: 'A silly photo of David Duffy and his wife Amy Galbraith on their wedding day',
-        classes: 'photo photo--wedding'
-      },
-      {
-        type: 'image',
-        src: 'http://i.imgur.com/dyvK95C.jpg',
-        alt: 'A photo of David Duffy holding a trout which was caught on a dry fly from a high alpine lake in Washington',
-        classes: 'photo photo--fish'
-      },
-      {
-        type: 'image',
-        src: 'http://i.imgur.com/Wiiiora.jpg',
-        alt: 'In a snow-covered chute, David Duffy makes a hard turn on a snowboard',
-        classes: 'photo photo--snow'
-      }
-    ]
+    info: {
+      type: 'home',
+      title: ['hello', 'world'],
+      subtitle: 'I am David Duffy. Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time ideation.',
+      containerClasses: 'card--photos card__home-card',
+      leftContentClasses: '',
+      rightContentClasses: 'mosaic-container',
+      fa_icon: 'fa-home',
+      curtain: false,
+      contentMeta: [
+        {
+          type: 'image',
+          src: 'http://i.imgur.com/O6dzQQA.jpg',
+          alt: "David Duffy's bespoke Master Chief costume from Halo 3",
+          classes: 'photo photo--mc'
+        },
+        {
+          type: 'image',
+          src: 'http://i.imgur.com/FPdvZUE.jpg',
+          alt: 'A silly photo of David Duffy and his wife Amy Galbraith on their wedding day',
+          classes: 'photo photo--wedding'
+        },
+        {
+          type: 'image',
+          src: 'http://i.imgur.com/dyvK95C.jpg',
+          alt: 'A photo of David Duffy holding a trout which was caught on a dry fly from a high alpine lake in Washington',
+          classes: 'photo photo--fish'
+        },
+        {
+          type: 'image',
+          src: 'http://i.imgur.com/Wiiiora.jpg',
+          alt: 'In a snow-covered chute, David Duffy makes a hard turn on a snowboard',
+          classes: 'photo photo--snow'
+        }
+      ]
+    }
   },
   {
-    type: 'mosaic',
-    title: ['my', 'github'],
-    subtitle: 'lorem ipsum sit dolor amet',
-    containerClasses: 'card card--mosaic card__first-card',
-    leftContentClasses: '',
-    rightContentClasses: '',
+    key: 1,
     id: 'card_1',
-    fa_icon: 'fa-github',
-    curtain: true,
-    contentMeta: [
-      {
-        type: 'image',
-        src: `${cat_1}`,
-        alt: 'a cat image again',
-        classes: ''
-      }
-    ]
+    info:   {
+      type: 'mosaic',
+      title: ['my', 'github'],
+      subtitle: 'lorem ipsum sit dolor amet',
+      containerClasses: 'card--mosaic card__first-card',
+      leftContentClasses: '',
+      rightContentClasses: '',
+      fa_icon: 'fa-github',
+      curtain: true,
+      contentMeta: [
+        {
+          type: 'image',
+          src: `${cat_1}`,
+          alt: 'a cat image again',
+          classes: ''
+        }
+      ]
+    }
   }
 ]
 
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      curr: 0,
+      prev: 1
+    };
+    this.changePage = this.changePage.bind(this);
+  };
 
-const App = () => {
 
-  const changePage = () => {
-    console.log(this);
-
-    if ( this.classList.contains('controls__link--active') ) {
-      console.log('break');
-      return;
-    }
-    console.log('change');
-    let cardPrev = document.getElementsByClassName('card--previous');
-    console.log(`click ${this}`);
-    
-    let cardCurr = document.querySelector('.card--active');
-    let buttonCurr = document.getElementsByClassName('controls__link--active')[0];
-    
-    if ( !!cardPrev ) {
-      cardPrev[0].classList.remove('card--previous');
-    }
-    
-    cardCurr.classList.add('card--previous');
-    cardCurr.classList.remove('card--active');
-    buttonCurr.classList.remove('controls__link--active');
-    
-    let cardNextIndex = this.getAttribute('data-index');
-    let cardNext = document.getElementById(cardNextIndex);
-    cardNext.classList.add('card--active');
-    this.classList.add('controls__link--active');
+  changePage(id) {
+    this.setState((prevState, props) => {
+      return {
+        curr: id,
+        prev: prevState.curr
+      }
+    });
   }
 
-  return (
-    <div className="card-container">
-      {app.map((current, index) => {
-        return (
-          <Page
-            type={current.type}
-            title={current.title}
-            subtitle={current.subtitle}
-            containerClasses={current.containerClasses}
-            rightContentClasses={current.rightContentClasses}
-            leftContentClasses={current.leftContentClases}
-            id={current.id}
-            contentMeta={current.contentMeta}
-            curtain={current.curtain}
-            key={index}  />
-          );
-        })
-      }
-      <TopControls />
-      <div className='controls controls--bottom'>
-        {app.map((current, index) => {
+  
+  render () {
+    const info = app;
+    return (
+      <div className="card-container">
+        {info.map((current, index) => {
           return (
-            <BottomButton
+            <Card
               id={current.id}
-              fa_icon={current.fa_icon}
-              pageChangeHandler={changePage}
-              key={index} />
+              cardStatus={this.state}
+              cardInfo={current.info}
+              index={current.key}
+              key={current.key} />
             );
           })
         }
+        <TopControls />
+        <div className='controls controls--bottom'>
+          {app.map((current, index) => {
+            return (
+              <BottomButton
+                fa_icon={current.info.fa_icon}
+                pageChangeHandler={this.changePage}
+                index={current.key}
+                key={index} />
+              );
+            })
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
-const Page = (props) => {
+const Card = (props) => {
+  const cardInfo = props.cardInfo;
+  const currentClass = props.cardStatus.curr === props.index ? 'card--active' : '';
+  const previousClass = props.cardStatus.prev === props.index ? 'card--previous' : '';
   return (
-    <div className={props.containerClasses} >
-      <div className={props.leftContentClasses ? `${props.leftContentClasses} card__content-left` : 'nope card__content-left'}>
-        <h2>{props.title[0]}<strong>{props.title[1]}</strong></h2>
-        <p>{props.subtitle}</p>
+    <div className={`card ${cardInfo.containerClasses} ${currentClass} ${previousClass}`} >
+      <div className={cardInfo.leftContentClasses ? `${cardInfo.leftContentClasses} card__content-left` : 'card__content-left'}>
+        <h2>{cardInfo.title[0]}<strong>{cardInfo.title[1]}</strong></h2>
+        <p>{cardInfo.subtitle}</p>
       </div>
-      <div className={props.rightContentClasses ? `${props.rightContentClasses} card__content-right` : 'nope card__content-right'}>
+      <div className={cardInfo.rightContentClasses ? `${cardInfo.rightContentClasses} card__content-right` : 'card__content-right'}>
         <div className="card__content-right-wrapper">
           {
-            props.contentMeta.map((current, index) => {
+            cardInfo.contentMeta.map((current, index) => {
             return (
-              <Card
+              <Feature
                 type={current.type}
                 src={current.src}
                 alt={current.alt}
@@ -153,14 +150,14 @@ const Page = (props) => {
       </div>
       <div className="card__bg"></div>
       { 
-        props.curtain &&
+        cardInfo.curtain &&
         <div className="curtain"></div>
       }
     </div>
   )
 }
 
-const Card = (props) => {
+const Feature = (props) => {
   return (
     <div className={props.classes} >
       {
@@ -191,7 +188,7 @@ const TopControls = () => {
 }
 const BottomButton = (props) => {
   return (
-      <a className='controls__link controls__link--bottom' data-index={props.id} href='javascript:void(0)' id={`${props.id}_trigger`} onClick={props.pageChangeHandler}>
+      <a className='controls__link controls__link--bottom' href='javascript:void(0)' onClick={ function(){props.pageChangeHandler(props.index)} }>
         <i aria-hidden='true' className={`fa ${props.fa_icon}`}></i>
       </a>
   )
