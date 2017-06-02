@@ -1,12 +1,14 @@
 // import React from 'react';
-import cat_1 from 'images/cat_1.png';
-import gif_1 from 'images/supa_hot_fire.gif';
-import cat_2 from 'images/cat_2.jpg';
+import master_chief   from 'images/master_chief.jpg';
+import fish           from 'images/fish.jpg';
+import surf_earth     from 'images/surf_earth.jpg';
+import wedding        from 'images/wedding.jpg';
+import webpack        from 'images/webpack.gif';
+import gulp           from 'images/gulp.png';
 
 const app = [
   {
     key: 0,
-    id: 'card_h',
     info: {
       type: 'home',
       title: ['hello', 'world'],
@@ -19,25 +21,25 @@ const app = [
       contentMeta: [
         {
           type: 'image',
-          src: 'http://i.imgur.com/O6dzQQA.jpg',
+          src: `${master_chief}`,
           alt: "David Duffy's bespoke Master Chief costume from Halo 3",
           classes: 'photo photo--mc'
         },
         {
           type: 'image',
-          src: 'http://i.imgur.com/FPdvZUE.jpg',
+          src: `${wedding}`,
           alt: 'A silly photo of David Duffy and his wife Amy Galbraith on their wedding day',
           classes: 'photo photo--wedding'
         },
         {
           type: 'image',
-          src: 'http://i.imgur.com/dyvK95C.jpg',
+          src: `${fish}`,
           alt: 'A photo of David Duffy holding a trout which was caught on a dry fly from a high alpine lake in Washington',
           classes: 'photo photo--fish'
         },
         {
           type: 'image',
-          src: 'http://i.imgur.com/Wiiiora.jpg',
+          src: `${surf_earth}`,
           alt: 'In a snow-covered chute, David Duffy makes a hard turn on a snowboard',
           classes: 'photo photo--snow'
         }
@@ -46,7 +48,6 @@ const app = [
   },
   {
     key: 1,
-    id: 'card_1',
     info:   {
       type: 'mosaic',
       title: ['my', 'github'],
@@ -59,9 +60,15 @@ const app = [
       contentMeta: [
         {
           type: 'image',
-          src: `${cat_1}`,
+          src: `${webpack}`,
           alt: 'a cat image again',
-          classes: ''
+          classes: false
+        },
+        {
+          type: 'image',
+          src: `${gulp}`,
+          alt: 'gulp logo',
+          classes: false
         }
       ]
     }
@@ -75,11 +82,11 @@ class App extends React.Component {
       curr: 0,
       prev: 1
     };
-    this.changePage = this.changePage.bind(this);
+    this.changeCard = this.changeCard.bind(this);
   };
 
 
-  changePage(id) {
+  changeCard(id) {
     this.setState((prevState, props) => {
       return {
         curr: id,
@@ -88,7 +95,7 @@ class App extends React.Component {
     });
   }
 
-  
+
   render () {
     const info = app;
     return (
@@ -96,7 +103,6 @@ class App extends React.Component {
         {info.map((current, index) => {
           return (
             <Card
-              id={current.id}
               cardStatus={this.state}
               cardInfo={current.info}
               index={current.key}
@@ -104,13 +110,16 @@ class App extends React.Component {
             );
           })
         }
-        <TopControls />
+        <TopControls
+          cardChangeHandler={this.changeCard}
+          current={this.state.curr} />
         <div className='controls controls--bottom'>
           {app.map((current, index) => {
             return (
               <BottomButton
                 fa_icon={current.info.fa_icon}
-                pageChangeHandler={this.changePage}
+                cardChangeHandler={this.changeCard}
+                current={this.state.curr}
                 index={current.key}
                 key={index} />
               );
@@ -159,7 +168,7 @@ const Card = (props) => {
 
 const Feature = (props) => {
   return (
-    <div className={props.classes} >
+    <div className={props.classes && `${props.classes}`} >
       {
         props.type === 'image' &&
         <img src={props.src} alt={props.alt} />
@@ -168,16 +177,17 @@ const Feature = (props) => {
   )
 }
 
-const TopControls = () => {
+const TopControls = (props) => {
+  const activeClass = props.current === 0 ? 'controls__link--active' : '';
   return (
     <div className='controls controls--top'>
-      <a className='controls__link controls__link--top controls__link--active' data-index='card_h' href='javascript:void(0)' id='home_card_trigger'>
-        <svg height='30' viewBox='0 0 30 30' width='40' xmlns='http://www.w3.org/2000/svg'>
+      <a className={`controls__link controls__link--top ${activeClass}`} onClick={ function(){props.cardChangeHandler(0)}} href='javascript:void(0)'>
+        <svg height='30' viewBox='0 0 30 30' width='30' xmlns='http://www.w3.org/2000/svg'>
           <polyline fill='none' points='15 5 5 15 15 25' strokeLinecap='butt' strokeLinejoin='miter' strokeWidth='3' stroke='white'></polyline>
           <polyline fill='none' points='5 15 35 15' strokeLinecap='butt' strokeLinejoin='miter' strokeWidth='3' stroke='white'></polyline>
         </svg>
       </a>
-      <a className='controls__link controls__link--top' href='javascript:void(0)' id='close_trigger'>
+      <a className='controls__link controls__link--top' href='javascript:void(0)'>
         <svg height='30' viewBox='0 0 30 30' width='30' xmlns='http://www.w3.org/2000/svg'>
           <polyline fill='none' points='5 5 25 25' strokeLinecap='butt' strokeLinejoin='miter' strokeWidth='3' stroke='white'></polyline>
           <polyline fill='none' points='5 25 25 5' strokeLinecap='butt' strokeLinejoin='miter' strokeWidth='3' stroke='white'></polyline>
@@ -187,8 +197,10 @@ const TopControls = () => {
   )
 }
 const BottomButton = (props) => {
+  const activeClass = props.current === props.index ? 'controls__link--active' : '';
+  const hiddenClass = props.index === 0 ? 'controls__link--hidden' : '';
   return (
-      <a className='controls__link controls__link--bottom' href='javascript:void(0)' onClick={ function(){props.pageChangeHandler(props.index)} }>
+      <a className={`controls__link controls__link--bottom ${activeClass} ${hiddenClass}`} href='javascript:void(0)' onClick={ function(){props.cardChangeHandler(props.index)} }>
         <i aria-hidden='true' className={`fa ${props.fa_icon}`}></i>
       </a>
   )
