@@ -1,8 +1,4 @@
 // import React from 'react';
-import master_chief   from 'images/master_chief.jpg';
-import fish           from 'images/fish.jpg';
-import surf_earth     from 'images/surf_earth.jpg';
-import wedding        from 'images/wedding.jpg';
 import webpack        from 'images/webpack.gif';
 import gulp           from 'images/gulp.png';
 
@@ -21,27 +17,39 @@ const app = [
       contentMeta: [
         {
           type: 'image',
-          src: `${master_chief}`,
-          alt: "David Duffy's bespoke Master Chief costume from Halo 3",
-          classes: 'photo photo--mc'
+          src: `http://placehold.it/600x600`,
+          alt: 'testing tall',
+          classes: 'ph ph-s'
         },
         {
           type: 'image',
-          src: `${wedding}`,
-          alt: 'A silly photo of David Duffy and his wife Amy Galbraith on their wedding day',
-          classes: 'photo photo--wedding'
+          src: `http://placehold.it/600x400`,
+          alt: 'testing tall',
+          classes: 'ph ph-w'
         },
         {
           type: 'image',
-          src: `${fish}`,
-          alt: 'A photo of David Duffy holding a trout which was caught on a dry fly from a high alpine lake in Washington',
-          classes: 'photo photo--fish'
+          src: `http://placehold.it/400x500`,
+          alt: 'testing wide',
+          classes: 'ph ph-w'
         },
         {
           type: 'image',
-          src: `${surf_earth}`,
-          alt: 'In a snow-covered chute, David Duffy makes a hard turn on a snowboard',
-          classes: 'photo photo--snow'
+          src: `http://placehold.it/400x600`,
+          alt: 'testing tall',
+          classes: 'ph ph-t'
+        },
+        {
+          type: 'image',
+          src: `http://placehold.it/700x400`,
+          alt: 'testing extra wide',
+          classes: 'ph ph-xw'
+        },
+        {
+          type: 'image',
+          src: `http://placehold.it/400x700`,
+          alt: 'testing extra tall',
+          classes: 'ph ph-xt'
         }
       ]
     }
@@ -167,13 +175,12 @@ const Card = (props) => {
 }
 
 const Feature = (props) => {
+  const divStyle = {
+    backgroundImage: 'url(' + props.src + ')'
+  }
+  const divClasses = 'f ' + props.classes
   return (
-    <div className={props.classes && `${props.classes}`} >
-      {
-        props.type === 'image' &&
-        <img src={props.src} alt={props.alt} />
-      }
-    </div>
+    <div className={divClasses} style={divStyle} alt={props.alt}></div>
   )
 }
 
