@@ -2,9 +2,24 @@
 .g
   @include abs-centered
   width: 100%
-  min-height: 100vw
+  min-height: 100vh
   padding: 10px
   display: grid
   grid-template-columns: repeat(60, 1fr)
   grid-template-rows: repeat(37, 1fr)
   grid-gap: 0.25rem
+
+// grid foreground content section
+.g--f
+  .c-s
+    @include material-tall--active
+
+// grid midground content section
+.g--m
+  .c-s
+    @include material-middle--active
+
+// grid midground content section
+.g--b
+  .c-s
+    @include material-short--active

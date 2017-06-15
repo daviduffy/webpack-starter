@@ -1,45 +1,127 @@
-// "content section"
+// content section main styles
+// ===========================
 .c-s
-  background-color: rgba(205,255,200,1)
+  border-radius: $border-radius
+  will-change: transform
+  transition: transform $easing-duration $perspective-easing-bezier
+
+// content section content container
+.c-s__ctnr
+  width: 100%
+  height: 100%
+  @include display-flex
+  border-radius: $border-radius
+  overflow: hidden
+
+
+
+
+
+// Establish planes to allow content sections to move
+// ==================================================
+
+// grid foreground content section
+.c-s--f
+  transform: translate( var(--foreground-translate) )
+  .c-s__ctnr
+    @include material-tall--active
+
+// grid midground content section
+.c-s--m
+  transform: translate( var(--midground-translate) )
+  .c-s__ctnr
+    @include material-middle--active
+
+// grid midground content section
+.c-s--b
+  transform: translate( var(--background-translate) )
+  .c-s__ctnr
+    @include material-short--active
+
+
+
+
+
+// Content Section modification styles
+// ===========================
+
+// content section vertical
+.c-s__ctnr--v
+  @include flex-direction(column)
+
+
+// Content Section subcomponent styles
+// ===================================
+// content section -- graphic
+// content section -- content
+.m-c__g,
+.m-c__ctt
+  @include align-self(stretch)
+
+// content section -- graphic
+.c-s__g
+  @include flex-shorthand(6)
+  background-color: rgba(200,200,255,1)
+
+// content section -- content
+.c-s__ctt
+  @include flex-shorthand(3)
+  position: relative
+  background-color: rgba(255,255,255,1)
+  padding: 1rem
+
+.c-s__b
+  position: absolute
   @include material-short--active
+  width: 40px
+  height: 40px
+  @include flex-centered
+  border-radius: 50%
+  border: none
+
+  @at-root .c-s__ctnr--v .c-s__b
+    top: 0
+    right: 20px
+    transform: translateY(-50%)
 
 
+
+// colors used for testing
 .c-s--1
-  background-color: var(--c-s--color-1)
-  grid-column: 5 / span 16
-  grid-row: 4 / span 7
+  grid-column: 6 / span 18
+  grid-row: 24 / span 12
 
 .c-s--2
   background-color: var(--c-s--color-2)
   grid-column: 28 / span 20
-  grid-row: 5/ span 7
+  grid-row: 2 / span 13
 
 .c-s--3
   background-color: var(--c-s--color-3)
-  grid-column: 42 / span 16
-  grid-row: 12 / span 6
+  grid-column: 8 / span 15
+  grid-row: 7 / span 9
 
 .c-s--4
   background-color: var(--c-s--color-4)
-  grid-column: 23 / span 12
-  grid-row: 13 / span 5
+  grid-column: 23 / span 13
+  grid-row: 18 / span 8
 
 .c-s--5
   background-color: var(--c-s--color-5)
-  grid-column: 45 / span 10
-  grid-row: 19 / span 4
+  grid-column: 38 / span 14
+  grid-row: 26 / span 9
 
 .c-s--6
   background-color: var(--c-s--color-6)
-  grid-column: 2 / span 16
+  grid-column: 2 / span 10
   grid-row: 16 / span 7
 
 .c-s--7
   background-color: var(--c-s--color-7)
-  grid-column: 13 / span 7
-  grid-row: 12 / span 3
+  grid-column: 49 / span 9
+  grid-row: 11 / span 6
 
 .c-s--8
   background-color: var(--c-s--color-8)
-  grid-column: 49 / span 8
-  grid-row: 3 / span 3
+  grid-column: 43 / span 8
+  grid-row: 19 / span 6

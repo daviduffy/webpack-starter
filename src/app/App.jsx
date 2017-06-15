@@ -1,6 +1,7 @@
 // import React from 'react';
 import webpack        from 'images/webpack.gif';
 import gulp           from 'images/gulp.png';
+import illustration_1 from 'images/illustrations/IMG_0998.JPG'
 
 const app = [
   {
@@ -105,21 +106,42 @@ class App extends React.Component {
 
   render () {
     return (
-      <main>
-        <div className="g g--f">
-          <section className="c-s c-s--1"></section>
-          <section className="c-s c-s--2"></section>
-        </div>
-        <div className="g g--m">
-          <section className="c-s c-s--3"></section>
-          <section className="c-s c-s--4"></section>
-          <section className="c-s c-s--5"></section>
-        </div>
-        <div className="g g--f">
-          <section className="c-s c-s--6"></section>
-          <section className="c-s c-s--7"></section>
-          <section className="c-s c-s--8"></section>
-        </div>
+      <main className="g" id="g">
+        <section className="c-s c-s--6 c-s--b">
+          <div className="c-s__ctnr"></div>
+        </section>
+        <section className="c-s c-s--7 c-s--b">
+          <div className="c-s__ctnr"></div>
+        </section>
+        <section className="c-s c-s--8 c-s--b">
+          <div className="c-s__ctnr"></div>
+        </section>
+        <section className="c-s c-s--3 c-s--m">
+          <div className="c-s__ctnr"></div>
+        </section>
+        <section className="c-s c-s--4 c-s--m">
+          <div className="c-s__ctnr"></div>
+        </section>
+        <section className="c-s c-s--5 c-s--m">
+          <div className="c-s__ctnr"></div>
+        </section>
+        <section className="c-s c-s--1 c-s--f">
+          <div className="c-s__ctnr c-s__ctnr--v">
+            <div className="c-s__g"></div>
+            <div className="c-s__ctt">
+              <p>Test Content Vertical</p>
+              <button className="c-s__b">@</button>
+            </div>
+          </div>
+        </section>
+        <section className="c-s c-s--2 c-s--f">
+          <div className="c-s__ctnr">
+            <div className="c-s__g"></div>
+            <div className="c-s__ctt">
+              <p>Test Content Horizontal</p>
+            </div>
+          </div>
+        </section>
       </main>
     );
   }

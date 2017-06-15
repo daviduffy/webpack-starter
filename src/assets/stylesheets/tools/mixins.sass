@@ -130,8 +130,8 @@ $max-width-large            : unquote("max-width: 63.9375em")
 @mixin material-short--active
   @if $material
     @include material-short
-    -webkit-transition: -webkit-box-shadow $easing-duration $easing-bezier
-    transition: box-shadow $easing-duration $easing-bezier
+    -webkit-transition: -webkit-box-shadow $easing-duration $perspective-easing-bezier
+    transition: box-shadow $easing-duration $perspective-easing-bezier
     &:hover,
     &:focus,
     &:active
@@ -147,8 +147,8 @@ $max-width-large            : unquote("max-width: 63.9375em")
 @mixin material-middle--active
   @if $material
     @include material-middle
-    -webkit-transition: -webkit-box-shadow $easing-duration $easing-bezier
-    transition: box-shadow $easing-duration $easing-bezier
+    -webkit-transition: -webkit-box-shadow $easing-duration $perspective-easing-bezier
+    transition: box-shadow $easing-duration $perspective-easing-bezier
     &:hover,
     &:focus,
     &:active
@@ -164,8 +164,8 @@ $max-width-large            : unquote("max-width: 63.9375em")
 @mixin material-tall--active
   @if $material
     @include material-tall
-    -webkit-transition: -webkit-box-shadow $easing-duration $easing-bezier
-    transition: box-shadow $easing-duration $easing-bezier
+    -webkit-transition: -webkit-box-shadow $easing-duration $perspective-easing-bezier
+    transition: box-shadow $easing-duration $perspective-easing-bezier
     &:hover,
     &:focus,
     &:active
