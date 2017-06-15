@@ -103,40 +103,60 @@ class App extends React.Component {
     });
   }
 
-
   render () {
-    const info = app;
     return (
-      <div className="card-container">
-        {info.map((current, index) => {
-          return (
-            <Card
-              cardStatus={this.state}
-              cardInfo={current.info}
-              index={current.key}
-              key={current.key} />
-            );
-          })
-        }
-        <TopControls
-          cardChangeHandler={this.changeCard}
-          current={this.state.curr} />
-        <div className='controls controls--bottom'>
-          {app.map((current, index) => {
-            return (
-              <BottomButton
-                fa_icon={current.info.fa_icon}
-                cardChangeHandler={this.changeCard}
-                current={this.state.curr}
-                index={current.key}
-                key={index} />
-              );
-            })
-          }
+      <main>
+        <div className="g g--f">
+          <section className="c-s c-s--1"></section>
+          <section className="c-s c-s--2"></section>
         </div>
-      </div>
-    )
+        <div className="g g--m">
+          <section className="c-s c-s--3"></section>
+          <section className="c-s c-s--4"></section>
+          <section className="c-s c-s--5"></section>
+        </div>
+        <div className="g g--f">
+          <section className="c-s c-s--6"></section>
+          <section className="c-s c-s--7"></section>
+          <section className="c-s c-s--8"></section>
+        </div>
+      </main>
+    );
   }
+
+  // render () {
+  //   const info = app;
+  //   return (
+  //     <div className="card-container">
+  //       {info.map((current, index) => {
+  //         return (
+  //           <Card
+  //             cardStatus={this.state}
+  //             cardInfo={current.info}
+  //             index={current.key}
+  //             key={current.key} />
+  //           );
+  //         })
+  //       }
+  //       <TopControls
+  //         cardChangeHandler={this.changeCard}
+  //         current={this.state.curr} />
+  //       <div className='controls controls--bottom'>
+  //         {app.map((current, index) => {
+  //           return (
+  //             <BottomButton
+  //               fa_icon={current.info.fa_icon}
+  //               cardChangeHandler={this.changeCard}
+  //               current={this.state.curr}
+  //               index={current.key}
+  //               key={index} />
+  //             );
+  //           })
+  //         }
+  //       </div>
+  //     </div>
+  //   )
+  // }
 }
 
 const Card = (props) => {

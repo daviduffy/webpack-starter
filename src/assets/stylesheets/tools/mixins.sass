@@ -117,3 +117,67 @@ $max-width-large            : unquote("max-width: 63.9375em")
   left: 0
   right: 0
   margin: auto
+
+
+// Material Visual Mixins
+// ======================
+
+@mixin material-short
+  @if $material
+    -webkit-box-shadow: 0px 2px 5px transparentize(#000, 0.75)
+    box-shadow: 0px 2px 5px transparentize(#000, 0.75)
+
+@mixin material-short--active
+  @if $material
+    @include material-short
+    -webkit-transition: -webkit-box-shadow $easing-duration $easing-bezier
+    transition: box-shadow $easing-duration $easing-bezier
+    &:hover,
+    &:focus,
+    &:active
+      -webkit-box-shadow: 0px 5px 18px transparentize(#000, 0.75)
+      box-shadow: 0px 5px 18px transparentize(#000, 0.75)
+
+
+@mixin material-middle
+  @if $material
+    -webkit-box-shadow: 0px 5px 9px transparentize(#000, 0.75)
+    box-shadow: 0px 5px 9px transparentize(#000, 0.75)
+
+@mixin material-middle--active
+  @if $material
+    @include material-middle
+    -webkit-transition: -webkit-box-shadow $easing-duration $easing-bezier
+    transition: box-shadow $easing-duration $easing-bezier
+    &:hover,
+    &:focus,
+    &:active
+      -webkit-box-shadow: 0px 7.5px 21px transparentize(#000, 0.725)
+      box-shadow: 0px 7.5px 21px transparentize(#000, 0.725)
+
+
+@mixin material-tall
+  @if $material
+    -webkit-box-shadow: 0px 8px 13px transparentize(#000, 0.75)
+    box-shadow: 0px 8px 13px transparentize(#000, 0.75)
+
+@mixin material-tall--active
+  @if $material
+    @include material-tall
+    -webkit-transition: -webkit-box-shadow $easing-duration $easing-bezier
+    transition: box-shadow $easing-duration $easing-bezier
+    &:hover,
+    &:focus,
+    &:active
+      -webkit-box-shadow: 0px 10px 24px transparentize(#000, 0.55)
+      box-shadow: 0px 10px 24px transparentize(#000, 0.55)
+
+@mixin material-menu-short
+  @if $material
+    -webkit-box-shadow: 2px 2px 5px transparentize(#000, 0.78)
+    box-shadow: 2px 2px 5px transparentize(#000, 0.78)
+
+@mixin material-menu-tall
+  @if $material
+    -webkit-box-shadow: 5px 1px 16px rgba(0, 0, 0, 0.22), 2px 2px 5px rgba(0, 0, 0, 0.05)
+    box-shadow: 5px 1px 16px rgba(0, 0, 0, 0.22), 2px 2px 5px rgba(0, 0, 0, 0.05)
