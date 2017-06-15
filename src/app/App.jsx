@@ -106,42 +106,44 @@ class App extends React.Component {
 
   render () {
     return (
-      <main className="g" id="g">
-        <section className="c-s c-s--6 c-s--b">
-          <div className="c-s__ctnr"></div>
-        </section>
-        <section className="c-s c-s--7 c-s--b">
-          <div className="c-s__ctnr"></div>
-        </section>
-        <section className="c-s c-s--8 c-s--b">
-          <div className="c-s__ctnr"></div>
-        </section>
-        <section className="c-s c-s--3 c-s--m">
-          <div className="c-s__ctnr"></div>
-        </section>
-        <section className="c-s c-s--4 c-s--m">
-          <div className="c-s__ctnr"></div>
-        </section>
-        <section className="c-s c-s--5 c-s--m">
-          <div className="c-s__ctnr"></div>
-        </section>
-        <section className="c-s c-s--1 c-s--f">
-          <div className="c-s__ctnr c-s__ctnr--v">
-            <div className="c-s__g"></div>
-            <div className="c-s__ctt">
-              <p>Test Content Vertical</p>
-              <button className="c-s__b">@</button>
+      <main className="p" id="p">
+        <div className="g" id="g">
+          <section className="c-s c-s--6 c-s--b">
+            <div className="c-s__ctnr"></div>
+          </section>
+          <section className="c-s c-s--7 c-s--b">
+            <div className="c-s__ctnr"></div>
+          </section>
+          <section className="c-s c-s--8 c-s--b">
+            <div className="c-s__ctnr"></div>
+          </section>
+          <section className="c-s c-s--3 c-s--m">
+            <div className="c-s__ctnr"></div>
+          </section>
+          <section className="c-s c-s--4 c-s--m">
+            <div className="c-s__ctnr"></div>
+          </section>
+          <section className="c-s c-s--5 c-s--m">
+            <div className="c-s__ctnr"></div>
+          </section>
+          <section className="c-s c-s--1 c-s--f">
+            <div className="c-s__ctnr c-s__ctnr--v">
+              <div className="c-s__g"></div>
+              <div className="c-s__ctt">
+                <p>Test Content Vertical</p>
+                <button className="c-s__b">@</button>
+              </div>
             </div>
-          </div>
-        </section>
-        <section className="c-s c-s--2 c-s--f">
-          <div className="c-s__ctnr">
-            <div className="c-s__g"></div>
-            <div className="c-s__ctt">
-              <p>Test Content Horizontal</p>
+          </section>
+          <section className="c-s c-s--2 c-s--f">
+            <div className="c-s__ctnr">
+              <div className="c-s__g"></div>
+              <div className="c-s__ctt">
+                <p>Test Content Horizontal</p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
     );
   }

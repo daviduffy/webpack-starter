@@ -1,12 +1,18 @@
+// component that creates the plane in which each grid lives
+.p
+  @include flex-centered
+  min-height: 1400px
+  // display: grid
+  // grid-auto-rows: minmax(300px, auto)
+  // grid-auto-columns: auto
+  // grid-row-gap: 20px
+
 // main containing element that creates grid
 .g
-  @include abs-centered
-  width: 100%
-  min-height: 100vh
   padding: 10px
   display: grid
-  grid-template-columns: repeat(60, 1fr)
-  grid-template-rows: repeat(37, 1fr)
+  grid-template-columns: repeat(60, 16px)
+  grid-template-rows: repeat(37, 16px)
   grid-gap: 0.25rem
 
 // grid foreground content section
