@@ -35,17 +35,24 @@ html:root
   // value for point at V middle of viewport
   --sc-mid                     : 0px
 
+
+  // CSS Transform equations
+  // =======================                           // pan                   // scroll
   // foreground
-  --f-t                        : calc(var(--w-mid)/8), calc(var(--h-mid)/6 + var(--sc-mid)*2.5)
+  --f-t                        : calc(var(--w-mid)/8), calc(var(--h-mid)/6 + var(--sc-mid)*3)
+  --f-t-sc                     : scale(1)
 
-  // midground
-  --mf-t                       : calc(var(--w-mid)/9.33), calc(var(--h-mid)/9.33 + var(--sc-mid)*1.17)
+  // midground front
+  --mf-t                       : calc(var(--w-mid)/9.33), calc(var(--h-mid)/9.33 + var(--sc-mid)*2.25)
+  --mf-t-sc                     : scale(0.86)
 
-  // midground
-  --mb-t                       : calc(var(--w-mid)/10.66), calc(var(--h-mid)/12.66 + var(--sc-mid)/1.17)
+  // midground back
+  --mb-t                       : calc(var(--w-mid)/10.66), calc(var(--h-mid)/12.66 + var(--sc-mid)*1.5)
+  --mb-t-sc                     : scale(0.73)
 
   // background
-  --b-t                        : calc(var(--w-mid)/12), calc(var(--h-mid)/16 + var(--sc-mid)/2.5)
+  --b-t                        : calc(var(--w-mid)/12), calc(var(--h-mid)/16 + var(--sc-mid)/1.5)
+  --b-t-sc                     : scale(0.6)
 
   // content section background colors (for testing)
   --c-s--color-1               : rgb(225,81,81)

@@ -105,36 +105,41 @@ class App extends React.Component {
   }
 
   render () {
+    const imgStyles = [
+      {
+        backgroundImage: `url(${illustration_1})`
+      }
+    ]
     return (
       <main className="p" id="p">
         <div className="g" id="g">
-          <section className="c-s c-s--8 c-s--b">
+          <section className="c-s [ c-s--8 ] c-s--b">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--7 c-s--b">
+          <section className="c-s [ c-s--7 ] c-s--b">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--6 c-s--mb">
+          <section className="c-s [ c-s--6 ] c-s--mb">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--5 c-s--mb">
+          <section className="c-s [ c-s--5 ] c-s--mb">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--4 c-s--mf">
+          <section className="c-s [ c-s--4 ] c-s--mf">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--3 c-s--mf">
+          <section className="c-s [ c-s--3 ] c-s--mf">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--2 c-s--f">
+          <section className="c-s [ c-s--2 ] c-s--f">
             <div className="c-s__ctnr">
-              <div className="c-s__g"></div>
+              <div className="c-s__g" style={imgStyles[0]}></div>
               <div className="c-s__ctt">
                 <p>Test Content Horizontal</p>
               </div>
             </div>
           </section>
-          <section className="c-s c-s--1 c-s--f">
+          <section className="c-s [ c-s--1 c-s--f">
             <div className="c-s__ctnr c-s__ctnr--v">
               <div className="c-s__g"></div>
               <div className="c-s__ctt">

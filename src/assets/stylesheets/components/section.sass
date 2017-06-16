@@ -22,25 +22,25 @@
 
 // grid foreground content section
 .c-s--f
-  transform: translate( var(--f-t) )
+  transform: translate( var(--f-t)) var(--f-t-sc)
   .c-s__ctnr
     @include material-tall--active
 
 // grid midground-front content section
 .c-s--mf
-  transform: translate( var(--mf-t) )
+  transform: translate( var(--mf-t)) var(--mf-t-sc)
   .c-s__ctnr
     @include material-middle--active
 
 // grid midground-back content section
 .c-s--mb
-  transform: translate( var(--mb-t) )
+  transform: translate( var(--mb-t)) var(--mb-t-sc)
   .c-s__ctnr
     @include material-middle--active
 
 // grid midground content section
 .c-s--b
-  transform: translate( var(--b-t) )
+  transform: translate( var(--b-t)) var(--b-t-sc)
   .c-s__ctnr
     @include material-short--active
 
@@ -67,7 +67,7 @@
 // content section -- graphic
 .c-s__g
   @include flex-shorthand(6)
-  background-color: rgba(200,200,255,1)
+  background: rgba(200,200,255,1) center/cover no-repeat
 
 // content section -- content
 .c-s__ctt
@@ -84,11 +84,20 @@
   @include flex-centered
   border-radius: 50%
   border: none
+  transform: scale(0)
+  // for hover-end behavior
+  transition: transform calc(#{$easing-duration} / 2) $perspective-easing-bezier
+  
+  @at-root .c-s:hover .c-s__b
+    transform: scale(1)
+    // for hover-start behavior
+    transition: transform $easing-duration $perspective-easing-bezier
 
+  // changes where buttons appear for vertical cards (default is horizontal)
   @at-root .c-s__ctnr--v .c-s__b
-    top: 0
+    top: -20px
     right: 20px
-    transform: translateY(-50%)
+    // transform: translateY(-50%)
 
 
 
@@ -99,35 +108,35 @@
 
 .c-s--2
   background-color: var(--c-s--color-2)
-  grid-column: 28 / span 20
+  grid-column: 28 / span 18
   grid-row: 2 / span 13
 
 .c-s--3
   background-color: var(--c-s--color-3)
-  grid-column: 8 / span 15
-  grid-row: 7 / span 9
+  grid-column: 8 / span 18
+  grid-row: 7 / span 12
 
 .c-s--4
   background-color: var(--c-s--color-5)
-  grid-column: 38 / span 14
-  grid-row: 26 / span 9
+  grid-column: 38 / span 18
+  grid-row: 26 / span 12
 
 .c-s--5
   background-color: var(--c-s--color-4)
-  grid-column: 23 / span 13
-  grid-row: 18 / span 8
+  grid-column: 23 / span 18
+  grid-row: 18 / span 12
 
 .c-s--6
   background-color: var(--c-s--color-8)
-  grid-column: 42 / span 11
-  grid-row: 19 / span 7
+  grid-column: 42 / span 18
+  grid-row: 19 / span 12
 
 .c-s--7
   background-color: var(--c-s--color-7)
-  grid-column: 49 / span 9
-  grid-row: 11 / span 6
+  grid-column: 40 / span 18
+  grid-row: 11 / span 12
 
 .c-s--8
   background-color: var(--c-s--color-6)
-  grid-column: 2 / span 10
-  grid-row: 16 / span 7
+  grid-column: 2 / span 18
+  grid-row: 19 / span 12
