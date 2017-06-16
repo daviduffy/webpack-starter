@@ -1,23 +1,30 @@
 window.onload = function(){
   const setAnimation = (function(){
+
+    // container element
     let elem = document.getElementById('p');
-    let styleVars = document.documentElement.style;
-    let info = {};
-    info.widthMidpoint = elem.offsetWidth / 2;
-    info.heightMidpoint = elem.offsetHeight / 2;
-    info.scrollMidpoint = elem.clientHeight / 2;
-    info.windowMidpoint = window.innerHeight / 2;
-    // offset = scroll()
+
+    // current data used by function
     let current = {
       topOffset: 0
     };
+    // used to supercede vars set in css
+    let styleVars = document.documentElement.style;
+
+    // global info used to create initial offsets
+    let info = {};
+    info.widthMidpoint = elem.offsetWidth / 2;
+    info.heightMidpoint = elem.offsetHeight / 2;
+    info.windowMidpoint = window.innerHeight / 2;
+
+
 
     return {
       mouse: function(e) {
         // set shared mouse location
         var e = e || window.event;
         current.widthMidpoint = e.clientX - info.widthMidpoint;
-        current.heightMidpoint = e.clientY - info.heightMidpoint;
+        current.heightMidpoint = e.clientY - info.heightMidpoint + window.pageYOffset;
         setAnimation.run();
       },
       scroll: function(e) {
@@ -26,9 +33,10 @@ window.onload = function(){
         setAnimation.run();
       },
       run: function(e){
-        styleVars.setProperty(`--f-t`, `${-current.widthMidpoint/8}px, ${-current.heightMidpoint/6 + current.topOffset * 2}px` )
-        styleVars.setProperty(`--m-t`, `${-current.widthMidpoint/12}px, ${-current.heightMidpoint/11 + current.topOffset}px` )
-        styleVars.setProperty(`--b-t`, `${-current.widthMidpoint/16}px, ${-current.heightMidpoint/16 + current.topOffset / 2}px` )
+        // render from shared vars
+        styleVars.setProperty(`--w-mid`, `${-current.widthMidpoint}px`)
+        styleVars.setProperty(`--h-mid`, `${-current.heightMidpoint}px`)
+        styleVars.setProperty(`--sc-mid`, `${current.topOffset}px`)
       }
     };
   }());

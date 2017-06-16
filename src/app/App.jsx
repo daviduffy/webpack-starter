@@ -108,23 +108,31 @@ class App extends React.Component {
     return (
       <main className="p" id="p">
         <div className="g" id="g">
-          <section className="c-s c-s--6 c-s--b">
+          <section className="c-s c-s--8 c-s--b">
             <div className="c-s__ctnr"></div>
           </section>
           <section className="c-s c-s--7 c-s--b">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--8 c-s--b">
+          <section className="c-s c-s--6 c-s--mb">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--3 c-s--m">
+          <section className="c-s c-s--5 c-s--mb">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--4 c-s--m">
+          <section className="c-s c-s--4 c-s--mf">
             <div className="c-s__ctnr"></div>
           </section>
-          <section className="c-s c-s--5 c-s--m">
+          <section className="c-s c-s--3 c-s--mf">
             <div className="c-s__ctnr"></div>
+          </section>
+          <section className="c-s c-s--2 c-s--f">
+            <div className="c-s__ctnr">
+              <div className="c-s__g"></div>
+              <div className="c-s__ctt">
+                <p>Test Content Horizontal</p>
+              </div>
+            </div>
           </section>
           <section className="c-s c-s--1 c-s--f">
             <div className="c-s__ctnr c-s__ctnr--v">
@@ -132,14 +140,6 @@ class App extends React.Component {
               <div className="c-s__ctt">
                 <p>Test Content Vertical</p>
                 <button className="c-s__b">@</button>
-              </div>
-            </div>
-          </section>
-          <section className="c-s c-s--2 c-s--f">
-            <div className="c-s__ctnr">
-              <div className="c-s__g"></div>
-              <div className="c-s__ctt">
-                <p>Test Content Horizontal</p>
               </div>
             </div>
           </section>

@@ -21,10 +21,31 @@ html:root
   
   --mosaic-grid-gap            : 0.33rem
 
-  --foreground-translate       : 0px, 0px
-  --midground-translate        : 0px, 0px
-  --background-translate       : 0px, 0px
+  // --foreground-translate       : 0px, 0px
+  // --midground-translate        : 0px, 0px
+  // --background-translate       : 0px, 0px
 
+  // use calc() instead of JS to perform final math for transform values
+  // ===================================================================
+
+  // x value for point at H middle of element
+  --w-mid                      : 0px
+  // y value for point at V middle of element
+  --h-mid                      : 0px
+  // value for point at V middle of viewport
+  --sc-mid                     : 0px
+
+  // foreground
+  --f-t                        : calc(var(--w-mid)/8), calc(var(--h-mid)/6 + var(--sc-mid)*2.5)
+
+  // midground
+  --mf-t                       : calc(var(--w-mid)/9.33), calc(var(--h-mid)/9.33 + var(--sc-mid)*1.17)
+
+  // midground
+  --mb-t                       : calc(var(--w-mid)/10.66), calc(var(--h-mid)/12.66 + var(--sc-mid)/1.17)
+
+  // background
+  --b-t                        : calc(var(--w-mid)/12), calc(var(--h-mid)/16 + var(--sc-mid)/2.5)
 
   // content section background colors (for testing)
   --c-s--color-1               : rgb(225,81,81)
