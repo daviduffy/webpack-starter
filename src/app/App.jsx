@@ -112,6 +112,14 @@ class App extends React.Component {
     ]
     return (
       <div className="cont">
+        <header className="header">
+          <div className="header__bg">
+            <a className="header__trigger u-flex u-flex--c">
+              <span className="header__bars"></span>
+            </a>
+          </div>
+          <Nav classes="nav--header nav--closed"/>
+        </header>
         <section className="cover u-flex">
           <div className="cover__bg u-abs-c" style={coverStyles}></div>
           <div className="cover__t-c u-flex u-flex--c">
@@ -122,38 +130,7 @@ class App extends React.Component {
           </div>
           <div className="cover__nav-b"></div>
         </section>
-        <nav role="navigation" className="nav">
-          <ul className="nav__ul u-flex">
-            <li className="nav__li">
-              <a href="#" className="nav__a u-flex">
-                <i className="nav__fa nav__fa--i fa fa-star-o" aria-hidden="true"></i>
-                <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-                <h2 className="h5 nav__a-title">commercials</h2>
-              </a>
-            </li>
-            <li className="nav__li">
-              <a href="#" className="nav__a u-flex">
-                <i className="nav__fa nav__fa--i fa fa-picture-o" aria-hidden="true"></i>
-                <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-                <h2 className="h5 nav__a-title">illustrations</h2>
-              </a>
-            </li>
-            <li className="nav__li">
-              <a href="#" className="nav__a u-flex">
-                <i className="nav__fa nav__fa--i fa fa-film" aria-hidden="true"></i>
-                <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-                <h2 className="h5 nav__a-title">features</h2>
-              </a>
-            </li>
-            <li className="nav__li">
-              <a href="#" className="nav__a u-flex">
-                <i className="nav__fa nav__fa--i fa fa-television" aria-hidden="true"></i>
-                <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-                <h2 className="h5 nav__a-title">music videos</h2>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Nav classes="nav--body"/>
         <main className="gallery" id="gallery">
           <section className="card">
             <div className="card__img"></div>
@@ -223,9 +200,40 @@ class App extends React.Component {
   // }
 }
 
-const Cover = (props) => {
+const Nav = (props) => {
   return (
-    <div></div>
+    <nav role="navigation" className={`nav ${props.classes}`}>
+      <ul className="nav__ul u-flex">
+        <li className="nav__li">
+          <a href="#" className="nav__a u-flex">
+            <i className="nav__fa nav__fa--i fa fa-star-o" aria-hidden="true"></i>
+            <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+            <h2 className="h5 nav__a-title">commercials</h2>
+          </a>
+        </li>
+        <li className="nav__li">
+          <a href="#" className="nav__a u-flex">
+            <i className="nav__fa nav__fa--i fa fa-picture-o" aria-hidden="true"></i>
+            <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+            <h2 className="h5 nav__a-title">illustrations</h2>
+          </a>
+        </li>
+        <li className="nav__li">
+          <a href="#" className="nav__a u-flex">
+            <i className="nav__fa nav__fa--i fa fa-film" aria-hidden="true"></i>
+            <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+            <h2 className="h5 nav__a-title">features</h2>
+          </a>
+        </li>
+        <li className="nav__li">
+          <a href="#" className="nav__a u-flex">
+            <i className="nav__fa nav__fa--i fa fa-television" aria-hidden="true"></i>
+            <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+            <h2 className="h5 nav__a-title">music videos</h2>
+          </a>
+        </li>
+      </ul>
+    </nav>
   )
 }
 

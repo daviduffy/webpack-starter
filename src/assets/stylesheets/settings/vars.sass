@@ -1,32 +1,78 @@
+// SASS vars  =================================================================
+// ============================================================================
+
+// breakpoints
+// ===========
+
+$max-width-small                : unquote("max-width: 599px")
+
+$min-width-smedium              : unquote("min-width: 600px")
+$max-width-smedium              : unquote("min-width: 899px")
+
+$min-width-medium               : unquote("min-width: 900px")
+$max-width-medium               : unquote("max-width: 1199px")
+
+$min-width-large                : unquote("min-width: 1200px")
+$max-width-large                : unquote("max-width: 1799px")
+
+$min-width-xlarge               : unquote("min-width: 1800px")
+
+
+// toggle material shadows on and off
+// ==================================
+$material                       : true
+
+// easing standard values
+// ======================
+$easing-duration                : 0.33s
+$standard-easing-bezier         : cubic-bezier(0.56, 0.26, 0.37, 0.98)
+$perspective-easing-bezier      : cubic-bezier(0.53, 1, 0.9, 1)
+
+// borders
+// =======
+$border-radius                  : 2px
+
+// fonts    
+// =====                    
+$font-body                      : 'Montserrat', tahoma, helvetica, sans-serif
+$font-script                    : 'Playfair Display', times, serif
+
+
+// HTML Custom Properties =====================================================
+// ============================================================================
+
 html:root 
 
   /* colors
    * ================================ */
-  --white                      : #fefefe
-  --white-bg                   : #f6f6f6
-  --grey-light                 : #eeeeee
-  --grey                       : #707070
-  --grey-dark                  : #444444
-  --black                      : #262626
+  --white                       : #fefefe
+  --white-bg                    : #f6f6f6
+  --grey-light                  : #eeeeee
+  --grey                        : #707070
+  --grey-dark                   : #444444
+  --black                       : #262626
 
-  --purple                     : #b60977
-  --teal                       : #19cada
-  --teal-dark                  : #1b5c64
+  --purple                      : #b60977
+  --teal                        : #19cada
+  --teal-dark                   : #1b5c64
 
   /* animation values
    * ================================ */
-  --standard-easing-duration   : 0.24s
-  --standard-easing-bezier     : 0.56, 0.26, 0.37, 0.98
-  --drop-in-easing-bezier      : 0.73, 0.14, 1, 0.99
-  --drop-in-animation-delay    : 0.77s
+  --standard-easing-duration    : 0.24s
+  --standard-easing-bezier      : 0.56, 0.26, 0.37, 0.98
+  --drop-in-easing-bezier       : 0.73, 0.14, 1, 0.99
+  --drop-in-animation-delay     : 0.77s
   
 
   /* padding, margin, and spacing values
    * ================================ */
-  --nav-band-height            : 170px
-  --nav-top-offset             : 70px
+  --nav-band-height             : 80px
+  --nav-top-offset              : 70px
+  @media screen and ( $min-width-large )
+    --nav-band-height           : 170px
 
-  --gallery-width              : 1300px
+  --gallery-width               : 1300px
+
 
 
   /* depth effect values
@@ -36,55 +82,44 @@ html:root
   // ===================================================================
 
   // x value for point at H middle of element
-  --w-mid                      : 0px
+  --w-mid                       : 0px
   // y value for point at V middle of element
-  --h-mid                      : 0px
+  --h-mid                       : 0px
   // value for point at V middle of viewport
-  --sc-mid                     : 0px
+  --sc-mid                      : 0px
 
 
-  // CSS Transform equations
-  // =======================                           // pan                   // scroll
+  /* CSS Transform equations
+   * =======================                           // pan                   // scroll
+   * ================================ */
+
   // foreground
-  --f-t                        : calc(var(--w-mid)/8), calc(var(--h-mid)/6 + var(--sc-mid)*3)
-  --f-t-sc                     : scale(1)
+  --f-t                         : calc(var(--w-mid)/8), calc(var(--h-mid)/6 + var(--sc-mid)*3)
+  --f-t-sc                      : scale(1)
 
   // midground front
-  --mf-t                       : calc(var(--w-mid)/9.33), calc(var(--h-mid)/9.33 + var(--sc-mid)*2.25)
+  --mf-t                        : calc(var(--w-mid)/9.33), calc(var(--h-mid)/9.33 + var(--sc-mid)*2.25)
   --mf-t-sc                     : scale(0.86)
 
   // midground back
-  --mb-t                       : calc(var(--w-mid)/10.66), calc(var(--h-mid)/12.66 + var(--sc-mid)*1.5)
+  --mb-t                        : calc(var(--w-mid)/10.66), calc(var(--h-mid)/12.66 + var(--sc-mid)*1.5)
   --mb-t-sc                     : scale(0.73)
 
   // background
-  --b-t                        : calc(var(--w-mid)/12), calc(var(--h-mid)/16 + var(--sc-mid)/1.5)
-  --b-t-sc                     : scale(0.6)
+  --b-t                         : calc(var(--w-mid)/12), calc(var(--h-mid)/16 + var(--sc-mid)/1.5)
+  --b-t-sc                      : scale(0.6)
 
   // content section background colors (for testing)
-  --c-s--color-1               : rgb(225,81,81)
-  --c-s--color-2               : rgb(217,92,78)
-  --c-s--color-3               : rgb(210,104,75)
-  --c-s--color-4               : rgb(203,116,72)
-  --c-s--color-5               : rgb(196,127,70)
-  --c-s--color-6               : rgb(189,139,67)
-  --c-s--color-7               : rgb(182,151,64)
-  --c-s--color-8               : rgb(175,162,62)
-  --c-s--color-9               : rgb(168,174,59)
-  --c-s--color-10              : rgb(161,186,56)
-  --c-s--color-11              : rgb(154,198,54)
+  --c-s--color-1                : rgb(225,81,81)
+  --c-s--color-2                : rgb(217,92,78)
+  --c-s--color-3                : rgb(210,104,75)
+  --c-s--color-4                : rgb(203,116,72)
+  --c-s--color-5                : rgb(196,127,70)
+  --c-s--color-6                : rgb(189,139,67)
+  --c-s--color-7                : rgb(182,151,64)
+  --c-s--color-8                : rgb(175,162,62)
+  --c-s--color-9                : rgb(168,174,59)
+  --c-s--color-10               : rgb(161,186,56)
+  --c-s--color-11               : rgb(154,198,54)
 
-// toggle material shadows on and off
-$material                       : true
 
-// easing standard values
-$easing-duration                : 0.33s
-$standard-easing-bezier         : cubic-bezier(0.56, 0.26, 0.37, 0.98)
-$perspective-easing-bezier      : cubic-bezier(0.53, 1, 0.9, 1)
-
-// borders
-$border-radius                  : 2px
-
-// fonts                        
-$font-body                      : 'Montserrat', tahoma, helvetica, sans-serif
-$font-script                    : 'Playfair Display', times, serif

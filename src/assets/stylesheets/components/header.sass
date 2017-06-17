@@ -1,0 +1,40 @@
+.header
+  position: relative
+  width: 100%
+  padding: 0.5rem
+
+  .nav
+    position: absolute
+
+.header__trigger
+  display: block
+  margin: auto
+  width: 11vw
+  height: 10vw
+  background-color: var(--teal)
+
+  /* allow shadow to overlap adjacent element */
+  position: relative
+  z-index: 1
+
+.header__bars
+  position: relative
+  display: block
+  width: 100%
+  height: 100%
+  @include material-short--active
+
+  &::before,
+  &::after
+    content: ''
+    display: block
+    width: 1rem
+    height: 0.125rem
+    @include abs-centered
+    background-color: var(--white)
+
+  &::before
+    top: 0.4rem
+
+  &::after
+    bottom: 0.4rem

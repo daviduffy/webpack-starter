@@ -3,5 +3,6 @@
   min-height: 100vh
 
 .gallery
-  width: var(--gallery-width)
-  margin: auto
+  @media screen and ( $min-width-large )
+    width: var(--gallery-width)
+    margin: auto

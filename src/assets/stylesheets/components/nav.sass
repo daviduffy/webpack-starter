@@ -1,18 +1,11 @@
 // Cover
 .nav
   position: relative
-  border-top: 3px solid var(--white)
   color: var(--white)
   height: calc(var(--nav-band-height) - var(--nav-top-offset) + 30px)
 
   .fa-circle
     font-size: 12px
-
-.nav__ul
-  float: right
-  width: 64%
-  transform: translateY(-53%)
-  justify-content: space-around
 
 .nav__li
   transition: color var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier))
@@ -40,3 +33,19 @@
 .nav__fa--i
   min-height: 2.5rem
   font-size: 1.8rem!important
+
+.nav--body
+  border-top: 3px solid var(--white)
+
+  .nav__ul
+    display: none
+
+    @media screen and ( $min-width-large )
+      display: block
+      float: right
+      width: 64%
+      transform: translateY(-53%)
+      justify-content: space-around
+
+.nav--closed
+  display: none
