@@ -1,6 +1,5 @@
 // import React from 'react';
-import webpack        from 'images/webpack.gif';
-import gulp           from 'images/gulp.png';
+import cover          from 'images/cover.jpg'
 import illustration_1 from 'images/illustrations/IMG_0998.JPG'
 
 const app = [
@@ -69,13 +68,11 @@ const app = [
       contentMeta: [
         {
           type: 'image',
-          src: `${webpack}`,
           alt: 'a cat image again',
           classes: false
         },
         {
           type: 'image',
-          src: `${gulp}`,
           alt: 'gulp logo',
           classes: false
         }
@@ -105,51 +102,89 @@ class App extends React.Component {
   }
 
   render () {
+    const coverStyles = {
+      backgroundImage: `url('${cover}')`
+    }
     const imgStyles = [
       {
         backgroundImage: `url(${illustration_1})`
       }
     ]
     return (
-      <main className="p" id="p">
-        <div className="g" id="g">
-          <section className="c-s [ c-s--8 ] c-s--b">
-            <div className="c-s__ctnr"></div>
-          </section>
-          <section className="c-s [ c-s--7 ] c-s--b">
-            <div className="c-s__ctnr"></div>
-          </section>
-          <section className="c-s [ c-s--6 ] c-s--mb">
-            <div className="c-s__ctnr"></div>
-          </section>
-          <section className="c-s [ c-s--5 ] c-s--mb">
-            <div className="c-s__ctnr"></div>
-          </section>
-          <section className="c-s [ c-s--4 ] c-s--mf">
-            <div className="c-s__ctnr"></div>
-          </section>
-          <section className="c-s [ c-s--3 ] c-s--mf">
-            <div className="c-s__ctnr"></div>
-          </section>
-          <section className="c-s [ c-s--2 ] c-s--f">
-            <div className="c-s__ctnr">
-              <div className="c-s__g" style={imgStyles[0]}></div>
-              <div className="c-s__ctt">
-                <p>Test Content Horizontal</p>
-              </div>
+      <div className="cont">
+        <section className="cover u-flex">
+          <div className="cover__bg u-abs-c" style={coverStyles}></div>
+          <div className="cover__t-c u-flex u-flex--c">
+            <div className="cover__t">
+              <h1 className="cover__h1">Helena Falangus</h1>
+              <p className="cover__p h4">Costume Designer</p>
+            </div>
+          </div>
+          <div className="cover__nav-b"></div>
+        </section>
+        <nav role="navigation" className="nav">
+          <ul className="nav__ul u-flex">
+            <li className="nav__li">
+              <a href="#" className="nav__a u-flex">
+                <i className="nav__fa nav__fa--i fa fa-star-o" aria-hidden="true"></i>
+                <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+                <h2 className="h5 nav__a-title">commercials</h2>
+              </a>
+            </li>
+            <li className="nav__li">
+              <a href="#" className="nav__a u-flex">
+                <i className="nav__fa nav__fa--i fa fa-picture-o" aria-hidden="true"></i>
+                <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+                <h2 className="h5 nav__a-title">illustrations</h2>
+              </a>
+            </li>
+            <li className="nav__li">
+              <a href="#" className="nav__a u-flex">
+                <i className="nav__fa nav__fa--i fa fa-film" aria-hidden="true"></i>
+                <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+                <h2 className="h5 nav__a-title">features</h2>
+              </a>
+            </li>
+            <li className="nav__li">
+              <a href="#" className="nav__a u-flex">
+                <i className="nav__fa nav__fa--i fa fa-television" aria-hidden="true"></i>
+                <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+                <h2 className="h5 nav__a-title">music videos</h2>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <main className="gallery" id="gallery">
+          <section className="card">
+            <div className="card__img"></div>
+            <div className="card__cont u-flex u-flex--c">
+              <h3 className="card__title">illustration title</h3>
+              <p className="card__sub">lorem ipsum dolor</p>
             </div>
           </section>
-          <section className="c-s [ c-s--1 c-s--f">
-            <div className="c-s__ctnr c-s__ctnr--v">
-              <div className="c-s__g"></div>
-              <div className="c-s__ctt">
-                <p>Test Content Vertical</p>
-                <button className="c-s__b">@</button>
-              </div>
+          <section className="card">
+            <div className="card__img"></div>
+            <div className="card__cont u-flex u-flex--c">
+              <h3 className="card__title">illustration title</h3>
+              <p className="card__sub">sit amet, consectetur</p>
             </div>
           </section>
+          <section className="card">
+            <div className="card__img"></div>
+            <div className="card__cont u-flex u-flex--c">
+              <h3 className="card__title">illustration title</h3>
+              <p className="card__sub">lorem ipsum sit dolor</p>
+            </div>
+          </section>
+          <section className="card">
+            <div className="card__img"></div>
+            <div className="card__cont u-flex u-flex--c">
+              <h3 className="card__title">illustration title</h3>
+              <p className="card__sub">sit amet, consectetur</p>
+            </div>
+          </section>
+        </main>
         </div>
-      </main>
     );
   }
 
@@ -186,6 +221,12 @@ class App extends React.Component {
   //     </div>
   //   )
   // }
+}
+
+const Cover = (props) => {
+  return (
+    <div></div>
+  )
 }
 
 const Card = (props) => {

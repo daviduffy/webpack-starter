@@ -1,0 +1,34 @@
+// Cover
+.cover
+  min-height: 70vh
+  position: relative
+  @include justify-content(flex-end)
+  background-color: var(--white)
+
+.cover__bg
+  width: 100%
+  height: 100%
+  // @include abs-centered
+  background: -33% 0% no-repeat
+
+.cover__t-c
+  min-width: 50vw
+  text-align: center
+
+.cover__h1
+  font-weight: 600
+  
+.cover__p
+  color: var(--grey)
+  font-family: $font-script
+  font-style: italic
+
+.cover__nav-b
+  position: absolute
+  bottom: 0
+  right: 0
+  left: 0
+  height: calc(var(--nav-band-height) + var(--nav-top-offset))
+  transform: translateY(var(--nav-band-height))
+  background-color: var(--teal)
+  mix-blend-mode: multiply

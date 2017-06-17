@@ -1,272 +1,31 @@
 .card
   position: relative
-  width: 100%
-  height: 100%
-  margin: auto
-  display: grid
-  border-radius: 2px
-  overflow: hidden
-  grid-template-columns: 40px repeat(8, 1fr) 40px
-  grid-template-rows: 40px repeat(4, 2fr) 60px
+  min-height: 330px
+  @include display-flex
+  @include flex-direction(column)
+  @include material-tall--active
 
+  // floats for non-grid folks
+  float: left
+  margin: 0 0.75rem 0.75rem
+  width: calc(25% - 1.5rem)
 
-.controls 
-  color: black
+.card__img
+  @include flex-shorthand(3)
+  background-color: var(--grey)
 
+.card__cont
+  @include flex-shorthand(1)
+  @include flex-direction(column)
 
-.controls--top 
-  grid-row: 1
-  grid-column: 1 / 11
-  padding: 0 1rem
-  display: flex
-  align-items: flex-end
+.card__title
+  text-transform: uppercase
+  font-size: 0.9rem
+  font-weight: 600
+  letter-spacing: 0.55px
 
-
-.controls--bottom 
-  grid-row: 6
-  grid-column: 2 / 9
-
-.controls__link 
-  text-decoration: none
-  display: inline-flex
-  align-items: center
-  justify-content: center
-  color: white
-  position: relative
-  z-index: 11
-
-.controls__link svg 
-  width: 100%
-  height: auto
-
-.controls__link--top 
-  width: 2.5vw
-  min-width: 20px
-  max-width: 30px
-  &:last-child 
-    max-height: 100%
-    margin-left: auto
-
-.controls__link--bottom 
-  width: 30px
-  height: 30px
-  margin-right: 15px
-  border-radius: 50%
-
-.controls__link--active 
-  background-color: white
-  i 
-    color: inherit
-
-.controls__link--hidden
-  display: none
-
-.card 
-  position: absolute
-  &:not(.card--active) .card__bg 
-    will-change: clip-path // this might be bad
-
-.card--active 
-  z-index: 10
-  .card__fly-in 
-    will-change: transform
-
-.card--previous 
-  z-index: 9
-
-.card__content-left 
-  color: white
-  z-index: 1
-  grid-row: 2 / 6
-  grid-column: 2 / span 4  
-  & > * 
-    color: inherit
-
-.card__content-right 
-  grid-row: 1 / 7
-  grid-column: 6 / 11
-  z-index: 12
-  display: flex
-  justify-content: center
-  align-items: center
-  perspective: 1000px
-  transform-style: preserve-3d
-  transform: translateX(101%)
-  padding: 1rem
-  transition: ease
-  img 
-    max-width: 100%
-
-.card__content-right-wrapper
-  position: absolute
-  top: 0
-  right: 0
-  bottom: 0
-  left: 0
-  margin: auto
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-flow: row wrap
-
-.curtain 
-  position: absolute
-  top: 0
-  bottom: 0
-  right: 0
-  left: 0
-  z-index: 11
-  opacity: 0
-  transition: opacity var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier) )
-  box-shadow: inset 0 0 30em 0 rgba(0,0,0,.9)
-  background-color: rgba(0,0,0,.6)
-  pointer-events: none
-
-.card__bg 
-  grid-row: 1 / span 9
-  grid-column: 1 / span 10
-  width: 100%
-  height: 100%
-  transition: 0.4s ease-out
-
-
-// Home card unique styles
-// =======================
-.card__home-card
-  .card__bg 
-    background-color: var(--home-card-color)
-  .card__content-left 
-    color: black
-  .card__content-right 
-    position: relative
-
-.card__home-card.card--active
-  .card__bg 
-    clip-path:  circle(20px at 35px 25px )
-  .card__content-right 
-    animation: drop-in 0.7s cubic-bezier( var(--drop-in-easing-bezier) )
-    animation-delay: 0.4s
-    animation-fill-mode: forwards
-  & ~ .controls i
-    color: black
-    .controls__link--active 
-      display: none
-
-
-// First card unique styles
-// ========================
-.card__first-card
-  .card__bg 
-    background-color: var(--first-card-color)
-
-.card__first-card.card--active
-  .card__bg 
-    clip-path:  circle(20px at 55px calc(-45px + 100%))
-  .card__content-right:hover .card__content-right-wrapper  
-    z-index: 99
-    transform: rotateY(0deg) scale(1)
-  .card__content-right:hover ~ .curtain  
-    opacity: 1
-  & ~ .controls--bottom .controls__link--active i
-    color: var(--first-card-color)
-
-
-
-// Second card unique styles
-// =========================
-.card__second-card
-  .card__bg 
-    background-color: var(--second-card-color-end)
-    background: linear-gradient(105deg, var(--second-card-color-start), var(--second-card-color-end) )
-.card__second-card.card--active
-  .card__bg 
-    clip-path:  circle(20px at 105px calc(-45px + 100%))
-  & ~ .controls--bottom .controls__link--active i 
-    color: var(--second-card-color-start)
-
-
-
-// Third card unique styles
-// ========================
-.card__third-card
-  .card__bg 
-    background-color: var(--third-card-color)
-
-.card__third-card.card--active
-  .card__bg 
-    clip-path:  circle(20px at 155px calc(-45px + 100%))
-  & ~ .controls--bottom .controls__link--active i 
-    color: var(--third-card-color)
-
-
-
-// general styles for active cards
-// ===============================*/
-
-.card--active
-  .card__bg 
-    animation: circle-expand calc(var(--standard-easing-duration)) ease-in-out
-    animation-fill-mode: forwards
-
-  .card__content-left 
-    opacity: 0
-    animation: fade-in var(--standard-easing-duration) ease-in-out
-    animation-delay: 0.33s
-    animation-fill-mode: forwards
-
-  .card__content-right 
-    animation: bump-in var(--standard-easing-duration) ease
-    animation-delay: 0.33s
-    animation-fill-mode: forwards
-
-
-// // slide one photos */
-// .photo 
-//   position: absolute
-//   padding: 0.33rem
-//   max-width: 50%
-//   box-shadow: var(--light-box-shadow)
-//   background-color: white
-
-// .card--active .photo--fish 
-//   transform: translate(26%, 81%) rotate(-6deg)
-//   animation: photo--fish .17s cubic-bezier( var(--standard-easing-bezier) )
-//   animation-delay: var(--drop-in-animation-delay)
-//   animation-fill-mode: forwards
-
-// .card--active .photo--snow 
-//   transform: translate(-33%, 47%) rotate(-10.5deg)
-//   animation: photo--snow .13s cubic-bezier( var(--standard-easing-bezier) )
-//   animation-delay: var(--drop-in-animation-delay)
-//   animation-fill-mode: forwards
-
-// .card--active .photo--wedding 
-//   transform: translate(29%, -13%) rotate(1deg)
-//   animation: photo--wedding .22s cubic-bezier( var(--standard-easing-bezier) )
-//   animation-delay: var(--drop-in-animation-delay)
-//   animation-fill-mode: forwards
-
-// .card--active .photo--mc 
-//   transform: translate(-24%, -6%) rotate(-15deg)
-//   animation: photo--mc .22s cubic-bezier( var(--standard-easing-bezier) )
-//   animation-delay: var(--drop-in-animation-delay)
-//   animation-fill-mode: forwards
-
-
-// card two mosaic */
-.card--mosaic .card__content-right-wrapper
-  transform: rotateY(-20deg) scale(.95)
-  transition: transform var(--standard-easing-duration) cubic-bezier(var(--standard-easing-bezier))
-  width: 100%
-  height: 100%
-  column-count: 3
-  column-gap: var(--mosaic-grid-gap)
-
-
-.mosaic-card 
-  -webkit-column-break-inside: avoid
-  page-break-inside: avoid
-  break-inside: avoid
-  width: 100%
-  max-width: 
-  margin-bottom: var(--mosaic-grid-gap)
+.card__sub
+  font-family: $font-script
+  font-style: italic
+  font-weight: 400
+  color: var(--grey)
