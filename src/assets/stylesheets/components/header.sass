@@ -1,40 +1,108 @@
 .header
   position: relative
   width: 100%
-  padding: 0.5rem
+  height: var(--header-height)
+  @media screen and ( $min-width-large ) and ( $landscape )
+    display: none
 
-  .nav
-    position: absolute
+.nav--header
+  position: absolute
+  display: none
+
+.header__bg
+  @extend %header-button-dimensions
+  background-color: var(--teal)
+  transition: all var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier))
+  will-change: width, height
+  z-index: 1
+  @include material-short
+
 
 .header__trigger
-  display: block
-  margin: auto
-  width: 11vw
-  height: 10vw
-  background-color: var(--teal)
+  @extend %header-button-dimensions
+  transition: transform var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier))
+  z-index: 2
 
-  /* allow shadow to overlap adjacent element */
-  position: relative
-  z-index: 1
 
 .header__bars
   position: relative
   display: block
   width: 100%
   height: 100%
-  @include material-short--active
 
   &::before,
   &::after
     content: ''
     display: block
-    width: 1rem
+    width: 5vw
+    max-width: 22px
     height: 0.125rem
     @include abs-centered
     background-color: var(--white)
+    transition: transform var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier))
 
   &::before
     top: 0.4rem
 
   &::after
     bottom: 0.4rem
+
+.x
+  width: 100%
+  height: 100%
+  z-index: -10
+
+// state
+// ====================================
+.header--open
+  z-index: 10
+  .nav--header,
+  .nav__ul
+    height: 192px
+
+  .nav--header
+    display: block
+
+  .header__bg
+    max-width: 100%
+    max-height: 100vh
+    width: 100%
+    height: 330px
+    mix-blend-mode: darken
+
+  .header__trigger
+    transform: translate(calc(50vw - 34px), 0.5rem)
+  .nav--header
+    z-index: 1
+  .header__bars
+    &::before
+      transform: rotate(45deg) translate(-0.25rem)
+    &::after
+      transform: rotate(-45deg) translate(-0.25rem)
+  .nav__ul
+    @include flex-direction(column)
+    @include align-items(flex-start)
+    @include justify-content(space-around)
+    padding: 1rem 0
+  .nav__li
+    opacity: 0
+    animation: fade-in-down var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier))
+    animation-fill-mode: forwards
+    &:nth-child(1)
+      animation-delay: 0.05s
+    &:nth-child(2)
+      animation-delay: 0.1s
+    &:nth-child(3)
+      animation-delay: 0.15s
+    &:nth-child(4)
+      animation-delay: 0.2s
+  & ~ .x
+    z-index: 2
+
+  @media screen and ( $max-width-medium ) and ( $portrait )
+    & ~ .cover
+      .cover__h1,
+      .cover__p
+        animation: blur-text var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier))
+        animation-fill-mode: forwards
+        animation-delay: 0.05s

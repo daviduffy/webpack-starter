@@ -85,20 +85,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      curr: 0,
-      prev: 1
+      mNav: false
     };
-    this.changeCard = this.changeCard.bind(this);
+    this.toggleMobNav = this.toggleMobNav.bind(this);
   };
 
-
-  changeCard(id) {
-    this.setState((prevState, props) => {
-      return {
-        curr: id,
-        prev: prevState.curr
-      }
-    });
+  toggleMobNav(e) {
+    console.log('click');
+    this.setState(prevState => ({
+      mNav: !prevState.mNav
+    }));
   }
 
   render () {
@@ -112,13 +108,12 @@ class App extends React.Component {
     ]
     return (
       <div className="cont">
-        <header className="header">
-          <div className="header__bg">
-            <a className="header__trigger u-flex u-flex--c">
-              <span className="header__bars"></span>
-            </a>
-          </div>
-          <Nav classes="nav--header nav--closed"/>
+        <header className={this.state.mNav ? `header header--open` : `header`}>
+          <a className="header__trigger u-abs-c" id="header_nav_trigger" onClick={this.toggleMobNav}>
+            <span className="header__bars"></span>
+          </a>
+          <div className="header__bg u-abs-c"></div>
+          <Nav classes="nav--header"/>
         </header>
         <section className="cover u-flex">
           <div className="cover__bg u-abs-c" style={coverStyles}></div>
@@ -131,7 +126,7 @@ class App extends React.Component {
           <div className="cover__nav-b"></div>
         </section>
         <Nav classes="nav--body"/>
-        <main className="gallery" id="gallery">
+        <main className="gallery u-flex" id="gallery">
           <section className="card">
             <div className="card__img"></div>
             <div className="card__cont u-flex u-flex--c">
@@ -161,7 +156,10 @@ class App extends React.Component {
             </div>
           </section>
         </main>
+        <div className="x u-abs-c">
+          <a href="#" className="u-abs-c" onClick={this.toggleMobNav}></a>
         </div>
+      </div>
     );
   }
 

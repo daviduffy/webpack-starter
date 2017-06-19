@@ -2,7 +2,7 @@
 .nav
   position: relative
   color: var(--white)
-  height: calc(var(--nav-band-height) - var(--nav-top-offset) + 30px)
+  min-height: calc(var(--nav-band-height) - var(--nav-top-offset) + 30px)
 
   .fa-circle
     font-size: 12px
@@ -15,7 +15,6 @@
     color: var(--grey)
 
 .nav__a
-  @include flex-direction(column)
   @include align-items(center)
 
   // it is bad to do this
@@ -27,25 +26,39 @@
   text-transform: uppercase
   letter-spacing: 1px
 
-.nav__fa
-  min-height: 1.2rem
 
-.nav__fa--i
-  min-height: 2.5rem
-  font-size: 1.8rem!important
+
+// state
+// ====================================
+.nav--closed
+  display: none
+
+.nav--header
+  .nav__fa
+    min-width: 6rem
+    text-align: center
+  .nav__fa--i
+    font-size: 1.4rem
+  .fa-circle
+    display: none
+  .nav__a-title
+    font-weight: 300
 
 .nav--body
   border-top: 3px solid var(--white)
-
   .nav__ul
     display: none
-
+    @include flex-direction(row)
     @media screen and ( $min-width-large )
-      display: block
+      @include display-flex
       float: right
       width: 64%
       transform: translateY(-53%)
       justify-content: space-around
-
-.nav--closed
-  display: none
+  .nav__a
+    @include flex-direction(column)
+  .nav__fa--i
+    min-height: 2.5rem
+    font-size: 1.8rem!important
+  .nav__fa
+    min-height: 1.2rem

@@ -3,6 +3,10 @@
   min-height: 100vh
 
 .gallery
-  @media screen and ( $min-width-large )
-    width: var(--gallery-width)
+  @include flex-direction(column)
+  @media screen and ( $min-width-smedium )
+    transform: translateY(-2rem)
+    @include flex-flow(row wrap)
+    width: calc(100% - 1.5rem)
+    max-width: var(--gallery-width)
     margin: auto
