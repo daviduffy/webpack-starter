@@ -210,35 +210,40 @@ class App extends React.Component {
           <div className="cover__nav-b"></div>
         </section>
         <Nav classes="nav--body" active={this.state.active}/>
-        <main className="gallery u-flex" id="gallery">
-          <section className="card">
-            <div className="card__img" style={imgStyles[0]}></div>
-            <div className="card__cont u-flex u-flex--c">
-              <h3 className="card__title">illustration title</h3>
-              <p className="card__sub">lorem ipsum dolor</p>
-            </div>
-          </section>
-          <section className="card">
-            <div className="card__img" style={imgStyles[1]}></div>
-            <div className="card__cont u-flex u-flex--c">
-              <h3 className="card__title">illustration title</h3>
-              <p className="card__sub">sit amet, consectetur</p>
-            </div>
-          </section>
-          <section className="card">
-            <div className="card__img" style={imgStyles[2]}></div>
-            <div className="card__cont u-flex u-flex--c">
-              <h3 className="card__title">illustration title</h3>
-              <p className="card__sub">lorem ipsum sit dolor</p>
-            </div>
-          </section>
-          <section className="card">
-            <div className="card__img" style={imgStyles[3]}></div>
-            <div className="card__cont u-flex u-flex--c">
-              <h3 className="card__title">illustration title</h3>
-              <p className="card__sub">sit amet, consectetur</p>
-            </div>
-          </section>
+        <main className="main">
+          <div className="gallery u-flex" id="gallery">
+            <section className="card">
+              <div className="card__img" style={imgStyles[0]}></div>
+              <div className="card__cont u-flex u-flex--c">
+                <h3 className="card__title">illustration title</h3>
+                <p className="card__sub">lorem ipsum dolor</p>
+              </div>
+            </section>
+            <section className="card">
+              <div className="card__img" style={imgStyles[1]}></div>
+              <div className="card__cont u-flex u-flex--c">
+                <h3 className="card__title">illustration title</h3>
+                <p className="card__sub">sit amet, consectetur</p>
+              </div>
+            </section>
+            <section className="card">
+              <div className="card__img" style={imgStyles[2]}></div>
+              <div className="card__cont u-flex u-flex--c">
+                <h3 className="card__title">illustration title</h3>
+                <p className="card__sub">lorem ipsum sit dolor</p>
+              </div>
+            </section>
+            <section className="card">
+              <div className="card__img" style={imgStyles[3]}></div>
+              <div className="card__cont u-flex u-flex--c">
+                <h3 className="card__title">illustration title</h3>
+                <p className="card__sub">sit amet, consectetur</p>
+              </div>
+            </section>
+          </div>
+          <div className="gallery__c-more u-flex u-flex--c">
+            <a href="#" className="h6 gallery__more btn btn--more" id="more">See All</a>
+          </div>
         </main>
         <div className="x u-abs-c">
           <a href="#" className="u-abs-c" onClick={this.toggleMobNav}></a>
@@ -307,28 +312,28 @@ const Nav = (props) => {
           <a href="#" className="nav__a u-flex">
             <i className="nav__fa nav__fa--i fa fa-star-o" aria-hidden="true"></i>
             <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-            <h2 className="h5 nav__a-title">commercials</h2>
+            <h2 className="h6 nav__a-title">commercials</h2>
           </a>
         </li>
         <li className="nav__li">
           <a href="#" className="nav__a u-flex">
             <i className="nav__fa nav__fa--i fa fa-picture-o" aria-hidden="true"></i>
             <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-            <h2 className="h5 nav__a-title">illustrations</h2>
+            <h2 className="h6 nav__a-title">illustrations</h2>
           </a>
         </li>
         <li className="nav__li">
           <a href="#" className="nav__a u-flex">
             <i className="nav__fa nav__fa--i fa fa-film" aria-hidden="true"></i>
             <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-            <h2 className="h5 nav__a-title">features</h2>
+            <h2 className="h6 nav__a-title">features</h2>
           </a>
         </li>
         <li className="nav__li">
           <a href="#" className="nav__a u-flex">
             <i className="nav__fa nav__fa--i fa fa-television" aria-hidden="true"></i>
             <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-            <h2 className="h5 nav__a-title">music videos</h2>
+            <h2 className="h6 nav__a-title">music videos</h2>
           </a>
         </li>
       </ul>
