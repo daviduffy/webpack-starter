@@ -16,7 +16,6 @@ import i_1      from 'images/illustrations/IMG_0998.JPG'
 // music videos
 
 const app = {
-  active: 0,
   content: [
     {
       key: 0,
@@ -210,7 +209,7 @@ class App extends React.Component {
           </div>
           <div className="cover__nav-b"></div>
         </section>
-        <Nav classes="nav--body"/>
+        <Nav classes="nav--body" active={this.state.active}/>
         <main className="gallery u-flex" id="gallery">
           <section className="card">
             <div className="card__img" style={imgStyles[0]}></div>
@@ -304,7 +303,7 @@ const Nav = (props) => {
   return (
     <nav role="navigation" className={`nav ${props.classes}`}>
       <ul className="nav__ul u-flex">
-        <li className="nav__li">
+        <li className={props.active === 1 ? `nav__li--active nav__li` : `nav__li`}>
           <a href="#" className="nav__a u-flex">
             <i className="nav__fa nav__fa--i fa fa-star-o" aria-hidden="true"></i>
             <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
