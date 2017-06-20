@@ -1,97 +1,173 @@
-// import React from 'react';
+// main assets
 import cover          from 'images/cover.jpg'
-import illustration_1 from 'images/illustrations/IMG_0998.JPG'
+// commercials
+import aller    from 'images/commercials/allergease.png'
+import aller_bg from 'images/commercials/allergease_bg.jpg'
+import att      from 'images/commercials/att.png'
+import att_bg   from 'images/commercials/att_bg.jpg'
+import be_cr    from 'images/commercials/be_creative_again.jpg'
+import be_cr_bg from 'images/commercials/be_creative_again_bg.jpg'
+import bridg    from 'images/commercials/bridgestone.png'
+import bridg_bg from 'images/commercials/bridgestone_bg.jpg'
 
-const app = [
-  {
-    key: 0,
-    info: {
-      type: 'home',
-      title: ['hello', 'world'],
-      subtitle: 'I am David Duffy. Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time ideation.',
-      containerClasses: 'card--photos card__home-card',
-      leftContentClasses: '',
-      rightContentClasses: 'mosaic-container',
-      fa_icon: 'fa-home',
-      curtain: false,
-      contentMeta: [
+// illustrations
+import i_1      from 'images/illustrations/IMG_0998.JPG'
+// features
+// music videos
+
+const app = {
+  active: 0,
+  content: [
+    {
+      key: 0,
+      name: 'commercials',
+      cards: [
         {
-          type: 'image',
-          src: `http://placehold.it/600x600`,
-          alt: 'testing tall',
-          classes: 'ph ph-s'
+          key: 0,
+          src: aller,
+          bg_src: aller_bg,
+          title: "Don't Miss a Moment!",
+          subtitle: 'AllergEase'
         },
         {
-          type: 'image',
-          src: `http://placehold.it/600x400`,
-          alt: 'testing tall',
-          classes: 'ph ph-w'
+          key: 1,
+          src: att,
+          bg_src: att_bg,
+          title: 'Incredible Game Winning Play!',
+          subtitle: 'AT&T'
         },
         {
-          type: 'image',
-          src: `http://placehold.it/400x500`,
-          alt: 'testing wide',
-          classes: 'ph ph-w'
+          key: 2,
+          src: be_cr,
+          bg_src: be_cr_bg,
+          title: 'Be Creative Again.',
+          subtitle: 'Umano Productions'
         },
         {
-          type: 'image',
-          src: `http://placehold.it/400x600`,
-          alt: 'testing tall',
-          classes: 'ph ph-t'
+          key: 3,
+          src: bridg,
+          bg_src: bridg_bg,
+          title: 'Tire vs. Olympic Archer',
+          subtitle: 'Bridgestone'
+        }
+      ]
+    },
+    {
+      key: 1,
+      name: 'illustrations',
+      cards: [
+        {
+          key: 1,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
         },
         {
-          type: 'image',
-          src: `http://placehold.it/700x400`,
-          alt: 'testing extra wide',
-          classes: 'ph ph-xw'
+          key: 2,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
         },
         {
-          type: 'image',
-          src: `http://placehold.it/400x700`,
-          alt: 'testing extra tall',
-          classes: 'ph ph-xt'
+          key: 3,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        },
+        {
+          key: 4,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        }
+      ]
+    },
+    {
+      key: 2,
+      name: 'features',
+      cards: [
+        {
+          key: 1,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        },
+        {
+          key: 2,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        },
+        {
+          key: 3,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        },
+        {
+          key: 4,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        }
+      ]
+    },
+    {
+      key: 3,
+      name: 'music videos',
+      cards: [
+        {
+          key: 1,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        },
+        {
+          key: 2,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        },
+        {
+          key: 3,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
+        },
+        {
+          key: 4,
+          src: '',
+          bg_src: '',
+          title: '',
+          subtitle: ''
         }
       ]
     }
-  },
-  {
-    key: 1,
-    info:   {
-      type: 'mosaic',
-      title: ['my', 'github'],
-      subtitle: 'lorem ipsum sit dolor amet',
-      containerClasses: 'card--mosaic card__first-card',
-      leftContentClasses: '',
-      rightContentClasses: '',
-      fa_icon: 'fa-github',
-      curtain: true,
-      contentMeta: [
-        {
-          type: 'image',
-          alt: 'a cat image again',
-          classes: false
-        },
-        {
-          type: 'image',
-          alt: 'gulp logo',
-          classes: false
-        }
-      ]
-    }
-  }
-]
+  ],
+}
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mNav: false
+      mNav: false,
+      active: 1
     };
     this.toggleMobNav = this.toggleMobNav.bind(this);
   };
 
   toggleMobNav(e) {
-    console.log('click');
     this.setState(prevState => ({
       mNav: !prevState.mNav
     }));
@@ -103,7 +179,16 @@ class App extends React.Component {
     }
     const imgStyles = [
       {
-        backgroundImage: `url(${illustration_1})`
+        backgroundImage: `url(${app.content[0].cards[0].bg_src})`
+      },
+      {
+        backgroundImage: `url(${app.content[0].cards[1].bg_src})`
+      },
+      {
+        backgroundImage: `url(${app.content[0].cards[2].bg_src})`
+      },
+      {
+        backgroundImage: `url(${app.content[0].cards[3].bg_src})`
       }
     ]
     return (
@@ -128,28 +213,28 @@ class App extends React.Component {
         <Nav classes="nav--body"/>
         <main className="gallery u-flex" id="gallery">
           <section className="card">
-            <div className="card__img"></div>
+            <div className="card__img" style={imgStyles[0]}></div>
             <div className="card__cont u-flex u-flex--c">
               <h3 className="card__title">illustration title</h3>
               <p className="card__sub">lorem ipsum dolor</p>
             </div>
           </section>
           <section className="card">
-            <div className="card__img"></div>
+            <div className="card__img" style={imgStyles[1]}></div>
             <div className="card__cont u-flex u-flex--c">
               <h3 className="card__title">illustration title</h3>
               <p className="card__sub">sit amet, consectetur</p>
             </div>
           </section>
           <section className="card">
-            <div className="card__img"></div>
+            <div className="card__img" style={imgStyles[2]}></div>
             <div className="card__cont u-flex u-flex--c">
               <h3 className="card__title">illustration title</h3>
               <p className="card__sub">lorem ipsum sit dolor</p>
             </div>
           </section>
           <section className="card">
-            <div className="card__img"></div>
+            <div className="card__img" style={imgStyles[3]}></div>
             <div className="card__cont u-flex u-flex--c">
               <h3 className="card__title">illustration title</h3>
               <p className="card__sub">sit amet, consectetur</p>
@@ -158,6 +243,23 @@ class App extends React.Component {
         </main>
         <div className="x u-abs-c">
           <a href="#" className="u-abs-c" onClick={this.toggleMobNav}></a>
+        </div>
+        <div className="mq">
+          <div className="mq-w">
+            <span>B:&nbsp;
+              <span className="small-only">Small</span>
+              <span className="smedium-only">Smedium</span>
+              <span className="medium-only">Medium</span>
+              <span className="large-only">Large</span>
+              <span className="xlarge-only">XLarge</span>
+            </span>
+          </div>
+          <div className="mq-o">
+            <span>O:&nbsp;
+              <span className="portrait-only">Portrait</span>
+              <span className="landscape-only">Landscape</span>
+            </span>
+          </div>
         </div>
       </div>
     );

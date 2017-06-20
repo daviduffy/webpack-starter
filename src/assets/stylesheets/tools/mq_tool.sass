@@ -1,0 +1,54 @@
+// MQs Tool
+// ============================
+
+.mq
+  position: fixed
+  top: 2px
+  left: 2px
+  pointer-events: none
+  [class$='only']
+    opacity: 0.8
+  *
+    color: var(--grey)
+    font-weight: 300
+    font-size: 0.6rem
+    text-transform: uppercase
+    letter-spacing: 1px
+    line-height: 2
+
+.small-only,
+.smedium-only,
+.medium-only,
+.large-only,
+.xlarge-only,
+.portrait-only,
+.landscape-only
+  display: none
+
+@media screen and ( $max-width-small )
+  .small-only
+    display: inline
+
+@media screen and ( $min-width-smedium ) and ( $max-width-smedium )
+  .smedium-only
+    display: inline
+
+@media screen and ( $min-width-medium ) and ( $max-width-medium )
+  .medium-only
+    display: inline
+
+@media screen and ( $min-width-large ) and ( $max-width-large )
+  .large-only
+    display: inline
+
+@media screen and ( $min-width-xlarge )
+  .xlarge-only
+    display: inline
+
+@media screen and ( $portrait )
+  .portrait-only
+    display: inline
+
+@media screen and ( $landscape )
+  .landscape-only
+    display: inline

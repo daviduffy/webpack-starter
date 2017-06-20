@@ -8,15 +8,21 @@
   @include flex-shorthand(1)
   @include material-tall--active
 
-  @media screen and ( $min-width-medium )
+  @media screen and ( $min-width-smedium )
     width: initial
+    margin-left: 0.33rem
+    margin-right: 0.33rem
+    min-width: 280px
+    max-width: 49%
+  @media screen and ( $min-width-medium )
     min-width: 220px
     max-width: 47%
   @media screen and ( $min-width-large )
     max-width: 24%
 .card__img
   @include flex-shorthand(3)
-  background-color: var(--grey)
+  background: var(--grey) center/cover no-repeat
+
 
 .card__cont
   @include flex-shorthand(1)

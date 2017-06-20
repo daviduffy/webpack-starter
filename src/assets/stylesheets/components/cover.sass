@@ -11,13 +11,13 @@
   width: 100%
   height: 100%
 
-  background: 130%/131% no-repeat
+  background: -160px/131% no-repeat
   @media screen and ( $landscape )
     background: left/contain no-repeat  
-  // @media screen and ( $landscape )
-  //   background: -40% 60% / 70% no-repeat
-  // @media screen and ( $min-width-medium )
-  //   background: 110% 100%/130% no-repeat
+  @media screen and ( $min-width-smedium ) and ( $max-width-smedium )
+    background: -130px/610px no-repeat  
+  @media screen and ( $min-width-medium ) and ( $max-width-medium ) and ( $portrait )
+    background: -250px/100% no-repeat  
   @media screen and ( $min-width-large )
     background: left/contain no-repeat
 
@@ -30,6 +30,7 @@
   align-self: flex-start
   margin-top: 20vw
   @media screen and ( $min-width-large )
+    margin-top: initial
     align-self: initial
 
 .cover__h1
