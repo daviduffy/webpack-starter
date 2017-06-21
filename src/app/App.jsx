@@ -1,5 +1,6 @@
 // main assets
 import cover          from 'images/cover.jpg'
+
 // commercials
 import aller    from 'images/commercials/allergease.png'
 import aller_bg from 'images/commercials/allergease_bg.jpg'
@@ -12,158 +13,187 @@ import bridg_bg from 'images/commercials/bridgestone_bg.jpg'
 
 // illustrations
 import i_1      from 'images/illustrations/IMG_0998.JPG'
+import i_2      from 'images/illustrations/IMG_0998.JPG'
+import i_3      from 'images/illustrations/IMG_0999.JPG'
+import i_4      from 'images/illustrations/IMG_1001.JPG'
+import i_5      from 'images/illustrations/IMG_1002.JPG'
+import i_6      from 'images/illustrations/IMG_1003.JPG'
+import i_7      from 'images/illustrations/IMG_1005.JPG'
+
 // features
+import f_1      from 'images/features/TheHeelerPoster2015.png'
+import f_2      from 'images/features/monkeyman_935.jpg'
+import f_3      from 'images/features/setpping_high.jpg'
+import f_4      from 'images/features/thief.jpg'
+import f_5      from 'images/features/a_man_before_his_time.jpg'
+import f_6      from 'images/features/night_owls.jpg'
+import f_7      from 'images/features/sirk.jpg'
+import f_8      from 'images/features/william_the_magnificent.jpg'
+import f_9      from 'images/features/contrition.jpg'
+import f_10     from 'images/features/nightmare_code.jpg'
+import f_11     from 'images/features/targeting.jpg'
+import f_12     from 'images/features/gitd_movie_poster_web.jpg'
+import f_13     from 'images/features/on_the_outside.jpg'
+import f_14     from 'images/features/the_adventures_of_don_juan_and_don_tu.jpg'
+import f_15     from 'images/features/i_love_you.jpg'
+import f_16     from 'images/features/salvation_road.jpg'
+import f_17     from 'images/features/the_christmas_colt.jpg'
+
 // music videos
 
-const app = {
-  content: [
-    {
-      key: 0,
-      name: 'commercials',
-      cards: [
-        {
-          key: 0,
-          src: aller,
-          bg_src: aller_bg,
-          title: "Don't Miss a Moment!",
-          subtitle: 'AllergEase'
-        },
-        {
-          key: 1,
-          src: att,
-          bg_src: att_bg,
-          title: 'Incredible Game Winning Play!',
-          subtitle: 'AT&T'
-        },
-        {
-          key: 2,
-          src: be_cr,
-          bg_src: be_cr_bg,
-          title: 'Be Creative Again.',
-          subtitle: 'Umano Productions'
-        },
-        {
-          key: 3,
-          src: bridg,
-          bg_src: bridg_bg,
-          title: 'Tire vs. Olympic Archer',
-          subtitle: 'Bridgestone'
-        }
-      ]
-    },
-    {
-      key: 1,
-      name: 'illustrations',
-      cards: [
-        {
-          key: 1,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 2,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 3,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 4,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        }
-      ]
-    },
-    {
-      key: 2,
-      name: 'features',
-      cards: [
-        {
-          key: 1,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 2,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 3,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 4,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        }
-      ]
-    },
-    {
-      key: 3,
-      name: 'music videos',
-      cards: [
-        {
-          key: 1,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 2,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 3,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        },
-        {
-          key: 4,
-          src: '',
-          bg_src: '',
-          title: '',
-          subtitle: ''
-        }
-      ]
-    }
-  ],
-}
+
+const content = [
+  {
+    index: 0,
+    name: 'commercials',
+    icon: 'fa-star-o',
+    cards: [
+      {
+        key: 0,
+        src: aller,
+        bg_src: aller_bg,
+        title: "Don't Miss a Moment!",
+        subtitle: 'AllergEase'
+      },
+      {
+        key: 1,
+        src: att,
+        bg_src: att_bg,
+        title: 'Incredible Game Winning Play!',
+        subtitle: 'AT&T'
+      },
+      {
+        key: 2,
+        src: be_cr,
+        bg_src: be_cr_bg,
+        title: 'Be Creative Again.',
+        subtitle: 'Umano Productions'
+      },
+      {
+        key: 3,
+        src: bridg,
+        bg_src: bridg_bg,
+        title: 'Tire vs. Olympic Archer',
+        subtitle: 'Bridgestone'
+      }
+    ]
+  },
+  {
+    index: 1,
+    name: 'illustrations',
+    icon: 'fa-picture-o',
+    cards: [
+      {
+        key: 0,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 1,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 2,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 3,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      }
+    ]
+  },
+  {
+    index: 2,
+    name: 'features',
+    icon: 'fa-film',
+    cards: [
+      {
+        key: 0,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 1,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 2,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 3,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      }
+    ]
+  },
+  {
+    index: 3,
+    name: 'music videos',
+    icon: 'fa-television',
+    cards: [
+      {
+        key: 0,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 1,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 2,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      },
+      {
+        key: 3,
+        src: '',
+        bg_src: '',
+        title: '',
+        subtitle: ''
+      }
+    ]
+  }
+]
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       mNav: false,
-      active: 1
+      active: 0,
     };
     this.toggleMobNav = this.toggleMobNav.bind(this);
+    this.selectGallery = this.selectGallery.bind(this);
   };
 
   toggleMobNav(e) {
@@ -172,24 +202,51 @@ class App extends React.Component {
     }));
   }
 
+  selectGallery(num) {
+    console.log(val);
+    this.setState({
+      active: num
+    });
+  }
+
   render () {
     const coverStyles = {
       backgroundImage: `url('${cover}')`
     }
     const imgStyles = [
       {
-        backgroundImage: `url(${app.content[0].cards[0].bg_src})`
+        backgroundImage: `url(${content[0].cards[0].bg_src})`
       },
       {
-        backgroundImage: `url(${app.content[0].cards[1].bg_src})`
+        backgroundImage: `url(${content[0].cards[1].bg_src})`
       },
       {
-        backgroundImage: `url(${app.content[0].cards[2].bg_src})`
+        backgroundImage: `url(${content[0].cards[2].bg_src})`
       },
       {
-        backgroundImage: `url(${app.content[0].cards[3].bg_src})`
+        backgroundImage: `url(${content[0].cards[3].bg_src})`
       }
     ]
+    const navItems = content.map((current, index) => {
+      return ({
+        name: current.name,
+        icon: current.icon,
+        index: index,
+        key: index
+      })
+    })
+    const galleryItems = content[this.state.active].cards.map((current) => {
+      let styleString = `url('${current.bg_src}')`;
+      return ({
+        logo_src: current.src,
+        bg_style: styleString,
+        title: current.title,
+        subtitle: current.subtitle,
+        key: current.key,
+      })
+    })
+    // console.log(navItems);
+    // console.log(galleryItems);
     return (
       <div className="cont">
         <header className={this.state.mNav ? `header header--open` : `header`}>
@@ -197,7 +254,12 @@ class App extends React.Component {
             <span className="header__bars"></span>
           </a>
           <div className="header__bg u-abs-c"></div>
-          <Nav classes="nav--header"/>
+
+          <Nav  classes= "nav--body"
+                active= {this.state.active}
+                navItems= {navItems}
+                selectGallery= {this.selectGallery} />
+
         </header>
         <section className="cover u-flex">
           <div className="cover__bg u-abs-c" style={coverStyles}></div>
@@ -209,9 +271,14 @@ class App extends React.Component {
           </div>
           <div className="cover__nav-b"></div>
         </section>
-        <Nav classes="nav--body" active={this.state.active}/>
+
+        <Nav  classes= "nav--body"
+              active= {this.state.active}
+              navItems= {navItems}
+              selectGallery= {this.selectGallery} />
+
         <main className="main">
-          <div className="gallery u-flex" id="gallery">
+          <div className="gallery u-flex" id="gallery" >
             <section className="card">
               <div className="card__img" style={imgStyles[0]}></div>
               <div className="card__cont u-flex u-flex--c">
@@ -248,100 +315,102 @@ class App extends React.Component {
         <div className="x u-abs-c">
           <a href="#" className="u-abs-c" onClick={this.toggleMobNav}></a>
         </div>
-        <div className="mq">
-          <div className="mq-w">
-            <span>B:&nbsp;
-              <span className="small-only">Small</span>
-              <span className="smedium-only">Smedium</span>
-              <span className="medium-only">Medium</span>
-              <span className="large-only">Large</span>
-              <span className="xlarge-only">XLarge</span>
-            </span>
-          </div>
-          <div className="mq-o">
-            <span>O:&nbsp;
-              <span className="portrait-only">Portrait</span>
-              <span className="landscape-only">Landscape</span>
-            </span>
-          </div>
-        </div>
+        <MediaQueryHelper />
       </div>
     );
   }
-
-  // render () {
-  //   const info = app;
-  //   return (
-  //     <div className="card-container">
-  //       {info.map((current, index) => {
-  //         return (
-  //           <Card
-  //             cardStatus={this.state}
-  //             cardInfo={current.info}
-  //             index={current.key}
-  //             key={current.key} />
-  //           );
-  //         })
-  //       }
-  //       <TopControls
-  //         cardChangeHandler={this.changeCard}
-  //         current={this.state.curr} />
-  //       <div className='controls controls--bottom'>
-  //         {app.map((current, index) => {
-  //           return (
-  //             <BottomButton
-  //               fa_icon={current.info.fa_icon}
-  //               cardChangeHandler={this.changeCard}
-  //               current={this.state.curr}
-  //               index={current.key}
-  //               key={index} />
-  //             );
-  //           })
-  //         }
-  //       </div>
-  //     </div>
-  //   )
-  // }
 }
 
 const Nav = (props) => {
   return (
     <nav role="navigation" className={`nav ${props.classes}`}>
       <ul className="nav__ul u-flex">
-        <li className={props.active === 1 ? `nav__li--active nav__li` : `nav__li`}>
-          <a href="#" className="nav__a u-flex">
-            <i className="nav__fa nav__fa--i fa fa-star-o" aria-hidden="true"></i>
-            <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-            <h2 className="h6 nav__a-title">commercials</h2>
-          </a>
-        </li>
-        <li className="nav__li">
-          <a href="#" className="nav__a u-flex">
-            <i className="nav__fa nav__fa--i fa fa-picture-o" aria-hidden="true"></i>
-            <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-            <h2 className="h6 nav__a-title">illustrations</h2>
-          </a>
-        </li>
-        <li className="nav__li">
-          <a href="#" className="nav__a u-flex">
-            <i className="nav__fa nav__fa--i fa fa-film" aria-hidden="true"></i>
-            <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-            <h2 className="h6 nav__a-title">features</h2>
-          </a>
-        </li>
-        <li className="nav__li">
-          <a href="#" className="nav__a u-flex">
-            <i className="nav__fa nav__fa--i fa fa-television" aria-hidden="true"></i>
-            <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
-            <h2 className="h6 nav__a-title">music videos</h2>
-          </a>
-        </li>
+        {
+          props.navItems.map((current, index) => {
+            return (
+              <NavLink 
+                changeGallery = {props.selectGallery}
+                icon          = {current.icon}
+                name          = {current.name}
+                is_active     = {props.active === current.index}
+                index         = {current.index}
+                key           = {index}
+              />
+            )
+          })
+        }
       </ul>
     </nav>
   )
 }
 
+const NavLink = (props) => {
+  return (
+    <li className={ props.is_active ? `nav__li nav__li--active` : `nav__li`}>
+      <a className="nav__a u-flex" onClick={function(){props.changeGallery(`${current.index}`)}}>
+        <i className={`nav__fa nav__fa--i fa ${props.icon}`} aria-hidden="true"></i>
+        <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
+        <h2 className="h6 nav__a-title">{props.name}</h2>
+      </a>
+    </li>
+  )
+}
+
 const Card = (props) => {
+  return (
+    <section className="card">
+      <div className="card__img" style={props.styles}></div>
+      <div className="card__cont u-flex u-flex--c">
+        <h3 className="card__title">{props.title}</h3>
+        <p className="card__sub">{props.subtitle}</p>
+      </div>
+    </section>
+  )
+}
+
+const MediaQueryHelper = (props) => {
+  return (
+    <div className="mq">
+      <div className="mq-w">
+        <span>B:&nbsp;
+          <span className="small-only">Small</span>
+          <span className="smedium-only">Smedium</span>
+          <span className="medium-only">Medium</span>
+          <span className="large-only">Large</span>
+          <span className="xlarge-only">XLarge</span>
+        </span>
+      </div>
+      <div className="mq-o">
+        <span>O:&nbsp;
+          <span className="portrait-only">Portrait</span>
+          <span className="landscape-only">Landscape</span>
+        </span>
+      </div>
+    </div>
+  )
+}
+
+const Feature = (props) => {
+  const divStyle = {
+    backgroundImage: 'url(' + props.src + ')'
+  }
+  const divClasses = 'f ' + props.classes
+  return (
+    <div className={divClasses} style={divStyle} alt={props.alt}></div>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+// really old stuff
+const CardOld = (props) => {
   const cardInfo = props.cardInfo;
   const currentClass = props.cardStatus.curr === props.index ? 'card--active' : '';
   const previousClass = props.cardStatus.prev === props.index ? 'card--previous' : '';
@@ -373,16 +442,6 @@ const Card = (props) => {
         <div className="curtain"></div>
       }
     </div>
-  )
-}
-
-const Feature = (props) => {
-  const divStyle = {
-    backgroundImage: 'url(' + props.src + ')'
-  }
-  const divClasses = 'f ' + props.classes
-  return (
-    <div className={divClasses} style={divStyle} alt={props.alt}></div>
   )
 }
 

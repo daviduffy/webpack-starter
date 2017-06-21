@@ -1,12 +1,13 @@
 .card
   position: relative
-  min-height: 330px
+  min-height: 300px
   width: calc(90vw - 2rem)
   margin: 0 auto 2rem
   @include display-flex
   @include flex-direction(column)
   @include flex-shorthand(1)
-  @include material-tall--active
+  @include material-mute--active
+  background-color: var(--white)
 
   @media screen and ( $min-width-smedium )
     width: initial

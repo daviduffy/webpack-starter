@@ -111,6 +111,22 @@
 
 // Material Visual Mixins
 // ======================
+@mixin material-mute
+  @if $material
+    -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1)
+
+@mixin material-mute--active
+  @if $material
+    @include material-mute
+    -webkit-transition: -webkit-box-shadow $easing-duration $perspective-easing-bezier
+    transition: box-shadow $easing-duration $perspective-easing-bezier
+    &:hover,
+    &:focus,
+    &:active
+      -webkit-box-shadow: 0px 10px 26px rgba(0, 0, 0, 0.12)
+      box-shadow: 0px 10px 26px rgba(0, 0, 0, 0.12)
+
 
 @mixin material-short
   @if $material
