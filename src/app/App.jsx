@@ -13,12 +13,11 @@ import bridg_bg from 'images/commercials/bridgestone_bg.jpg'
 
 // illustrations
 import i_1      from 'images/illustrations/IMG_0998.JPG'
-import i_2      from 'images/illustrations/IMG_0998.JPG'
-import i_3      from 'images/illustrations/IMG_0999.JPG'
-import i_4      from 'images/illustrations/IMG_1001.JPG'
-import i_5      from 'images/illustrations/IMG_1002.JPG'
-import i_6      from 'images/illustrations/IMG_1003.JPG'
-import i_7      from 'images/illustrations/IMG_1005.JPG'
+import i_2      from 'images/illustrations/IMG_0999.JPG'
+import i_3      from 'images/illustrations/IMG_1001.JPG'
+import i_4      from 'images/illustrations/IMG_1002.JPG'
+import i_5      from 'images/illustrations/IMG_1003.JPG'
+import i_6      from 'images/illustrations/IMG_1005.JPG'
 
 // features
 import f_1      from 'images/features/TheHeelerPoster2015.png'
@@ -86,29 +85,29 @@ const content = [
       {
         key: 0,
         src: '',
-        bg_src: '',
-        title: '',
+        bg_src: i_1,
+        title: 'Wonder Woman',
         subtitle: ''
       },
       {
         key: 1,
         src: '',
-        bg_src: '',
-        title: '',
+        bg_src: i_2,
+        title: 'Space Hulk Hogan',
         subtitle: ''
       },
       {
         key: 2,
         src: '',
-        bg_src: '',
-        title: '',
+        bg_src: i_3,
+        title: 'The Flash',
         subtitle: ''
       },
       {
         key: 3,
         src: '',
-        bg_src: '',
-        title: '',
+        bg_src: i_4,
+        title: 'Some Hoe',
         subtitle: ''
       }
     ]
@@ -203,7 +202,7 @@ class App extends React.Component {
   }
 
   selectGallery(num) {
-    console.log(val);
+    console.log(num);
     this.setState({
       active: num
     });
@@ -213,20 +212,7 @@ class App extends React.Component {
     const coverStyles = {
       backgroundImage: `url('${cover}')`
     }
-    const imgStyles = [
-      {
-        backgroundImage: `url(${content[0].cards[0].bg_src})`
-      },
-      {
-        backgroundImage: `url(${content[0].cards[1].bg_src})`
-      },
-      {
-        backgroundImage: `url(${content[0].cards[2].bg_src})`
-      },
-      {
-        backgroundImage: `url(${content[0].cards[3].bg_src})`
-      }
-    ]
+    const currentContent = content[this.state.active]
     const navItems = content.map((current, index) => {
       return ({
         name: current.name,
@@ -235,16 +221,16 @@ class App extends React.Component {
         key: index
       })
     })
-    const galleryItems = content[this.state.active].cards.map((current) => {
-      let styleString = `url('${current.bg_src}')`;
-      return ({
-        logo_src: current.src,
-        bg_style: styleString,
-        title: current.title,
-        subtitle: current.subtitle,
-        key: current.key,
-      })
-    })
+    // const galleryItems = content[this.state.active].cards.map((current) => {
+    //   let styleObj = {backgroundImage: `url('${current.bg_src}')`};
+    //   return ({
+    //     logo_src: current.src,
+    //     bg_style: styleObj,
+    //     title: current.title,
+    //     subtitle: current.subtitle,
+    //     key: current.key,
+    //   })
+    // })
     // console.log(navItems);
     // console.log(galleryItems);
     return (
@@ -255,7 +241,7 @@ class App extends React.Component {
           </a>
           <div className="header__bg u-abs-c"></div>
 
-          <Nav  classes= "nav--body"
+          <Nav  classes= "nav--header"
                 active= {this.state.active}
                 navItems= {navItems}
                 selectGallery= {this.selectGallery} />
@@ -272,41 +258,26 @@ class App extends React.Component {
           <div className="cover__nav-b"></div>
         </section>
 
-        <Nav  classes= "nav--body"
-              active= {this.state.active}
-              navItems= {navItems}
-              selectGallery= {this.selectGallery} />
+        <Nav  classes         = "nav--body"
+              active          = {this.state.active}
+              navItems        = {navItems}
+              selectGallery   = {this.selectGallery} />
 
         <main className="main">
           <div className="gallery u-flex" id="gallery" >
-            <section className="card">
-              <div className="card__img" style={imgStyles[0]}></div>
-              <div className="card__cont u-flex u-flex--c">
-                <h3 className="card__title">illustration title</h3>
-                <p className="card__sub">lorem ipsum dolor</p>
-              </div>
-            </section>
-            <section className="card">
-              <div className="card__img" style={imgStyles[1]}></div>
-              <div className="card__cont u-flex u-flex--c">
-                <h3 className="card__title">illustration title</h3>
-                <p className="card__sub">sit amet, consectetur</p>
-              </div>
-            </section>
-            <section className="card">
-              <div className="card__img" style={imgStyles[2]}></div>
-              <div className="card__cont u-flex u-flex--c">
-                <h3 className="card__title">illustration title</h3>
-                <p className="card__sub">lorem ipsum sit dolor</p>
-              </div>
-            </section>
-            <section className="card">
-              <div className="card__img" style={imgStyles[3]}></div>
-              <div className="card__cont u-flex u-flex--c">
-                <h3 className="card__title">illustration title</h3>
-                <p className="card__sub">sit amet, consectetur</p>
-              </div>
-            </section>
+            {
+              currentContent.cards.map((current, index) => {
+                let styleObj = {backgroundImage: `url('${current.bg_src}')`};
+                return (
+                  <Card classes     = {current.classes}
+                        bg_style    = {styleObj}
+                        title       = {current.title}
+                        subtitle    = {current.subtitle}
+                        key         = {index} />
+                )
+              })
+            }
+            
           </div>
           <div className="gallery__c-more u-flex u-flex--c">
             <a href="#" className="h6 gallery__more btn btn--more" id="more">See All</a>
@@ -347,7 +318,7 @@ const Nav = (props) => {
 const NavLink = (props) => {
   return (
     <li className={ props.is_active ? `nav__li nav__li--active` : `nav__li`}>
-      <a className="nav__a u-flex" onClick={function(){props.changeGallery(`${current.index}`)}}>
+      <a className="nav__a u-flex" onClick={function(){props.changeGallery(`${props.index}`)}}>
         <i className={`nav__fa nav__fa--i fa ${props.icon}`} aria-hidden="true"></i>
         <i className="nav__fa fa fa-circle" aria-hidden="true"></i>
         <h2 className="h6 nav__a-title">{props.name}</h2>
@@ -359,7 +330,7 @@ const NavLink = (props) => {
 const Card = (props) => {
   return (
     <section className="card">
-      <div className="card__img" style={props.styles}></div>
+      <div className="card__img" style={props.bg_style}></div>
       <div className="card__cont u-flex u-flex--c">
         <h3 className="card__title">{props.title}</h3>
         <p className="card__sub">{props.subtitle}</p>
@@ -387,16 +358,6 @@ const MediaQueryHelper = (props) => {
         </span>
       </div>
     </div>
-  )
-}
-
-const Feature = (props) => {
-  const divStyle = {
-    backgroundImage: 'url(' + props.src + ')'
-  }
-  const divClasses = 'f ' + props.classes
-  return (
-    <div className={divClasses} style={divStyle} alt={props.alt}></div>
   )
 }
 
