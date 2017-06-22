@@ -90,7 +90,7 @@
   -webkit-order: $arg
   order: $arg
 
-@mixin column-count ( $arg )
+@mixin column-count( $arg )
   -webkit-column-count: $arg
   -moz-column-count: $arg
   column-count: $arg
@@ -99,6 +99,11 @@
   -webkit-column-width: $arg
   -moz-column-width: $arg
   column-width: $arg
+
+@mixin column-gap($arg)
+  -webkit-column-gap: $arg
+  -moz-column-gap: $arg
+  column-gap: $arg
 
 @mixin abs-centered
   position: absolute

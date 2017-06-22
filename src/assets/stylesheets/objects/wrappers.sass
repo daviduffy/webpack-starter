@@ -16,3 +16,24 @@
     width: calc(100% - 1.5rem)
     max-width: var(--gallery-width)
     margin: auto
+
+.gallery--flex
+  @include display-flex
+  // card styles for `.gallery--flex` in card partial
+
+.gallery--mosaic
+  @media screen and ( $min-width-smedium )
+    padding: 0 0.33rem
+    @include column-count(2)
+    @include column-gap(0.66rem)
+
+  @media screen and ( $min-width-medium )
+    padding: 0 0.5rem
+    @include column-count(3)
+    @include column-gap(1rem)
+
+  @media screen and ( $min-width-large )
+    padding: 0 0.75rem
+    @include column-count(4)
+    @include column-gap(1.5rem)
+

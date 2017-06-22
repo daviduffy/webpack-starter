@@ -2,41 +2,41 @@
 import cover          from 'images/cover.jpg'
 
 // commercials
-import aller    from 'images/commercials/allergease.png'
-import aller_bg from 'images/commercials/allergease_bg.jpg'
-import att      from 'images/commercials/att.png'
-import att_bg   from 'images/commercials/att_bg.jpg'
-import be_cr    from 'images/commercials/be_creative_again.jpg'
-import be_cr_bg from 'images/commercials/be_creative_again_bg.jpg'
-import bridg    from 'images/commercials/bridgestone.png'
-import bridg_bg from 'images/commercials/bridgestone_bg.jpg'
+import aller    from 'images/commercials/medium/allergease.jpg'
+import aller_bg from 'images/commercials/medium/allergease_bg.jpg'
+import att      from 'images/commercials/medium/att.jpg'
+import att_bg   from 'images/commercials/medium/att_bg.jpg'
+import be_cr    from 'images/commercials/medium/be_creative_again.jpg'
+import be_cr_bg from 'images/commercials/medium/be_creative_again_bg.jpg'
+import bridg    from 'images/commercials/medium/bridgestone.jpg'
+import bridg_bg from 'images/commercials/medium/bridgestone_bg.jpg'
 
 // illustrations
-import i_1      from 'images/illustrations/IMG_0998.JPG'
-import i_2      from 'images/illustrations/IMG_0999.JPG'
-import i_3      from 'images/illustrations/IMG_1001.JPG'
-import i_4      from 'images/illustrations/IMG_1002.JPG'
-import i_5      from 'images/illustrations/IMG_1003.JPG'
-import i_6      from 'images/illustrations/IMG_1005.JPG'
+import i_1      from 'images/illustrations/medium/IMG_0998.JPG'
+import i_2      from 'images/illustrations/medium/IMG_0999.JPG'
+import i_3      from 'images/illustrations/medium/IMG_1001.JPG'
+import i_4      from 'images/illustrations/medium/IMG_1002.JPG'
+import i_5      from 'images/illustrations/medium/IMG_1003.JPG'
+import i_6      from 'images/illustrations/medium/IMG_1005.JPG'
 
 // features
-import f_1      from 'images/features/TheHeelerPoster2015.png'
-import f_2      from 'images/features/monkeyman_935.jpg'
-import f_3      from 'images/features/setpping_high.jpg'
-import f_4      from 'images/features/thief.jpg'
-import f_5      from 'images/features/a_man_before_his_time.jpg'
-import f_6      from 'images/features/night_owls.jpg'
-import f_7      from 'images/features/sirk.jpg'
-import f_8      from 'images/features/william_the_magnificent.jpg'
-import f_9      from 'images/features/contrition.jpg'
-import f_10     from 'images/features/nightmare_code.jpg'
-import f_11     from 'images/features/targeting.jpg'
-import f_12     from 'images/features/gitd_movie_poster_web.jpg'
-import f_13     from 'images/features/on_the_outside.jpg'
-import f_14     from 'images/features/the_adventures_of_don_juan_and_don_tu.jpg'
-import f_15     from 'images/features/i_love_you.jpg'
-import f_16     from 'images/features/salvation_road.jpg'
-import f_17     from 'images/features/the_christmas_colt.jpg'
+import f_1      from 'images/features/medium/TheHeelerPoster2015.jpg'
+import f_2      from 'images/features/medium/monkeyman_935.jpg'
+import f_3      from 'images/features/medium/setpping_high.jpg'
+import f_4      from 'images/features/medium/thief.jpg'
+import f_5      from 'images/features/medium/a_man_before_his_time.jpg'
+import f_6      from 'images/features/medium/night_owls.jpg'
+import f_7      from 'images/features/medium/sirk.jpg'
+import f_8      from 'images/features/medium/william_the_magnificent.jpg'
+import f_9      from 'images/features/medium/contrition.jpg'
+import f_10     from 'images/features/medium/nightmare_code.jpg'
+import f_11     from 'images/features/medium/targeting.jpg'
+import f_12     from 'images/features/medium/gitd_movie_poster_web.jpg'
+import f_13     from 'images/features/medium/on_the_outside.jpg'
+import f_14     from 'images/features/medium/the_adventures_of_don_juan_and_don_tu.jpg'
+import f_15     from 'images/features/medium/i_love_you.jpg'
+import f_16     from 'images/features/medium/salvation_road.jpg'
+import f_17     from 'images/features/medium/the_christmas_colt.jpg'
 
 // music videos
 
@@ -46,6 +46,7 @@ const content = [
     index: 0,
     name: 'commercials',
     icon: 'fa-star-o',
+    mosaic: false,
     cards: [
       {
         key: 0,
@@ -81,34 +82,35 @@ const content = [
     index: 1,
     name: 'illustrations',
     icon: 'fa-picture-o',
+    mosaic: true,
     cards: [
       {
         key: 0,
         src: '',
         bg_src: i_1,
         title: 'Wonder Woman',
-        subtitle: ''
+        subtitle: 'lorem ipsum dolor'
       },
       {
         key: 1,
         src: '',
         bg_src: i_2,
         title: 'Space Hulk Hogan',
-        subtitle: ''
+        subtitle: 'lorem ipsum dolor'
       },
       {
         key: 2,
         src: '',
         bg_src: i_3,
         title: 'The Flash',
-        subtitle: ''
+        subtitle: 'lorem ipsum dolor'
       },
       {
         key: 3,
         src: '',
         bg_src: i_4,
         title: 'Some Hoe',
-        subtitle: ''
+        subtitle: 'lorem ipsum dolor'
       }
     ]
   },
@@ -116,32 +118,33 @@ const content = [
     index: 2,
     name: 'features',
     icon: 'fa-film',
+    mosaic: false,
     cards: [
       {
         key: 0,
         src: '',
-        bg_src: '',
+        bg_src: f_1,
         title: '',
         subtitle: ''
       },
       {
         key: 1,
         src: '',
-        bg_src: '',
+        bg_src: f_2,
         title: '',
         subtitle: ''
       },
       {
         key: 2,
         src: '',
-        bg_src: '',
+        bg_src: f_3,
         title: '',
         subtitle: ''
       },
       {
         key: 3,
         src: '',
-        bg_src: '',
+        bg_src: f_4,
         title: '',
         subtitle: ''
       }
@@ -151,6 +154,7 @@ const content = [
     index: 3,
     name: 'music videos',
     icon: 'fa-television',
+    mosaic: false,
     cards: [
       {
         key: 0,
@@ -221,18 +225,6 @@ class App extends React.Component {
         key: index
       })
     })
-    // const galleryItems = content[this.state.active].cards.map((current) => {
-    //   let styleObj = {backgroundImage: `url('${current.bg_src}')`};
-    //   return ({
-    //     logo_src: current.src,
-    //     bg_style: styleObj,
-    //     title: current.title,
-    //     subtitle: current.subtitle,
-    //     key: current.key,
-    //   })
-    // })
-    // console.log(navItems);
-    // console.log(galleryItems);
     return (
       <div className="cont">
         <header className={this.state.mNav ? `header header--open` : `header`}>
@@ -264,13 +256,12 @@ class App extends React.Component {
               selectGallery   = {this.selectGallery} />
 
         <main className="main">
-          <div className="gallery u-flex" id="gallery" >
+          <div className={ currentContent.mosaic ? `gallery gallery--mosaic` : `gallery gallery--flex`} id="gallery" >
             {
               currentContent.cards.map((current, index) => {
-                let styleObj = {backgroundImage: `url('${current.bg_src}')`};
                 return (
                   <Card classes     = {current.classes}
-                        bg_style    = {styleObj}
+                        bg_src      = {current.bg_src}
                         title       = {current.title}
                         subtitle    = {current.subtitle}
                         key         = {index} />
@@ -330,10 +321,12 @@ const NavLink = (props) => {
 const Card = (props) => {
   return (
     <section className="card">
-      <div className="card__img" style={props.bg_style}></div>
+      <div className="card__img">
+        <img className="" src={props.bg_src}/>
+      </div>
       <div className="card__cont u-flex u-flex--c">
-        <h3 className="card__title">{props.title}</h3>
-        <p className="card__sub">{props.subtitle}</p>
+        <h3 className="h6 card__title">{props.title}</h3>
+        <p className="h6 card__sub">{props.subtitle}</p>
       </div>
     </section>
   )

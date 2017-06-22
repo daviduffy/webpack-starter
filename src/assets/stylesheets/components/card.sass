@@ -1,6 +1,6 @@
 .card
   position: relative
-  min-height: 300px
+  // min-height: 300px
   width: calc(90vw - 2rem)
   margin: 0 auto 2rem
   @include display-flex
@@ -11,27 +11,16 @@
 
   @media screen and ( $min-width-smedium )
     width: initial
-    margin-left: 0.33rem
-    margin-right: 0.33rem
-    min-width: 280px
-    max-width: 49%
-  @media screen and ( $min-width-medium )
-    margin-left: 0.5rem
-    margin-right: 0.5rem
-    min-width: 220px
-    max-width: 47%
-  @media screen and ( $min-width-large )
-    margin-left: 0.75rem
-    margin-right: 0.75rem
-    min-height: 300px
-    max-width: 24%
-.card__img
-  @include flex-shorthand(8)
-  background: var(--grey) center/cover no-repeat
 
+.card__img-c
+  @include flex-shorthand(1)
+
+.card__img
+  max-width: 100%
 
 .card__cont
-  @include flex-shorthand(5)
+  min-height: 115px
+  @include flex-shorthand(1)
   @include flex-direction(column)
 
 .card__title
@@ -45,3 +34,31 @@
   font-style: italic
   font-weight: 400
   color: var(--grey)
+
+// this is anti-pattern but I will allow it
+.gallery--flex
+  // styles in the objects > wrappers partial
+  .card
+    @media screen and ( $min-width-smedium )
+      min-width: 48%
+      max-width: 48%
+      margin-left: 0.33rem
+      margin-right: 0.33rem
+
+    @media screen and ( $min-width-medium )
+      min-width: 31%
+      max-width: 31%
+      margin-left: 0.5rem
+      margin-right: 0.5rem
+
+    @media screen and ( $min-width-large )
+      min-width: 23%
+      max-width: 23%
+      margin-left: 0.75rem
+      margin-right: 0.75rem
+
+.gallery--mosaic
+  // styles in the objects > wrappers partial
+  .card
+    -webkit-break-inside: avoid
+    break-inside: avoid
