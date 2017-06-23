@@ -16,12 +16,15 @@
   will-change: width, height
   z-index: 1
   @include material-short
+  right: 0.5rem
+  left: initial
 
 
 .header__trigger
   @extend %header-button-dimensions
-  transition: transform var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier))
   z-index: 2
+  right: 0.5rem
+  left: initial
 
 
 .header__bars
@@ -68,9 +71,8 @@
     width: 100%
     height: 330px
     mix-blend-mode: darken
+    right: 0
 
-  .header__trigger
-    transform: translate(calc(50vw - 34px), 0.5rem)
   .nav--header
     z-index: 1
   .header__bars

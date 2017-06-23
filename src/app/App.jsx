@@ -52,29 +52,29 @@ const content = [
         key: 0,
         src: aller,
         bg_src: aller_bg,
-        title: "Don't Miss a Moment!",
-        subtitle: 'AllergEase'
+        title: 'AllergEase',
+        subtitle: "Don't Miss a Moment!"
       },
       {
         key: 1,
         src: att,
         bg_src: att_bg,
-        title: 'Incredible Game Winning Play!',
-        subtitle: 'AT&T'
+        title: 'AT&T',
+        subtitle: 'Incredible Game Winning Play!'
       },
       {
         key: 2,
         src: be_cr,
         bg_src: be_cr_bg,
-        title: 'Be Creative Again.',
-        subtitle: 'Umano Productions'
+        title: 'Umano Productions',
+        subtitle: 'Be Creative Again.'
       },
       {
         key: 3,
         src: bridg,
         bg_src: bridg_bg,
-        title: 'Tire vs. Olympic Archer',
-        subtitle: 'Bridgestone'
+        title: 'Bridgestone',
+        subtitle: 'Tire vs. Olympic Archer'
       }
     ]
   },
@@ -118,7 +118,7 @@ const content = [
     index: 2,
     name: 'features',
     icon: 'fa-film',
-    mosaic: false,
+    mosaic: true,
     cards: [
       {
         key: 0,
