@@ -15,6 +15,12 @@
   100% 
     opacity: 1
     transform: none
+
+.fade-in-down
+  opacity: 0
+  animation: fade-in-down var(--standard-easing-duration) cubic-bezier( var(--standard-easing-bezier))
+  animation-fill-mode: forwards
+  
   
 
 @keyframes drop-in 
@@ -55,3 +61,6 @@
   100% 
     transform: translateX(0)
   
+
+// Cards animate in
+@keyframes 

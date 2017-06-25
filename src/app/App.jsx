@@ -10,6 +10,9 @@ import be_cr    from 'images/commercials/medium/be_creative_again.jpg'
 import be_cr_bg from 'images/commercials/medium/be_creative_again_bg.jpg'
 import bridg    from 'images/commercials/medium/bridgestone.jpg'
 import bridg_bg from 'images/commercials/medium/bridgestone_bg.jpg'
+import carni    from 'images/commercials/medium/carnival_cruise.jpg'
+import carni_bg from 'images/commercials/medium/carnival_cruise_bg.jpg'
+
 
 // illustrations
 import i_1      from 'images/illustrations/medium/IMG_0998.JPG'
@@ -47,7 +50,7 @@ const content = [
     name: 'commercials',
     icon: 'fa-star-o',
     mosaic: false,
-    cards: [
+    featCards: [
       {
         key: 0,
         src: aller,
@@ -76,14 +79,18 @@ const content = [
         title: 'Bridgestone',
         subtitle: 'Tire vs. Olympic Archer'
       }
+    ],
+    moreCards: [
+      {}
     ]
+
   },
   {
     index: 1,
     name: 'illustrations',
     icon: 'fa-picture-o',
     mosaic: true,
-    cards: [
+    featCards: [
       {
         key: 0,
         src: '',
@@ -112,6 +119,9 @@ const content = [
         title: 'Some Hoe',
         subtitle: 'lorem ipsum dolor'
       }
+    ],
+    moreCards: [
+      {}
     ]
   },
   {
@@ -119,7 +129,7 @@ const content = [
     name: 'features',
     icon: 'fa-film',
     mosaic: true,
-    cards: [
+    featCards: [
       {
         key: 0,
         src: '',
@@ -148,6 +158,9 @@ const content = [
         title: '',
         subtitle: ''
       }
+    ],
+    moreCards: [
+      {}
     ]
   },
   {
@@ -155,7 +168,7 @@ const content = [
     name: 'music videos',
     icon: 'fa-television',
     mosaic: false,
-    cards: [
+    featCards: [
       {
         key: 0,
         src: '',
@@ -184,6 +197,9 @@ const content = [
         title: '',
         subtitle: ''
       }
+    ],
+    moreCards: [
+      {}
     ]
   }
 ]
@@ -258,7 +274,7 @@ class App extends React.Component {
         <main className="main">
           <div className={ currentContent.mosaic ? `gallery gallery--mosaic` : `gallery gallery--flex`} id="gallery" >
             {
-              currentContent.cards.map((current, index) => {
+              currentContent.featCards.map((current, index) => {
                 return (
                   <Card classes     = {current.classes}
                         bg_src      = {current.bg_src}
@@ -320,7 +336,7 @@ const NavLink = (props) => {
 
 const Card = (props) => {
   return (
-    <section className="card">
+    <section className="card fade-in-down">
       <div className="card__img">
         <img className="" src={props.bg_src}/>
       </div>
