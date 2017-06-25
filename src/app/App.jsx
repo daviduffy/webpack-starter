@@ -13,7 +13,6 @@ import bridg_bg from 'images/commercials/medium/bridgestone_bg.jpg'
 import carni    from 'images/commercials/medium/carnival_cruise.jpg'
 import carni_bg from 'images/commercials/medium/carnival_cruise_bg.jpg'
 
-
 // illustrations
 import i_1      from 'images/illustrations/medium/IMG_0998.JPG'
 import i_2      from 'images/illustrations/medium/IMG_0999.JPG'
@@ -46,160 +45,167 @@ import f_17     from 'images/features/medium/the_christmas_colt.jpg'
 
 const content = [
   {
-    index: 0,
     name: 'commercials',
     icon: 'fa-star-o',
     mosaic: false,
-    featCards: [
+    cards: [
       {
         key: 0,
         src: aller,
         bg_src: aller_bg,
         title: 'AllergEase',
-        subtitle: "Don't Miss a Moment!"
+        subtitle: "Don't Miss a Moment!",
+        featured: true
       },
       {
         key: 1,
         src: att,
         bg_src: att_bg,
         title: 'AT&T',
-        subtitle: 'Incredible Game Winning Play!'
+        subtitle: 'Incredible Game Winning Play!',
+        featured: true
       },
       {
         key: 2,
         src: be_cr,
         bg_src: be_cr_bg,
         title: 'Umano Productions',
-        subtitle: 'Be Creative Again.'
+        subtitle: 'Be Creative Again.',
+        featured: true
       },
       {
         key: 3,
         src: bridg,
         bg_src: bridg_bg,
         title: 'Bridgestone',
-        subtitle: 'Tire vs. Olympic Archer'
+        subtitle: 'Tire vs. Olympic Archer',
+        featured: true
+      },
+      {
+        key: 4,
+        src: carni,
+        bg_src: carni_bg,
+        title: 'Carnival Cruise Lines',
+        subtitle: 'Lorem Ipsum Dolor',
+        featured: false
       }
-    ],
-    moreCards: [
-      {}
     ]
-
   },
   {
-    index: 1,
     name: 'illustrations',
     icon: 'fa-picture-o',
     mosaic: true,
-    featCards: [
+    cards: [
       {
         key: 0,
         src: '',
         bg_src: i_1,
         title: 'Wonder Woman',
-        subtitle: 'lorem ipsum dolor'
+        subtitle: 'lorem ipsum dolor',
+        featured: true
       },
       {
         key: 1,
         src: '',
         bg_src: i_2,
         title: 'Space Hulk Hogan',
-        subtitle: 'lorem ipsum dolor'
+        subtitle: 'lorem ipsum dolor',
+        featured: true
       },
       {
         key: 2,
         src: '',
         bg_src: i_3,
         title: 'The Flash',
-        subtitle: 'lorem ipsum dolor'
+        subtitle: 'lorem ipsum dolor',
+        featured: true
       },
       {
         key: 3,
         src: '',
         bg_src: i_4,
         title: 'Some Hoe',
-        subtitle: 'lorem ipsum dolor'
+        subtitle: 'lorem ipsum dolor',
+        featured: true
       }
-    ],
-    moreCards: [
-      {}
     ]
   },
   {
-    index: 2,
     name: 'features',
     icon: 'fa-film',
     mosaic: true,
-    featCards: [
+    cards: [
       {
         key: 0,
         src: '',
         bg_src: f_1,
         title: '',
-        subtitle: ''
+        subtitle: '',
+        featured: true
       },
       {
         key: 1,
         src: '',
         bg_src: f_2,
         title: '',
-        subtitle: ''
+        subtitle: '',
+        featured: true
       },
       {
         key: 2,
         src: '',
         bg_src: f_3,
         title: '',
-        subtitle: ''
+        subtitle: '',
+        featured: true
       },
       {
         key: 3,
         src: '',
         bg_src: f_4,
         title: '',
-        subtitle: ''
+        subtitle: '',
+        featured: true
       }
-    ],
-    moreCards: [
-      {}
     ]
   },
   {
-    index: 3,
     name: 'music videos',
     icon: 'fa-television',
     mosaic: false,
-    featCards: [
+    cards: [
       {
         key: 0,
         src: '',
         bg_src: '',
         title: '',
-        subtitle: ''
+        subtitle: '',
+        featured: true
       },
       {
         key: 1,
         src: '',
         bg_src: '',
         title: '',
-        subtitle: ''
+        subtitle: '',
+        featured: true
       },
       {
         key: 2,
         src: '',
         bg_src: '',
         title: '',
-        subtitle: ''
+        subtitle: '',
+        featured: true
       },
       {
         key: 3,
         src: '',
         bg_src: '',
         title: '',
-        subtitle: ''
+        subtitle: '',
+        featured: true
       }
-    ],
-    moreCards: [
-      {}
     ]
   }
 ]
@@ -210,22 +216,33 @@ class App extends React.Component {
     this.state = {
       mNav: false,
       active: 0,
+      expanded: false,
+      anonymousBool: false
     };
     this.toggleMobNav = this.toggleMobNav.bind(this);
     this.selectGallery = this.selectGallery.bind(this);
+    this.expandGallery = this.expandGallery.bind(this);
   };
 
   toggleMobNav(e) {
     this.setState(prevState => ({
-      mNav: !prevState.mNav
+      mNav: !prevState.mNav,
+
     }));
   }
 
   selectGallery(num) {
-    console.log(num);
+    this.setState(prevState => ({
+      active: num,
+      expanded: false,
+      anonymousBool: !prevState.anonymousBool
+    }));
+  }
+
+  expandGallery() {
     this.setState({
-      active: num
-    });
+      expanded: true
+    })
   }
 
   render () {
@@ -241,6 +258,22 @@ class App extends React.Component {
         key: index
       })
     })
+    if ( !this.state.expanded ) {
+      var cards = currentContent.cards.map((current) => {
+        if ( current.featured ) {
+          return ({
+            key: current.key,
+            src: current.src,
+            bg_src: current.bg_src,
+            title: current.title,
+            subtitle: current.subtitle
+          })
+        }
+      })
+    } else {
+      var cards = currentContent.cards;
+    }
+
     return (
       <div className="cont">
         <header className={this.state.mNav ? `header header--open` : `header`}>
@@ -271,27 +304,30 @@ class App extends React.Component {
               navItems        = {navItems}
               selectGallery   = {this.selectGallery} />
 
-        <main className="main">
+        <main className={ this.state.anonymousBool ? `main ha` : `main cky` }>
           <div className={ currentContent.mosaic ? `gallery gallery--mosaic` : `gallery gallery--flex`} id="gallery" >
             {
-              currentContent.featCards.map((current, index) => {
-                return (
-                  <Card classes     = {current.classes}
-                        bg_src      = {current.bg_src}
-                        title       = {current.title}
-                        subtitle    = {current.subtitle}
-                        key         = {index} />
-                )
+              cards.map((current, index) => {
+                if ( current != null ) {
+                  return (
+                    <Card bg_src      = {current.bg_src}
+                          title       = {current.title}
+                          subtitle    = {current.subtitle}
+                          key         = {index} />
+                  )
+                }
               })
             }
             
           </div>
           <div className="gallery__c-more u-flex u-flex--c">
-            <a href="#" className="h6 gallery__more btn btn--more" id="more">See All</a>
+            <a className={ this.state.expanded ? `h6 gallery__more btn btn--more` : `gallery__more--expanded h6 gallery__more btn btn--more`}
+               onClick={this.expandGallery}
+               id="more">See All</a>
           </div>
         </main>
         <div className="x u-abs-c">
-          <a href="#" className="u-abs-c" onClick={this.toggleMobNav}></a>
+          <a className="u-abs-c" onClick={this.toggleMobNav}></a>
         </div>
         <MediaQueryHelper />
       </div>
@@ -310,8 +346,8 @@ const Nav = (props) => {
                 changeGallery = {props.selectGallery}
                 icon          = {current.icon}
                 name          = {current.name}
-                is_active     = {props.active === current.index}
-                index         = {current.index}
+                is_active     = {props.active == index}
+                index         = {index}
                 key           = {index}
               />
             )
@@ -336,7 +372,7 @@ const NavLink = (props) => {
 
 const Card = (props) => {
   return (
-    <section className="card fade-in-down">
+    <section className="card">
       <div className="card__img">
         <img className="" src={props.bg_src}/>
       </div>
