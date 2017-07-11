@@ -22,26 +22,29 @@ import i_5      from 'images/illustrations/medium/IMG_1003.JPG'
 import i_6      from 'images/illustrations/medium/IMG_1005.JPG'
 
 // features
-import f_1      from 'images/features/medium/TheHeelerPoster2015.jpg'
-import f_2      from 'images/features/medium/monkeyman_935.jpg'
-import f_3      from 'images/features/medium/setpping_high.jpg'
-import f_4      from 'images/features/medium/thief.jpg'
-import f_5      from 'images/features/medium/a_man_before_his_time.jpg'
-import f_6      from 'images/features/medium/night_owls.jpg'
-import f_7      from 'images/features/medium/sirk.jpg'
-import f_8      from 'images/features/medium/william_the_magnificent.jpg'
-import f_9      from 'images/features/medium/contrition.jpg'
-import f_10     from 'images/features/medium/nightmare_code.jpg'
-import f_11     from 'images/features/medium/targeting.jpg'
-import f_12     from 'images/features/medium/gitd_movie_poster_web.jpg'
-import f_13     from 'images/features/medium/on_the_outside.jpg'
-import f_14     from 'images/features/medium/the_adventures_of_don_juan_and_don_tu.jpg'
-import f_15     from 'images/features/medium/i_love_you.jpg'
-import f_16     from 'images/features/medium/salvation_road.jpg'
-import f_17     from 'images/features/medium/the_christmas_colt.jpg'
+import f_0      from 'images/features/medium/TheHeelerPoster2015.jpg'
+import f_1      from 'images/features/medium/monkeyman_935.jpg'
+import f_2      from 'images/features/medium/setpping_high.jpg'
+import f_3      from 'images/features/medium/thief.jpg'
+import f_4      from 'images/features/medium/a_man_before_his_time.jpg'
+import f_5      from 'images/features/medium/night_owls.jpg'
+import f_6      from 'images/features/medium/sirk.jpg'
+import f_7      from 'images/features/medium/william_the_magnificent.jpg'
+import f_8      from 'images/features/medium/contrition.jpg'
+import f_9      from 'images/features/medium/nightmare_code.jpg'
+import f_10     from 'images/features/medium/targeting.jpg'
+import f_11     from 'images/features/medium/gitd_movie_poster_web.jpg'
+import f_12     from 'images/features/medium/on_the_outside.jpg'
+import f_13     from 'images/features/medium/the_adventures_of_don_juan_and_don_tu.jpg'
+import f_14     from 'images/features/medium/i_love_you.jpg'
+import f_15     from 'images/features/medium/salvation_road.jpg'
+import f_16     from 'images/features/medium/the_christmas_colt.jpg'
 
 // music videos
 
+
+// transitions
+import { CSSTransitionGroup } from 'react-transition-group'
 
 const content = [
   {
@@ -138,7 +141,7 @@ const content = [
       {
         key: 0,
         src: '',
-        bg_src: f_1,
+        bg_src: f_0,
         title: '',
         subtitle: '',
         featured: true
@@ -146,7 +149,7 @@ const content = [
       {
         key: 1,
         src: '',
-        bg_src: f_2,
+        bg_src: f_1,
         title: '',
         subtitle: '',
         featured: true
@@ -154,7 +157,7 @@ const content = [
       {
         key: 2,
         src: '',
-        bg_src: f_3,
+        bg_src: f_2,
         title: '',
         subtitle: '',
         featured: true
@@ -162,10 +165,58 @@ const content = [
       {
         key: 3,
         src: '',
-        bg_src: f_4,
+        bg_src: f_3,
         title: '',
         subtitle: '',
         featured: true
+      },
+      {
+        key: 4,
+        src: '',
+        bg_src: f_4,
+        title: '',
+        subtitle: '',
+        featured: false
+      },
+      {
+        key: 5,
+        src: '',
+        bg_src: f_5,
+        title: '',
+        subtitle: '',
+        featured: false
+      },
+      {
+        key: 6,
+        src: '',
+        bg_src: f_6,
+        title: '',
+        subtitle: '',
+        featured: false
+      },
+      {
+        key: 7,
+        src: '',
+        bg_src: f_7,
+        title: '',
+        subtitle: '',
+        featured: false
+      },
+      {
+        key: 8,
+        src: '',
+        bg_src: f_8,
+        title: '',
+        subtitle: '',
+        featured: false
+      },
+      {
+        key: 9,
+        src: '',
+        bg_src: f_9,
+        title: '',
+        subtitle: '',
+        featured: false
       }
     ]
   },
@@ -217,7 +268,6 @@ class App extends React.Component {
       mNav: false,
       active: 0,
       expanded: false,
-      anonymousBool: false
     };
     this.toggleMobNav = this.toggleMobNav.bind(this);
     this.selectGallery = this.selectGallery.bind(this);
@@ -235,7 +285,6 @@ class App extends React.Component {
     this.setState(prevState => ({
       active: num,
       expanded: false,
-      anonymousBool: !prevState.anonymousBool
     }));
   }
 
@@ -304,20 +353,27 @@ class App extends React.Component {
               navItems        = {navItems}
               selectGallery   = {this.selectGallery} />
 
-        <main className={ this.state.anonymousBool ? `main ha` : `main cky` }>
+        <main className='main'>
           <div className={ currentContent.mosaic ? `gallery gallery--mosaic` : `gallery gallery--flex`} id="gallery" >
-            {
-              cards.map((current, index) => {
-                if ( current != null ) {
-                  return (
-                    <Card bg_src      = {current.bg_src}
-                          title       = {current.title}
-                          subtitle    = {current.subtitle}
-                          key         = {index} />
-                  )
-                }
-              })
-            }
+            <CSSTransitionGroup
+              transitionName="example"
+              transitionAppear={true}
+              transitionAppearTimeout={1500}
+              transitionEnterTimeout={500}>
+              {
+                cards.map((current, index) => {
+                  if ( current != null ) {
+                    return (
+                      <Card bg_src      = {current.bg_src}
+                            title       = {current.title}
+                            subtitle    = {current.subtitle}
+                            key         = {index} />
+                    )
+                  }
+                })
+              }
+            </CSSTransitionGroup>
+
             
           </div>
           <div className="gallery__c-more u-flex u-flex--c">
