@@ -22,98 +22,131 @@
     
   @else 
     @error "Detected mixed units. Please use the same units for all parameters. " + $u1 +", " + $u2 + ", " + $u3 +", "+ $u4
-  
 
-// Breakpoints  ===============================================================
-// ============================================================================
-// These should eventually be removed in favor of Foundation's grid / breakpoint syntax
+// Fluid Spacing Mixin
+@mixin fluid-spacing($attribute, $min-vw, $max-vw, $min-size, $max-size)
+  $u1: unit($min-vw)
+  $u2: unit($max-vw)
+  $u3: unit($min-size)
+  $u4: unit($max-size)
 
-$min-width-medium           : unquote("min-width: 40em")
-$max-width-medium           : unquote("max-width: 39.9375em")
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 
+    & 
+      #{$attribute}: $min-size
+      @media screen and (min-width: $min-vw) 
+        #{$attribute}: calc(#{$min-size} + #{strip-unit($max-size - $min-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}))      
 
-$min-width-large            : unquote("min-width: 64em")
-$max-width-large            : unquote("max-width: 63.9375em")
+      @media screen and (min-width: $max-vw) 
+        #{$attribute}: $max-size
+      
+    
+  @else 
+    @error "Detected mixed units. Please use the same units for all parameters. " + $u1 +", " + $u2 + ", " + $u3 +", "+ $u4
 
 
 
-// Utility Mixins  ============================================================
-// ============================================================================
+// Media Queries
+// ================================================================
+// based on https://medium.freecodecamp.com/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862
+
+$min-width-small                : unquote("min-width: 360px")
+$max-width-small                : unquote("max-width: 599px")
+
+$min-width-smedium              : unquote("min-width: 600px")
+$max-width-smedium              : unquote("max-width: 899px")
+
+$min-width-medium               : unquote("min-width: 900px")
+$max-width-medium               : unquote("max-width: 1199px")
+
+$min-width-large                : unquote("min-width: 1200px")
+$max-width-large                : unquote("max-width: 1799px")
+
+$min-width-xlarge               : unquote("min-width: 1800px")
+
+$portrait                       : unquote("orientation: portrait")
+$landscape                      : unquote("orientation: landscape")
 
 
-// Flexbox prefix mixins
+// Mixins
+// ================================================================
+
 @mixin display-flex
-  display: -webkit-box
-  display: -moz-box
-  display: -ms-flexbox
-  display: -webkit-flex
-  display: flex
+    display: -webkit-box
+    display: -moz-box
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
 
 @mixin display-inline-flex
-  display: -webkit-inline-box
-  display: -moz-inline-box
-  display: -ms-inline-flexbox
-  display: -webkit-inline-flex
-  display: inline-flex
+    display: -webkit-inline-box
+    display: -moz-inline-box
+    display: -ms-inline-flexbox
+    display: -webkit-inline-flex
+    display: inline-flex
 
 @mixin flex-flow ( $arg )
-  -ms-flex-flow: $arg
-  -webkit-flex-flow: $arg
-  flex-flow: $arg
+    -ms-flex-flow: $arg
+    -webkit-flex-flow: $arg
+    flex-flow: $arg
 
 @mixin flex-direction ( $arg )
-  -ms-flex-direction: $arg
-  -webkit-flex-direction: $arg
-  flex-direction: $arg
+    -ms-flex-direction: $arg
+    -webkit-flex-direction: $arg
+    flex-direction: $arg
 
 @mixin justify-content ( $arg )
-  -ms-justify-content: $arg
-  -webkit-justify-content: $arg
-  justify-content: $arg
+    -ms-justify-content: $arg
+    -webkit-justify-content: $arg
+    justify-content: $arg
 
 @mixin align-items ( $arg )
-  -ms-align-items: $arg
-  -webkit-align-items: $arg
-  align-items: $arg
+    -ms-align-items: $arg
+    -webkit-align-items: $arg
+    align-items: $arg
 
 @mixin align-self ( $arg )
-  -ms-align-self: $arg
-  -webkit-align-self: $arg
-  align-self: $arg
+    -ms-align-self: $arg
+    -webkit-align-self: $arg
+    align-self: $arg
 
 @mixin flex-shorthand ( $arg )
-  -ms-flex: $arg
-  -webkit-flex: $arg
-  flex: $arg
+    -ms-flex: $arg
+    -webkit-flex: $arg
+    flex: $arg
 
 @mixin flex-wrap ( $arg )
-  -ms-flex-wrap: $arg
-  -webkit-flex-wrap: $arg
-  flex-wrap: $arg
+    -ms-flex-wrap: $arg
+    -webkit-flex-wrap: $arg
+    flex-wrap: $arg
 
 @mixin flex-centered
-  @include display-flex
-  @include justify-content ( center )
-  @include align-items ( center )
+    @include display-flex
+    @include justify-content ( center )
+    @include align-items ( center )
 
 @mixin order ( $arg )
-  -ms-flex-order: $arg
-  -webkit-order: $arg
-  order: $arg
+    -ms-flex-order: $arg
+    -webkit-order: $arg
+    order: $arg
 
 @mixin column-count ( $arg )
-  -webkit-column-count: $arg
-  -moz-column-count: $arg
-  column-count: $arg
-
-@mixin column-width($arg)
-  -webkit-column-width: $arg
-  -moz-column-width: $arg
-  column-width: $arg
+    -webkit-column-count: $arg
+    -moz-column-count: $arg
+    column-count: $arg
 
 @mixin abs-centered
-  position: absolute
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
-  margin: auto
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    margin: auto
+
+@mixin box-shadow( $arg )
+    -webkit-box-shadow: $arg
+    -moz-box-shadow: $arg
+    box-shadow: $arg
+
+// border and button mixins
+@mixin standard-border-bottom
+    border-bottom: $standard-border

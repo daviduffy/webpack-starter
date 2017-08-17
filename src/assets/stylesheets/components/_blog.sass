@@ -1,0 +1,64 @@
+$blog-color-map      : ( color-1: #d2d2d2, color-2: #a2a2a2, color-3: #646464, color-4: #838383, color-5: #838383, color-6: #c2c2c2, color-7: #737373 , color-8: #b2b2b2 );
+
+.blog
+  padding-left: 0
+  padding-right: 0
+
+.blog__heading
+  text-align: center
+
+.blog__post
+  width: 100%
+  min-height: 300px
+
+@for $i from 1 through 8 
+  .blog__post--#{$i}
+    background: map-get($blog-color-map, color-#{$i}) no-repeat center/cover
+    
+
+
+// Grid Styles
+// ================================================================
+@supports (display: grid)
+  .blog
+    @media screen and ( $min-width-smedium )
+      display: grid
+      grid-template-columns: repeat(2, 1fr)
+      grid-auto-rows: auto
+    @media screen and ( $min-width-medium )
+      grid-template-columns: repeat(6, 1fr)
+    @media screen and ( $min-width-large )
+      grid-template-columns: repeat(4, 1fr)
+
+  .blog__heading
+    @media screen and ( $min-width-smedium )
+      grid-column: 1 / 3
+    @media screen and ( $min-width-medium )
+      grid-column: 1 / 7
+    @media screen and ( $min-width-large )
+      grid-column: 1 / 5
+
+  .blog__post
+    display: grid
+    @media screen and ( $min-width-medium )
+      grid-column: span 2
+    @media screen and ( $min-width-large )
+      grid-column: span 1
+
+  .blog__post--7,
+  .blog__post--8
+    @media screen and ( $min-width-medium )
+      grid-column: span 3
+    @media screen and ( $min-width-large )
+      grid-column: span 1
+
+  .blog__title,
+  .blog__subtitle
+    display: grid
+    justify-content: center
+
+  .blog__title
+    align-content: end
+
+  .blog__subtitle
+    align-content: start

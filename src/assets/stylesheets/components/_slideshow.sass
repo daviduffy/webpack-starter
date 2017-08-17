@@ -1,0 +1,24 @@
+.slideshow
+
+
+// Grid Styles
+// ================================================================
+@supports (display: grid)
+  .slideshow__slide
+    display: grid
+    justify-content: center
+
+  .slideshow__img
+
+  .slideshow__img--hyper-res
+    width: 88vh
+    max-width: none
+    @media screen and ( $min-width-medium )
+      width: initial
+      //shared with splash
+      height: calc(100vh - 74px)
+      min-height: 500px
+    @media screen and ( $min-width-large )
+      height: initial
+      min-height: initial
+      width: 100vw
