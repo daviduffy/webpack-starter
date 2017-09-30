@@ -355,26 +355,15 @@ class App extends React.Component {
 
         <main className='main'>
           <div className={ currentContent.mosaic ? `gallery gallery--mosaic` : `gallery gallery--flex`} id="gallery" >
-            <CSSTransitionGroup
-              transitionName="example"
-              transitionAppear={true}
-              transitionAppearTimeout={1500}
-              transitionEnterTimeout={500}>
-              {
-                cards.map((current, index) => {
-                  if ( current != null ) {
-                    return (
-                      <Card bg_src      = {current.bg_src}
-                            title       = {current.title}
-                            subtitle    = {current.subtitle}
-                            key         = {index} />
-                    )
-                  }
-                })
-              }
-            </CSSTransitionGroup>
 
-            
+
+
+
+
+
+
+
+
           </div>
           <div className="gallery__c-more u-flex u-flex--c">
             <a className={ this.state.expanded ? `h6 gallery__more btn btn--more` : `gallery__more--expanded h6 gallery__more btn btn--more`}
@@ -466,7 +455,27 @@ const MediaQueryHelper = (props) => {
 
 
 
-
+const TransitionGroup = () => {
+  // this is currently broken
+  <CSSTransitionGroup
+    transitionName="example"
+    transitionAppear={true}
+    transitionAppearTimeout={1500}
+    transitionEnterTimeout={500}>
+    {
+      cards.map((current, index) => {
+        if ( current != null ) {
+          return (
+            <Card bg_src      = {current.bg_src}
+                  title       = {current.title}
+                  subtitle    = {current.subtitle}
+                  key         = {index} />
+          )
+        }
+      })
+    }
+  </CSSTransitionGroup>
+}
 
 
 
@@ -537,3 +546,4 @@ const BottomButton = (props) => {
 }
 
 export default App;
+

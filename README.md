@@ -50,4 +50,5 @@ _The project has a `webpack.config.js` that already includes all of the configur
   `npm i react react-dom babel-preset-react --save-dev`
   _"react" already present in the `.babelrc` file._
 
-11. 
+11. Add CSS Transition Group to the project
+  `npm i react-transition-group --save-dev`
