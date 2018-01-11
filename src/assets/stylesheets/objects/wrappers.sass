@@ -1,0 +1,11 @@
+.container
+  display: grid
+  background: #fff
+  font-family: "Helvetica Neue", Helvectica, Arial, serif
+  font-size: 1.067rem
+  color: #666
+  text-align: center
+  @media screen and (min-width: 37.5rem)
+    font-size: calc(1.067rem + .183 * ((100vw - 37.5rem)/ 42.5))
+  @media screen and (min-width: 80rem)
+    font-size: 1.25rem

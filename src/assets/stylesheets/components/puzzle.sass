@@ -1,0 +1,70 @@
+.puzzle
+  grid-template-columns: repeat(9, 1fr)
+  grid-template-rows: repeat(9, 1fr)
+  padding: 0
+
+.puzzle,
+.controls
+  display: grid
+  margin: 0 auto
+  width: calc(100vw - 1rem)
+  height: calc(100vw - 1rem)
+  @media screen and (min-width: 37.5rem)
+    width: calc(600px + 2vw)
+    height: calc(600px + 2vw)
+
+.controls
+  grid-template-columns: 1fr 1fr
+
+li
+  display: inline-block
+  position: relative
+  border-top: 1px solid
+  border-left: 1px solid 
+                        // this is ugly, but it creates the grid */
+li:nth-child(3n)
+  border-right: 2px solid #888       // heavy column */
+li:nth-child(-n + 9)
+  border-top: 2px solid #444        // container top */
+li:nth-child(9n + 1)
+  border-left: 2px solid #444       // container left */
+li:nth-child(9n)
+  border-right: 2px solid #444      // container right */
+li:nth-child(n+19)
+  border-bottom: 2px solid #888      // heavy row top */
+li:nth-child(n+28)
+  border-bottom: none             // row cancel */
+li:nth-child(n+46)
+  border-bottom: 2px solid #888      // heavy row bottom */
+li:nth-child(n+55)
+  border-bottom: none             // row cancel */
+li:nth-child(n + 73)
+  border-bottom: 2px solid #444       // container bottom */
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button 
+  -webkit-appearance: none 
+  margin: 0 
+
+input[type="number"]
+  display: inline-block
+  position: absolute
+  margin: auto
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  font-size: inherit
+  border: none
+  padding: 33%
+  width: 95%
+  height: 95%
+
+.game-value input,
+.user-value input
+  font-weight: bold
+
+.game-value input
+  color: black
+.user-value input
+  color: #2980b9

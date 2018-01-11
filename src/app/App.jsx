@@ -2,7 +2,79 @@
 import cat_1 from 'images/cat_1.png';
 import gif_1 from 'images/supa_hot_fire.gif';
 import cat_2 from 'images/cat_2.jpg';
+import PropTypes from 'prop-types';
+import { createSequencedArray, randArray, getGameIndex } from './utilities.js';
+import { getXYSquare, makeGuess, setup, init } from './puzzle.js';
 
+const blank = getInitialState({ cellWidth: 3 });
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: 'Sudoku Magician',
+      subtitle: 'Play sudoku on any difficulty, or enter numbers from the newspaper if you\'re too lazy to solve it yourself!',
+      puzzle: {
+        cellWidth: 3,
+        sideLength: 9,
+        guessIndex: 0,
+        limit: 81,
+        forward: true,
+      }
+    }
+  }
+  render() {
+    return (
+      <main className="container">
+        <Header title={this.state.title} subtitle={this.state.subtitle} />
+        <ul id="puzzle" className="puzzle"></ul>
+        <Controls />
+      </main>
+    );
+  }
+}
+
+App.propTypes = {
+};
+
+const Header = (props) => {
+  return (
+    <header className="header">
+      <h1 className="h1">{ props.title }</h1>
+      <p>{ props.subtitle }</p>
+    </header>
+  );
+}
+Header.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+}
+
+const Controls = (props) => {
+  return (
+    <aside id="controls" className="controls">
+      <div className="control control--play">
+        <h2 className="control__title">Play the Game</h2>
+        <div className="control__options">
+          <button id="easy" className="h4 btn btn--action btn--easy" onClick="init({ clear: false, diff: 1 });">Easy</button>
+          <button id="medium" className="h4 btn btn--action btn--medium" onClick="init({ clear: false, diff: 2 });">Medium</button>
+          <button id="hard" className="h4 btn btn--action btn--hard" onClick="init({ clear: false, diff: 3 });">Hard</button>
+        </div>
+      </div>
+      <div className="control control--solve">
+        <h2 className="control__title">Just Solve It</h2>
+        <div className="control__options">
+          <button id="run" className="h4 btn btn--action" onClick="init({ clear: false });">Generate Solution</button>
+          <button id="clear" className="h4 btn" onClick="init({ clear: true, preserveUserInput: true });">Clear Solution</button>
+          <button id="clear_all" className="h4 btn" onClick="init({ clear: true });">Clear All</button>
+        </div>
+      </div>
+    </aside>
+  )
+}
+Controls.propTypes = {
+
+}
 
 const hello = () => {
   return (
@@ -417,10 +489,4 @@ const hello = () => {
   )
 }
 
-const GridItem = (props) => {
-  return(
-    <div className={props.classes}></div>
-  )
-}
-
-export default hello;
+export default App;
