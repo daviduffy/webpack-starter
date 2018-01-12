@@ -1,18 +1,18 @@
 // UI Logic
 // =================================================================================================
-const addListeners = () => {
-  document.querySelectorAll('input').forEach((input) => {
-    input.addEventListener('keydown', (e) => {
-      e.preventDefault();
-      // this is jank
-      if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'Backspace'].includes(e.key)) {
-        input.value = e.key;
-        input.parentNode.classList.add('user-value');
-        console.log(e.key);
-      }
-    });
-  });
-};
+// const addListeners = () => {
+//   document.querySelectorAll('input').forEach((input) => {
+//     input.addEventListener('keydown', (e) => {
+//       e.preventDefault();
+//       // this is jank
+//       if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'Backspace'].includes(e.key)) {
+//         input.value = e.key;
+//         input.parentNode.classList.add('user-value');
+//         console.log(e.key);
+//       }
+//     });
+//   });
+// };
 
 // Create the markup with values from guesses
 // =================================================================================================

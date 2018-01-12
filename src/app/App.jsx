@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { createSequencedArray, randArray, getGameIndex } from './utilities.js';
 import { getXYSquare, makeGuess, setup, init } from './puzzle.js';
 
-const blank = getInitialState({ cellWidth: 3 });
+const blankSudoku = setup({ cellWidth: 3 });
 
 class App extends React.Component {
   constructor(props) {
@@ -14,34 +14,37 @@ class App extends React.Component {
     this.state = {
       title: 'Sudoku Magician',
       subtitle: 'Play sudoku on any difficulty, or enter numbers from the newspaper if you\'re too lazy to solve it yourself!',
-      puzzle: {
-        cellWidth: 3,
-        sideLength: 9,
-        guessIndex: 0,
-        limit: 81,
-        forward: true,
-      }
+      allGuesses: blankSudoku,
     }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e, i){
+    const allGuesses = this.state.allGuesses
+    allGuesses[i].userValue = e.target.value;
+
+    this.setState(prevState => ({
+      allGuesses,
+    }));
   }
   render() {
     return (
       <main className="container">
         <Header title={this.state.title} subtitle={this.state.subtitle} />
-        <ul id="puzzle" className="puzzle"></ul>
+        <Puzzle
+          cells={this.state.allGuesses} 
+          handleChange={this.handleChange}/>
         <Controls />
       </main>
     );
   }
 }
 
-App.propTypes = {
-};
-
 const Header = (props) => {
   return (
     <header className="header">
-      <h1 className="h1">{ props.title }</h1>
-      <p>{ props.subtitle }</p>
+      <h1 className="h1">{props.title}</h1>
+      <p>{props.subtitle}</p>
     </header>
   );
 }
@@ -50,23 +53,59 @@ Header.propTypes = {
   subtitle: PropTypes.string,
 }
 
+const Puzzle = (props) => {
+  return (
+    <ul id="puzzle" className="puzzle">
+      { props.cells.map((cell, index) => {
+        return (
+          <Cell
+            key={index}
+            index={index}
+            value={cell.value}
+            handleChange={props.handleChange} />
+        )
+      })
+    }
+    </ul>
+  );
+}
+Puzzle.propTypes = {
+  cells: PropTypes.array,
+}
+
+const Cell = (props) => {
+  return (
+    <li>
+      <input 
+        type="number"
+        maxLength="1"
+        value={props.value}
+        pattern="[0-9]{1}"
+        onChange={function(e){props.handleChange(e, `${props.index}`)}} />
+    </li>
+  );
+}
+Cell.propTypes = {
+  value: PropTypes.number
+}
+
 const Controls = (props) => {
   return (
     <aside id="controls" className="controls">
       <div className="control control--play">
         <h2 className="control__title">Play the Game</h2>
         <div className="control__options">
-          <button id="easy" className="h4 btn btn--action btn--easy" onClick="init({ clear: false, diff: 1 });">Easy</button>
-          <button id="medium" className="h4 btn btn--action btn--medium" onClick="init({ clear: false, diff: 2 });">Medium</button>
-          <button id="hard" className="h4 btn btn--action btn--hard" onClick="init({ clear: false, diff: 3 });">Hard</button>
+          <button id="easy" className="h4 btn btn--action btn--easy" onClick="{  });">Easy</button>
+          <button id="medium" className="h4 btn btn--action btn--medium" onClick="{  });">Medium</button>
+          <button id="hard" className="h4 btn btn--action btn--hard" onClick="{  });">Hard</button>
         </div>
       </div>
       <div className="control control--solve">
         <h2 className="control__title">Just Solve It</h2>
         <div className="control__options">
-          <button id="run" className="h4 btn btn--action" onClick="init({ clear: false });">Generate Solution</button>
-          <button id="clear" className="h4 btn" onClick="init({ clear: true, preserveUserInput: true });">Clear Solution</button>
-          <button id="clear_all" className="h4 btn" onClick="init({ clear: true });">Clear All</button>
+          <button id="run" className="h4 btn btn--action" onClick="{  });">Generate Solution</button>
+          <button id="clear" className="h4 btn" onClick="{  });">Clear Solution</button>
+          <button id="clear_all" className="h4 btn" onClick="{  });">Clear All</button>
         </div>
       </div>
     </aside>

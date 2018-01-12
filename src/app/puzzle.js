@@ -1,3 +1,5 @@
+import { createSequencedArray, randArray, getGameIndex } from './utilities.js';
+
 // Get row, column, and square arrays
 // =================================================================================================
 export const getXYSquare = ({ sideLength, allGuesses, guessIndex }) => {
@@ -146,8 +148,8 @@ export const setup = ({ cellWidth: num, diff }) => {
     index,
     userValue: null,
   }));
-  init.allGuesses = allGuesses;
-  return init;
+  // init.allGuesses = allGuesses;
+  return allGuesses;
 };
 
 // Puzzle Starter
