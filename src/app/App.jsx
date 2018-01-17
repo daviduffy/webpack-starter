@@ -1,12 +1,10 @@
 // import React from 'react';
-import cat_1 from 'images/cat_1.png';
-import gif_1 from 'images/supa_hot_fire.gif';
-import cat_2 from 'images/cat_2.jpg';
 import PropTypes from 'prop-types';
 import { createSequencedArray, randArray, getGameIndex } from './utilities.js';
 import { getXYSquare, makeGuess, setup, init } from './puzzle.js';
 import Cell from './components/Cell';
 import Controls from './components/Controls';
+import Puzzle from './components/Puzzle';
 
 
 const sideLength = 9;
@@ -114,24 +112,7 @@ Header.propTypes = {
   subtitle: PropTypes.string,
 }
 
-const Puzzle = (props) => {
-  return (
-    <ul id="puzzle" className="puzzle">
-      { props.cells.map((cell, index) => {
-        return (
-          <Cell
-            key={index}
-            cell={cell}
-            handleChange={props.handleChange} />
-        )
-      })
-    }
-    </ul>
-  );
-}
-Puzzle.propTypes = {
-  cells: PropTypes.array,
-}
+
 
 const hello = () => {
   return (
