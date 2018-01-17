@@ -5,8 +5,14 @@ import cat_2 from 'images/cat_2.jpg';
 import PropTypes from 'prop-types';
 import { createSequencedArray, randArray, getGameIndex } from './utilities.js';
 import { getXYSquare, makeGuess, setup, init } from './puzzle.js';
+import Cell from './components/Cell';
+import Controls from './components/Controls';
 
-const blankSudoku = setup({ cellWidth: 3 });
+
+const sideLength = 9;
+const limit = sideLength * sideLength;
+const blankSudoku = setup({ sideLength });
+
 
 class App extends React.Component {
   constructor(props) {
@@ -17,24 +23,79 @@ class App extends React.Component {
       allGuesses: blankSudoku,
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSolve = this.handleSolve.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   handleChange(e, i){
     const allGuesses = this.state.allGuesses
-    allGuesses[i].userValue = e.target.value;
+    allGuesses[i].value = e.target.value;
+    allGuesses[i].userValue = true;
+    console.log(allGuesses[i]);
 
     this.setState(prevState => ({
       allGuesses,
     }));
   }
+
+  handleSolve(e){
+    const type = parseInt(e.target.value, 10);
+    let allGuesses = this.state.allGuesses
+
+    // clean guesses
+    allGuesses = setup({ sideLength, allGuesses })
+
+    const opts = { 
+      sideLength,
+      allGuesses,
+      guessIndex: 0,
+      limit,
+      forward: true,
+      diff: type,
+      gameIndex: e.target.value ? getGameIndex({
+        limit,
+        diff: type
+      }) : undefined
+    }
+
+    const solvedGuesses = makeGuess(opts)
+
+    this.setState(prevState => ({
+      allGuesses: solvedGuesses,
+    }));
+  }
+
+  handleClear(e){
+    const clearAll = e.target.value;
+    let clearedGuesses;
+
+    if (clearAll) {
+      clearedGuesses = setup({ sideLength });
+    } else {
+      const allGuesses = this.state.allGuesses;
+      clearedGuesses = setup({ sideLength });
+    }
+    // true === clear entire puzzle
+    // false === clear cpu guesses
+
+
+    // const noGuesses = setup({ sideLength });
+    // console.log(noGuesses)
+    this.setState(prevState => ({
+      allGuesses: clearedGuesses,
+    }));
+  }
+
   render() {
     return (
       <main className="container">
         <Header title={this.state.title} subtitle={this.state.subtitle} />
         <Puzzle
           cells={this.state.allGuesses} 
-          handleChange={this.handleChange}/>
-        <Controls />
+          handleChange={this.handleChange} />
+        <Controls
+          handleClear={this.handleClear}
+          handleSolve={this.handleSolve} />
       </main>
     );
   }
@@ -60,8 +121,7 @@ const Puzzle = (props) => {
         return (
           <Cell
             key={index}
-            index={index}
-            value={cell.value}
+            cell={cell}
             handleChange={props.handleChange} />
         )
       })
@@ -71,48 +131,6 @@ const Puzzle = (props) => {
 }
 Puzzle.propTypes = {
   cells: PropTypes.array,
-}
-
-const Cell = (props) => {
-  return (
-    <li>
-      <input 
-        type="number"
-        maxLength="1"
-        value={props.value}
-        pattern="[0-9]{1}"
-        onChange={function(e){props.handleChange(e, `${props.index}`)}} />
-    </li>
-  );
-}
-Cell.propTypes = {
-  value: PropTypes.number
-}
-
-const Controls = (props) => {
-  return (
-    <aside id="controls" className="controls">
-      <div className="control control--play">
-        <h2 className="control__title">Play the Game</h2>
-        <div className="control__options">
-          <button id="easy" className="h4 btn btn--action btn--easy" onClick="{  });">Easy</button>
-          <button id="medium" className="h4 btn btn--action btn--medium" onClick="{  });">Medium</button>
-          <button id="hard" className="h4 btn btn--action btn--hard" onClick="{  });">Hard</button>
-        </div>
-      </div>
-      <div className="control control--solve">
-        <h2 className="control__title">Just Solve It</h2>
-        <div className="control__options">
-          <button id="run" className="h4 btn btn--action" onClick="{  });">Generate Solution</button>
-          <button id="clear" className="h4 btn" onClick="{  });">Clear Solution</button>
-          <button id="clear_all" className="h4 btn" onClick="{  });">Clear All</button>
-        </div>
-      </div>
-    </aside>
-  )
-}
-Controls.propTypes = {
-
 }
 
 const hello = () => {

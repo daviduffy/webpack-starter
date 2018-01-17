@@ -16,39 +16,39 @@
 
 // Create the markup with values from guesses
 // =================================================================================================
-const doMarkup = ({ allGuesses, gameIndex, diff }) => {
-  const puzzle = document.getElementById('puzzle');
-  // empty the container. faster than innerHTML = ''
-  while (puzzle.firstChild) {
-    puzzle.removeChild(puzzle.firstChild);
-  }
-  const html = allGuesses.map((guess, index) => {
-    let val;
-    const classes = [];
-    // if difficulty is specified only output based on visible prop
-    if (diff) {
-      if (guess.visible) {
-        val = guess.value;
-        classes.push('game-value');
-      } else {
-        val = '';
-      }
-    // if difficulty not specified
-    } else if (guess.userValue) {
-      val = guess.userValue;
-      classes.push('user-value');
-    } else {
-      val = guess.value;
-    }
+// const doMarkup = ({ allGuesses, gameIndex, diff }) => {
+//   const puzzle = document.getElementById('puzzle');
+//   // empty the container. faster than innerHTML = ''
+//   while (puzzle.firstChild) {
+//     puzzle.removeChild(puzzle.firstChild);
+//   }
+//   const html = allGuesses.map((guess, index) => {
+//     let val;
+//     const classes = [];
+//     // if difficulty is specified only output based on visible prop
+//     if (diff) {
+//       if (guess.visible) {
+//         val = guess.value;
+//         classes.push('game-value');
+//       } else {
+//         val = '';
+//       }
+//     // if difficulty not specified
+//     } else if (guess.userValue) {
+//       val = guess.userValue;
+//       classes.push('user-value');
+//     } else {
+//       val = guess.value;
+//     }
     
-    return (
-      `<li ${classes.length > 0 ? `class="${classes.join(' ')}"` : ''}>
-        <input type="number" 
-          maxlength='1' 
-          value="${val}"
-          pattern="[0-9]{1}">
-      </li>`);
-  }).join('');
-  puzzle.innerHTML = html;
-  addListeners();
-};
+//     return (
+//       `<li ${classes.length > 0 ? `class="${classes.join(' ')}"` : ''}>
+//         <input type="number" 
+//           maxlength='1' 
+//           value="${val}"
+//           pattern="[0-9]{1}">
+//       </li>`);
+//   }).join('');
+//   puzzle.innerHTML = html;
+//   addListeners();
+// };

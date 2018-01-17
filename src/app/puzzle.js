@@ -8,34 +8,26 @@ export const getXYSquare = ({ sideLength, allGuesses, guessIndex }) => {
     //  5
     rowNumber: ~~(guessIndex / sideLength),
     // 45
-    get rowStartIndex() {
-      return this.rowNumber * sideLength;
-    },
+    rowStartIndex() {return (this.rowNumber * sideLength);},
     //  3
-    get rowSquareIndex() {
-      return ~~(this.rowNumber / 3) * 3;
-    },
+    rowSquareIndex() {return (~~(this.rowNumber / 3) * 3);},
     //  7
     colStartIndex: (guessIndex % sideLength || 0),
     //  6
-    get colSquareIndex() {
-      return ~~(this.colStartIndex / 3) * 3;
-    },
+    colSquareIndex() {return (~~(this.colStartIndex / 3) * 3);},
     // 33
-    get squareStartIndex() {
-      return this.rowSquareIndex * sideLength + this.colSquareIndex;
-    },
+    squareStartIndex() {return (this.rowSquareIndex() * sideLength + this.colSquareIndex());},
   };
   const arr = Array(sideLength).fill(undefined);
   const outputArrays = {
-    row: [...arr].map((item, index) => allGuesses[(XYS.rowStartIndex + index)].value),
+    row: [...arr].map((item, index) => allGuesses[(XYS.rowStartIndex() + index)].value),
     column: [...arr].map((item, index) => allGuesses[(XYS.colStartIndex + (sideLength * index))].value),
     square: [],
   };
   // build square indexes array (this one is tricky)
   for (let sr = 0; sr < 3; sr++) {
     for (let sc = 0; sc < 3; sc++) {
-      const val = allGuesses[XYS.squareStartIndex + ((sr * 9) + sc)].value;
+      const val = allGuesses[XYS.squareStartIndex() + ((sr * 9) + sc)].value;
       outputArrays.square.push(val);
     }
   }
@@ -104,7 +96,7 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, 
     // this guess value is impossible because a previous guess is incorrect
     } else {
       currentGuess.options = createSequencedArray(sideLength);
-      currentGuess.value = null;
+      currentGuess.value = undefined;
       guessIndex--;
     }
     return makeGuess({
@@ -117,70 +109,80 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, 
       diff
     });
   }
-  return doMarkup({
-    allGuesses,
-    gameIndex,
-    diff
-  });
+  return allGuesses;
 };
 
-// Initial State
+// Set up allGuesses object for use or re-use
 // =================================================================================================
-export const setup = ({ cellWidth: num, diff }) => {
+export const setup = ({ sideLength, diff, allGuesses: currentGuesses }) => {
   // when defined, difficulty causes value visibility to change
-  const init = {
-    cellWidth: num,
-    sideLength: num * num,
-    guessIndex: 0,
-    limit: (num * num) * (num * num),
-    forward: true,
-    gameIndex: diff ? getGameIndex({
-      limit: (num * num) * (num * num),
-      diff
-    }) : undefined,
-    diff,
-  };
-  // fast way to create an array of these objects
-  const allGuesses = Array(init.limit).fill(null).map((e, index) => ({
-    options: createSequencedArray(init.sideLength),
-    value: null,
-    visible: diff ? init.gameIndex.includes(index) : true,
-    index,
-    userValue: null,
-  }));
-  // init.allGuesses = allGuesses;
+  const limit = sideLength * sideLength;
+  const gameIndex = diff ? getGameIndex({
+            limit: sideLength * sideLength,
+            diff }) : undefined;
+
+
+  let allGuesses;
+  if (currentGuesses === undefined) {
+    // this is a brand new puzzle
+    // fast way to create an array of the correct length
+    allGuesses = Array(limit).fill(undefined).map((guess, index) => ({
+      options: createSequencedArray(sideLength),
+      value: '',
+      visible: diff ? gameIndex.includes(index) : true,
+      index,
+      userValue: false,
+    }));
+  } else {
+    // this is to preserve any user guesses in a current puzzle
+    allGuesses = currentGuesses.map((guess, index) => {
+      // keep any existing guess
+      if (guess.userValue) {
+        return guess;
+      }
+      // return a new obj for non-user-input
+      return ({
+        options: createSequencedArray(sideLength),
+        value: '',
+        visible: diff ? gameIndex.includes(index) : true,
+        index,
+        userValue: false,
+      });
+    });
+  }
+
   return allGuesses;
 };
 
 // Puzzle Starter
 // =================================================================================================
-export const init = ({ clear = false, diff = undefined, preserveUserInput = false }) => {
-  // diff easy 1 through expert 4
-  const state = setup({ cellWidth: 3, diff });
-  console.log(state);
+// export const init = ({ clear = false, diff = undefined, preserveUserInput = false }) => {
+//   // diff easy 1 through expert 4
+//   const state = setup({ cellWidth: 3, diff });
+//   console.log(state);
 
-  if (!clear) {
-    // add user input to allGuesses array before guessing anything
-    document.querySelectorAll('li').forEach((li, index) => {
-      if (li.classList.contains('user-value')) {
-        const val = li.querySelector('input').value;
-        state.allGuesses[index].value = parseInt(val, 10);
-        state.allGuesses[index].userValue = parseInt(val, 10);
-      }
-    });
-    return makeGuess(state);
-  } else {
-    if (preserveUserInput) {
-      Array.from(document
-        .querySelectorAll('li'))
-        .filter(li => !li.classList.contains('user-value'))
-        .forEach(li => {li.querySelector('input').value = '';})
-    } else {
-      doMarkup({
-        allGuesses: createSequencedArray(81),
-        diff
-      });
-    }
-    addListeners();
-  }
-};
+//   if (!clear) {
+//     // add user input to allGuesses array before guessing anything
+//     document.querySelectorAll('li').forEach((li, index) => {
+//       if (li.classList.contains('user-value')) {
+//         const val = li.querySelector('input').value;
+//         state.allGuesses[index].value = parseInt(val, 10);
+//         state.allGuesses[index].userValue = parseInt(val, 10);
+//       }
+//     });
+//     return makeGuess(state);
+//   } else {
+//     if (preserveUserInput) {
+//       Array.from(document
+//         .querySelectorAll('li'))
+//         .filter(li => !li.classList.contains('user-value'))
+//         .forEach(li => {li.querySelector('input').value = '';})
+//     } else {
+//       doMarkup({
+//         allGuesses: createSequencedArray(81),
+//         diff
+//       });
+//     }
+//     addListeners();
+//   }
+// };

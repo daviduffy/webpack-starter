@@ -1,6 +1,6 @@
 // Array building utility
 // =================================================================================================
-export const createSequencedArray = lim => Array(lim).fill(null).map((e, index) => (index + 1));
+export const createSequencedArray = lim => Array(lim).fill(null).map((e, index) => (`${index + 1}`));
 
 // Array building utility
 // =================================================================================================
