@@ -9,7 +9,7 @@ export const randArray = ({ desired, max }) => {
   const rand = [];
   for (let i = 0; i < desired; i++) {
     const float = donor.splice(~~(Math.random() * donor.length), 1)[0];
-    rand.push(float);
+    rand.push(parseInt(float, 10));
   }
   return rand;
 };

@@ -115,15 +115,16 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, 
 // Set up allGuesses object for use or re-use
 // =================================================================================================
 export const setup = ({ sideLength, diff, allGuesses: currentGuesses }) => {
+
   // when defined, difficulty causes value visibility to change
   const limit = sideLength * sideLength;
   const gameIndex = diff ? getGameIndex({
             limit: sideLength * sideLength,
-            diff }) : undefined;
-
+            diff }) : [];
 
   let allGuesses;
   if (currentGuesses === undefined) {
+
     // this is a brand new puzzle
     // fast way to create an array of the correct length
     allGuesses = Array(limit).fill(undefined).map((guess, index) => ({
@@ -153,36 +154,3 @@ export const setup = ({ sideLength, diff, allGuesses: currentGuesses }) => {
 
   return allGuesses;
 };
-
-// Puzzle Starter
-// =================================================================================================
-// export const init = ({ clear = false, diff = undefined, preserveUserInput = false }) => {
-//   // diff easy 1 through expert 4
-//   const state = setup({ cellWidth: 3, diff });
-//   console.log(state);
-
-//   if (!clear) {
-//     // add user input to allGuesses array before guessing anything
-//     document.querySelectorAll('li').forEach((li, index) => {
-//       if (li.classList.contains('user-value')) {
-//         const val = li.querySelector('input').value;
-//         state.allGuesses[index].value = parseInt(val, 10);
-//         state.allGuesses[index].userValue = parseInt(val, 10);
-//       }
-//     });
-//     return makeGuess(state);
-//   } else {
-//     if (preserveUserInput) {
-//       Array.from(document
-//         .querySelectorAll('li'))
-//         .filter(li => !li.classList.contains('user-value'))
-//         .forEach(li => {li.querySelector('input').value = '';})
-//     } else {
-//       doMarkup({
-//         allGuesses: createSequencedArray(81),
-//         diff
-//       });
-//     }
-//     addListeners();
-//   }
-// };

@@ -5,7 +5,7 @@ import Cell from './Cell';
 
 const Puzzle = (props) => {
   return (
-    <ul id="puzzle" className="puzzle">
+    <ul id="puzzle" className="Sudoku__puzzle">
       { props.cells.map((cell, index) => {
         return (
           <Cell
