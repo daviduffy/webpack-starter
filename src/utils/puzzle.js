@@ -114,7 +114,7 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, 
 
 // Set up allGuesses object for use or re-use
 // =================================================================================================
-export const setup = ({ sideLength, diff, allGuesses: currentGuesses }) => {
+export const setup = ({ sideLength = 9, diff, allGuesses: currentGuesses }) => {
 
   // when defined, difficulty causes value visibility to change
   const limit = sideLength * sideLength;

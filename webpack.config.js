@@ -6,7 +6,7 @@ const minify_css = require('optimize-css-assets-webpack-plugin');
 
 
 let config = {
-  entry: './src/input.js',
+  entry: './src/test.js',
   output: {
     path: path.resolve(__dirname, './public'),
     filename: 'app.js'

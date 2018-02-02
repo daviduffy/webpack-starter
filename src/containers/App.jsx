@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { createSequencedArray, randArray, getGameIndex } from '../utilities.js';
 import { getXYSquare, makeGuess, setup, init } from '../puzzle.js';
-import Cell from './Cell';
-import Controls from './Controls';
-import Puzzle from './Puzzle';
+import Cell from '../components/Cell';
+import Controls from '../components/Controls';
+import Puzzle from '../components/Puzzle';
 
 class App extends React.Component {
   constructor(props) {
@@ -72,7 +72,7 @@ class App extends React.Component {
 
     if (clearAll === 1) {
       // clear entire puzzle
-      clearedGuesses = setup({ sideLength });
+      clearedGuesses = setup({ sideLength: this.state.sideLength });
     } else {
       // clear cpu guesses
       clearedGuesses = setup({
