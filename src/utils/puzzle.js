@@ -3,6 +3,7 @@ import { createSequencedArray, randArray, getGameIndex } from './utilities.js';
 // Get row, column, and square arrays
 // =================================================================================================
 export const getXYSquare = ({ sideLength, allGuesses, guessIndex }) => {
+
   // ex: 52
   const XYS = {
     //  5
@@ -20,14 +21,32 @@ export const getXYSquare = ({ sideLength, allGuesses, guessIndex }) => {
   };
   const arr = Array(sideLength).fill(undefined);
   const outputArrays = {
-    row: [...arr].map((item, index) => allGuesses[(XYS.rowStartIndex() + index)].value),
-    column: [...arr].map((item, index) => allGuesses[(XYS.colStartIndex + (sideLength * index))].value),
+    row: [...arr].map((item, index) => {
+      const theGuess = allGuesses[(XYS.rowStartIndex() + index)];
+      if (theGuess.userValue) {
+        return theGuess.userValue;
+      }
+      return theGuess.value;
+    }),
+    column: [...arr].map((item, index) => {
+      const theGuess = allGuesses[(XYS.colStartIndex + (sideLength * index))];
+      if (theGuess.userValue) {
+        return theGuess.userValue;
+      }
+      return theGuess.value;
+    }),
     square: [],
   };
   // build square indexes array (this one is tricky)
   for (let sr = 0; sr < 3; sr++) {
     for (let sc = 0; sc < 3; sc++) {
-      const val = allGuesses[XYS.squareStartIndex() + ((sr * 9) + sc)].value;
+      let val;
+      const theGuess = allGuesses[XYS.squareStartIndex() + ((sr * 9) + sc)];
+      if (theGuess.userValue) {
+        val = theGuess.userValue;
+      } else {
+        val = theGuess.value;
+      }
       outputArrays.square.push(val);
     }
   }
@@ -36,8 +55,8 @@ export const getXYSquare = ({ sideLength, allGuesses, guessIndex }) => {
 
 // Guess Logic
 // =================================================================================================
-export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward }) => {
-  console.log('allGuesses:', allGuesses, 'guessIndex:', guessIndex)
+export const makeGuess = ({ sideLength = 9, allGuesses, guessIndex = 0, limit = 81, forward = true }) => {
+  // console.log('allGuesses:', allGuesses, 'guessIndex:', guessIndex)
   if (guessIndex < limit) {
     // use the current `guessIndex` value to get a guess from allGuesses
     const currentGuess = allGuesses[guessIndex];
@@ -102,8 +121,6 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward }
       forward: false
     });
   }
-  console.log(`allGuesses complete`);
-  console.log(allGuesses);
   return allGuesses;
 };
 
@@ -137,7 +154,15 @@ export const setup = ({ sideLength = 9, diff, allGuesses: currentGuesses }) => {
 export const singleGuess = (index, diff) => ({
   options: createSequencedArray(9),
   value: '',
-  visible: diff ? gameIndex.includes(index) : true,
   index,
-  userValue: false,
+  userValue: '',
 });
+
+export const stripGuesses = (guesses) => {
+  return guesses.map((guess, ind) => {
+    if (guess.userValue) {
+      return guess;
+    }
+    return singleGuess(ind);
+  })
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setupGame } from '../actions/controls';
+import { setupGame, clearGame } from '../actions/controls';
 import { resetPuzzle, solvePuzzle } from '../actions/guesses';
 
 class Controls extends React.Component {
@@ -9,13 +9,14 @@ class Controls extends React.Component {
     this.props.solvePuzzle();
   };
   handleGameSetup = (e) => {
+    console.log(`${e.target.value}_GAME`);
     this.props.setupGame(`${e.target.value}_GAME`);
+    this.props.solvePuzzle();
   };
-  handleClear = (e) => {
+  handleReset = (e) => {
     this.props.resetPuzzle(`${e.target.value}_RESET_PUZZLE`);
-    // I'm not sure if it's okay to trigger two action generators at once
     if (e.target.value === 'HARD') {
-      this.props.setupGame(`CLEAR_GAME`);
+      this.props.clearGame();
     }
   };
   render() {
@@ -44,20 +45,19 @@ class Controls extends React.Component {
         <div className="controls__group">
           <button 
             className="h4 btn btn--white" 
-            value="FULL" 
             onClick={this.handleSolve}>
             Solve
           </button>
           <button 
-            className="h4 btn" 
-            value='SOFT' 
-            onClick={this.handleClear}>
+            className="h4 btn"
+            value='SOFT'
+            onClick={this.handleReset}>
             Clear Solution
           </button>
           <button 
-            className="h4 btn btn--inverted" 
-            value='HARD' 
-            onClick={this.handleClear}>
+            className="h4 btn btn--inverted"
+            value='HARD'
+            onClick={this.handleReset}>
             Clear All
           </button>
         </div>
@@ -67,8 +67,9 @@ class Controls extends React.Component {
 }
 
 Controls.propTypes = {
-  // handleSolve: PropTypes.func.isRequired,
-  // handleClear: PropTypes.func.isRequired,
+  setupGame: PropTypes.func.isRequired,
+  resetPuzzle: PropTypes.func.isRequired,
+  solvePuzzle: PropTypes.func.isRequired,
 };
 
 // on here you define your dispatcher functions, which will be mapped and called
@@ -76,7 +77,8 @@ const mapDispatchToProps = (dispatch) => ({
   // set the names of these to be the same as the name of the action generator
   setupGame: (type) => dispatch(setupGame(type)),
   resetPuzzle: (type) => dispatch(resetPuzzle(type)),
-  solvePuzzle: () => dispatch(solvePuzzle())
+  solvePuzzle: () => dispatch(solvePuzzle()),
+  clearGame: () => dispatch(clearGame())
 });
 
 // mapStateToProps, mapDispatchToProps

@@ -1,21 +1,30 @@
+import { randArray } from '../utils/utilities';
+
 const controlsReducerDefaultState = {
-  diff: ''
+  diff: '',
+  game: []
 };
 export default (state = controlsReducerDefaultState, action) => {
   switch (action.type) {
     case 'CLEAR_GAME':
-      return controlsReducerDefaultState;
+      return {
+        diff: '',
+        game: []
+      };
     case 'EASY_GAME':
       return {
-        diff: 'easy'
+        diff: 'easy',
+        game: randArray({ revealedGuesses: 40, sideLength: 9 })
       };
     case 'MEDIUM_GAME':
       return {
-        diff: 'medium'
+        diff: 'medium',
+        game: randArray({ revealedGuesses: 35, sideLength: 9 })
       };
     case 'HARD_GAME':
       return {
-        diff: 'hard'
+        diff: 'hard',
+        game: randArray({ revealedGuesses: 30, sideLength: 9 })
       };
     default:
       return state;
