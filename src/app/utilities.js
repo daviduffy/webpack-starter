@@ -23,16 +23,16 @@ export const getGameIndex = ({ limit, diff }) => {
       desired = limit;
       break;
     case 1:
-      desired = 35;
+      desired = 40;
       break;
     case 2:
-      desired = 30;
+      desired = 35;
       break;
     case 3:
-      desired = 25;
+      desired = 30;
       break;
     case 4:
-      desired = 20;
+      desired = 24;
       break;
   }
   return randArray({

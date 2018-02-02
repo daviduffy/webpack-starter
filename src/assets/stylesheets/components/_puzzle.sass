@@ -1,18 +1,19 @@
 .Sudoku
   display: grid
-  grid-template-rows: 1fr 100px
+  grid-template-rows: 1fr 106px
   grid-template-columns: 1fr
   box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.35);
   margin: auto
   width: calc(100vw - 1rem)
-  height: calc(100vw - 1rem + 100px)
+  height: calc(100vw - 1rem + 106px)
   @media screen and (min-width: 700px)
     grid-template-rows: 1fr
-    grid-template-columns: 1fr 100px
-    width: calc(700px + 2vw)
+    grid-template-columns: 1fr 180px
+    width: calc(780px + 2vw)
     height: calc(600px + 2vw)
 
 .Sudoku__puzzle
+  display: grid
   grid-template-columns: repeat(9, 1fr)
   grid-template-rows: repeat(9, 1fr)
   padding: 0
@@ -21,21 +22,24 @@
     grid-row: 1
     grid-column: 1/2
 
-
 .Sudoku__controls
-  grid-auto-columns: 1fr
-  grid-auto-flow: column
   width: calc(100vw - 1rem)
   background-color: #ecf0f1
   @media screen and (min-width: 700px)
     grid-row: 1
     grid-column: 2/3
-    grid-auto-flow: row
-    width: 100px
+    display: grid
+    grid-template-rows: 1fr 1fr
+    width: 180px
 
-.Sudoku__puzzle,
-.Sudoku__controls
+.controls
+
+.controls__group
   display: grid
+  grid-auto-flow: column
+  @media screen and (min-width: 700px)
+    grid-auto-flow: row
+
 
 li
   display: inline-block

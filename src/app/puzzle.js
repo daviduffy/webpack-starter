@@ -122,23 +122,14 @@ export const setup = ({ sideLength, diff, allGuesses: currentGuesses }) => {
             limit: sideLength * sideLength,
             diff }) : [];
 
-  let allGuesses;
+  // if there is no current set of guesses, make an array that's the right size to map over
   if (currentGuesses === undefined) {
+    currentGuesses = Array(limit).fill(undefined);
+  }
 
-    // this is a brand new puzzle
-    // fast way to create an array of the correct length
-    allGuesses = Array(limit).fill(undefined).map((guess, index) => ({
-      options: createSequencedArray(sideLength),
-      value: '',
-      visible: diff ? gameIndex.includes(index) : true,
-      index,
-      userValue: false,
-    }));
-  } else {
-    // this is to preserve any user guesses in a current puzzle
-    allGuesses = currentGuesses.map((guess, index) => {
+  const allGuesses = currentGuesses.map((guess, index) => {
       // keep any existing guess
-      if (guess.userValue) {
+      if (guess !== undefined && guess.userValue) {
         return guess;
       }
       // return a new obj for non-user-input
@@ -150,7 +141,6 @@ export const setup = ({ sideLength, diff, allGuesses: currentGuesses }) => {
         userValue: false,
       });
     });
-  }
 
   return allGuesses;
 };
