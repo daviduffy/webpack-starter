@@ -23,9 +23,12 @@ Puzzle.propTypes = {
   guesses: PropTypes.array.isRequired
 }
 
-const mapStateToProps = state => ({
-  guesses: getVisibleGuesses(state.guesses)
-  // guesses: getVisibleGuesses(state.guesses, state.filters) include the filters when needed
-});
+const mapStateToProps = state => {
+  console.log('Puzzle.js', state.guesses, state.controls);
+  return ({
+    guesses: getVisibleGuesses(state.guesses, state.controls)
+    // guesses: getVisibleGuesses(state.guesses, state.filters) include the filters when needed
+  });
+}
 
 export default connect(mapStateToProps)(Puzzle);

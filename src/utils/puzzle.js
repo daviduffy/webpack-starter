@@ -133,14 +133,16 @@ export const setup = ({ sideLength = 9, diff, allGuesses: currentGuesses }) => {
         return guess;
       }
       // return a new obj for non-user-input
-      return ({
-        options: createSequencedArray(sideLength),
-        value: '',
-        visible: diff ? gameIndex.includes(index) : true,
-        index,
-        userValue: false,
-      });
+      return singleGuess(index, diff);
     });
 
   return allGuesses;
 };
+
+export const singleGuess = (index, diff) => ({
+  options: createSequencedArray(9),
+  value: '',
+  visible: diff ? gameIndex.includes(index) : true,
+  index,
+  userValue: false,
+});
