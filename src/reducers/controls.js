@@ -1,28 +1,21 @@
 const controlsReducerDefaultState = {
-  diff: '',
-  resetType: ''
+  diff: ''
 };
 export default (state = controlsReducerDefaultState, action) => {
   switch (action.type) {
-    case 'EASY_PUZZLE':
+    case 'CLEAR_GAME':
+      return controlsReducerDefaultState;
+    case 'EASY_GAME':
       return {
-
+        diff: 'easy'
       };
-    case 'MEDIUM_PUZZLE':
+    case 'MEDIUM_GAME':
       return {
-
+        diff: 'medium'
       };
-    case 'HARD_PUZZLE':
+    case 'HARD_GAME':
       return {
-
-      };
-    case 'HARD_RESET_PUZZLE':
-      return {
-        resetType: 'hard'
-      };
-    case 'SOFT_RESET_PUZZLE':
-      return {
-        resetType: 'soft'
+        diff: 'hard'
       };
     default:
       return state;

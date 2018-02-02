@@ -1,14 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPuzzle, resetPuzzle } from '../actions/controls';
+import { setupGame } from '../actions/controls';
+import { resetPuzzle, solvePuzzle } from '../actions/guesses';
 
 class Controls extends React.Component {
   handleSolve = (e) => {
-    this.props.getPuzzle(`${e.target.value}_PUZZLE`);
+    this.props.solvePuzzle();
+  };
+  handleGameSetup = (e) => {
+    this.props.setupGame(`${e.target.value}_GAME`);
   };
   handleClear = (e) => {
     this.props.resetPuzzle(`${e.target.value}_RESET_PUZZLE`);
+    // I'm not sure if it's okay to trigger two action generators at once
+    if (e.target.value === 'HARD') {
+      this.props.setupGame(`CLEAR_GAME`);
+    }
   };
   render() {
     return (
@@ -16,20 +24,20 @@ class Controls extends React.Component {
         <div className="controls__group">
           <button 
             className="h4 btn btn--action btn--easy" 
-            value="EASY_PUZZLE" 
-            onClick={this.handleSolve}>
+            value="EASY" 
+            onClick={this.handleGameSetup}>
             Easy
           </button>
           <button 
             className="h4 btn btn--action btn--medium" 
-            value="MEDIUM_PUZZLE" 
-            onClick={this.handleSolve}>
+            value="MEDIUM" 
+            onClick={this.handleGameSetup}>
             Medium
           </button>
           <button 
             className="h4 btn btn--action btn--hard" 
-            value="HARD_PUZZLE" 
-            onClick={this.handleSolve}>
+            value="HARD" 
+            onClick={this.handleGameSetup}>
             Hard
           </button>
         </div>
@@ -66,8 +74,9 @@ Controls.propTypes = {
 // on here you define your dispatcher functions, which will be mapped and called
 const mapDispatchToProps = (dispatch) => ({
   // set the names of these to be the same as the name of the action generator
-  getPuzzle: (type) => dispatch(getPuzzle(type)),
-  resetPuzzle: (type) => dispatch(resetPuzzle(type))
+  setupGame: (type) => dispatch(setupGame(type)),
+  resetPuzzle: (type) => dispatch(resetPuzzle(type)),
+  solvePuzzle: () => dispatch(solvePuzzle())
 });
 
 // mapStateToProps, mapDispatchToProps

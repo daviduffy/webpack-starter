@@ -36,7 +36,8 @@ export const getXYSquare = ({ sideLength, allGuesses, guessIndex }) => {
 
 // Guess Logic
 // =================================================================================================
-export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, diff, gameIndex }) => {
+export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward }) => {
+  console.log('allGuesses:', allGuesses, 'guessIndex:', guessIndex)
   if (guessIndex < limit) {
     // use the current `guessIndex` value to get a guess from allGuesses
     const currentGuess = allGuesses[guessIndex];
@@ -53,9 +54,7 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, 
             allGuesses,
             guessIndex,
             limit,
-            forward: true,
-            gameIndex,
-            diff
+            forward: true
           });
         } else {
           guessIndex--;
@@ -64,9 +63,7 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, 
             allGuesses,
             guessIndex,
             limit,
-            forward: false,
-            gameIndex,
-            diff
+            forward: false
           });
         }
       }
@@ -86,9 +83,7 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, 
               allGuesses,
               guessIndex,
               limit,
-              forward: true,
-              gameIndex,
-              diff
+              forward: true
             });
           }
         }
@@ -104,11 +99,11 @@ export const makeGuess = ({ sideLength, allGuesses, guessIndex, limit, forward, 
       allGuesses,
       guessIndex,
       limit,
-      forward: false,
-      gameIndex,
-      diff
+      forward: false
     });
   }
+  console.log(`allGuesses complete`);
+  console.log(allGuesses);
   return allGuesses;
 };
 

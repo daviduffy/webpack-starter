@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Cell from './Cell';
-import getVisibleGuesses from '../selectors/guesses';
+// import getVisibleGuesses from '../selectors/guesses';
 
 const Puzzle = (props) => {
   return (
@@ -26,7 +26,8 @@ Puzzle.propTypes = {
 const mapStateToProps = state => {
   console.log('Puzzle.js', state.guesses, state.controls);
   return ({
-    guesses: getVisibleGuesses(state.guesses, state.controls)
+    guesses: state.guesses
+    // guesses: getVisibleGuesses(state.guesses, state.controls)
     // guesses: getVisibleGuesses(state.guesses, state.filters) include the filters when needed
   });
 }

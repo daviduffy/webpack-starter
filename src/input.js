@@ -11,19 +11,19 @@ import PropTypes from 'prop-types';
 
 const store = configureStore();
 
-console.log(editGuess(1, {
-  value: '6',
-  userValue: true
-}));
+// console.log(editGuess(1, {
+//   value: '6',
+//   userValue: true
+// }));
 
 const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(editGuess(1, {
-  value: '6',
-  userValue: true
-}));
+// store.dispatch(editGuess(1, {
+//   value: '6',
+//   userValue: true
+// }));
 
 const jsx = (
   <Provider store={store}>

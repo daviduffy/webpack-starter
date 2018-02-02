@@ -5,3 +5,12 @@ export const editGuess = (index, updates) => ({
   updates
 });
 
+// RESET_PUZZLE
+export const resetPuzzle = (type) => ({
+  type
+});
+
+// SOLVE_PUZZLE
+export const solvePuzzle = () => ({
+  type: 'SOLVE_PUZZLE'
+});
