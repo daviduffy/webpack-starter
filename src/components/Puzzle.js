@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Cell from './Cell';
+import getVisibleGuesses from '../selectors/guesses';
 
 const Puzzle = (props) => {
   return (
     <ul id="puzzle" className="Sudoku__puzzle">
-      { props.cells.map((cell, index) => {
+      { props.guesses.map((cell, index) => {
         return (
           <Cell
             key={index}
-            cell={cell}
-            handleChange={props.handleChange} />
+            cell={cell} />
         )
       })
     }
@@ -19,8 +20,12 @@ const Puzzle = (props) => {
 }
 
 Puzzle.propTypes = {
-  cells: PropTypes.array.isRequired,
-  handleChange: PropTypes.func.isRequired
+  guesses: PropTypes.array.isRequired
 }
 
-export default Puzzle;
+const mapStateToProps = state => ({
+  guesses: getVisibleGuesses(state.guesses)
+  // guesses: getVisibleGuesses(state.guesses, state.filters) include the filters when needed
+});
+
+export default connect(mapStateToProps)(Puzzle);
